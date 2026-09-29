@@ -26,11 +26,11 @@ button:hover{background:#9d4edd}
 .popup .price{color:#ffd166;font-size:20px;font-weight:bold;margin:10px 0}
 .popup img{width:200px;max-width:100%;border-radius:8px;background:#fff;padding:4px;margin:10px auto;display:block}
 table{width:100%;border-collapse:collapse;max-width:1000px;margin:20px auto;font-size:13px}
-:th,td{padding:8px;border-bottom:1px solid #3a2a5a;text-align:left}
+th,td{padding:8px;border-bottom:1px solid #3a2a5a;text-align:left}
 th{background:#2a2040;color:#c77dff}
 .hide{display:none}
 .err{color:#e63946;font-size:13px}
-.logo-top{displayblock;width:90px;height:90px;border-radius:50%;margin:10px auto;border:2px solid #9d4edd;object-fit:cover}
+.logo-top{display:block;width:90px;height:90px;border-radius:50%;margin:10px auto;border:2px solid #9d4edd;object-fit:cover}
 </style>
 </head>
 <body>
@@ -253,7 +253,6 @@ function doApprove(){
   renderAdmin();
 }
 function del(id){
-  if(!confirm('Xóa đơn?'))return;
   saveOrders(getOrders().filter(function(x){return x.id!==id}));
   renderAdmin();
 }
