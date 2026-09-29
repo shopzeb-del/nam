@@ -34,9 +34,8 @@ th{background:#2a2040;color:#c77dff}
 </head>
 <body>
 
-<!-- SHOP -->
 <div id="shop">
-<img src="LOGO_BASE64" class="logo-top" alt="Logo">
+<img src="logo.jpg.PNG" class="logo-top" alt="Logo" onerror="this.style.background='#7b2cbf'">
 <h1>ZEB X VEX</h1>
 <h2>SẢN PHẨM</h2>
 <div class="grid" id="products"></div>
@@ -45,7 +44,7 @@ th{background:#2a2040;color:#c77dff}
 <div class="box">
 <p><b>ZaloPay:</b> HOÀNG BẢO NAM</p>
 <p><b>SĐT:</b> 0355417385</p>
-<img src="QR_BASE64" alt="QR">
+<img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
 <button onclick="submitNap()">Xác Nhận Đã Chuyển</button>
@@ -60,7 +59,6 @@ th{background:#2a2040;color:#c77dff}
 <p style="text-align:center;margin-top:20px"><button style="width:auto;padding:8px 20px" onclick="showLogin()">Đăng nhập Admin</button></p>
 </div>
 
-<!-- LOGIN -->
 <div id="login" class="hide">
 <div class="box" style="margin-top:100px">
 <h3 style="color:#c77dff;margin-bottom:10px">🔐 ADMIN</h3>
@@ -71,18 +69,18 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- ADMIN -->
 <div id="admin" class="hide">
 <h2>QUẢN TRỊ ĐƠN</h2>
 <button style="max-width:200px;margin:0 auto 15px;display:block" onclick="logout()">Thoát</button>
+<div style="overflow-x:auto">
 <table>
 <thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Gói</th><th>Trạng thái</th><th>Hành động</th></tr></thead>
 <tbody id="orders"></tbody>
 </table>
+</div>
 <p id="empty" style="text-align:center;color:#888">Chưa có đơn.</p>
 </div>
 
-<!-- POPUP MUA -->
 <div id="buyPopup" class="popup hide">
 <div class="inner">
 <h3>MUA HÀNG</h3>
@@ -94,7 +92,7 @@ th{background:#2a2040;color:#c77dff}
 <div id="qrBox" class="hide">
 <div class="price" id="buyPrice"></div>
 <p style="font-size:13px">Quét QR:</p>
-<img src="QR_BASE64" alt="QR">
+<img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/180/1a1533/c77dff?text=QR'">
 <input id="buyCus" placeholder="Tên của bạn">
 </div>
 <button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doBuy()">Xác Nhận</button>
@@ -102,7 +100,6 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- POPUP KEY ADMIN -->
 <div id="keyPopup" class="popup hide">
 <div class="inner">
 <h3>CHỌN GÓI KEY</h3>
