@@ -18,7 +18,7 @@ h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3
 button{width:100%;padding:10px;background:#7b2cbf;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold}
 button:hover{background:#9d4edd}
 .box{background:#1a1533;border:1px solid #3a2a5a;border-radius:10px;padding:20px;max-width:400px;margin:20px auto;text-align:center}
-.box input,.box select{width:100%;padding:10px;margin:8px 0;backgroundcenter;:#0d0bmargin1a;color:#fff;border:1px-top solid #3a2:a5a;border-radius:6px}
+.box input,.box select{width:100%;padding:10px;margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:6px}
 .box img{width:180px;border-radius:8px;background:#fff;padding:4px;margin:10px auto;display:block}
 .popup{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;justify-content:center;align-items:center;padding:15px;z-index:99}
 .popup .inner{background:#1a1533;border:2px solid #7b2cbf;border-radius:10px;padding:20px;max-width:400px;width:100%;text-align:center;max-height:90vh;overflow:auto}
@@ -29,12 +29,14 @@ th,td{padding:8px;border-bottom:1px solid #3a2a5a;text-align:left}
 th{background:#2a2040;color:#c77dff}
 .hide{display:none}
 .err{color:#e63946;font-size:13px}
+.logo-top{display:block;width:70px;height:70px;border-radius:50%;margin:10px auto;border:2px solid #9d4edd;object-fit:cover}
 </style>
 </head>
 <body>
 
 <!-- SHOP -->
 <div id="shop">
+<img src="logo.jpg.PNG" class="logo-top" onerror="this.style.background='#7b2cbf'">
 <h1>ZEB X VEX</h1>
 <h2>SẢN PHẨM</h2>
 <div class="grid" id="products"></div>
@@ -43,7 +45,7 @@ th{background:#2a2040;color:#c77dff}
 <div class="box">
 <p><b>ZaloPay:</b> HOÀNG BẢO NAM</p>
 <p><b>SĐT:</b> 0355417385</p>
-<img src="qr.jpg" onerror="this.src='https://via.placeholder.com/180/1a1533/c77dff?text=QR'">
+<img src="qr.jpg.jpg" onerror="this.src='https://via.placeholder.com/180/1a1533/c77dff?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
 <button onclick="submitNap()">Xác Nhận Đã Chuyển</button>
@@ -55,7 +57,7 @@ th{background:#2a2040;color:#c77dff}
 <a href="https://zalo.me/0355417385" target="_blank"><button>Nhắn Zalo</button></a>
 </div>
 
-<p style="text-align:20px"><button style="width:auto;padding:8px 20px" onclick="showLogin()">Đăng nhập Admin</button></p>
+<p style="text-align:center;margin-top:20px"><button style="width:auto;padding:8px 20px" onclick="showLogin()">Đăng nhập Admin</button></p>
 </div>
 
 <!-- LOGIN -->
@@ -92,7 +94,7 @@ th{background:#2a2040;color:#c77dff}
 <div id="qrBox" class="hide">
 <div class="price" id="buyPrice"></div>
 <p style="font-size:13px">Quét QR:</p>
-<img src="qr.jpg" onerror="this.src='https://via.placeholder.com/180/1a1533/c77dff?text=QR'">
+<img src="qr.jpg.jpg" onerror="this.src='https://via.placeholder.com/180/1a1533/c77dff?text=QR'">
 <input id="buyCus" placeholder="Tên của bạn">
 </div>
 <button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doBuy()">Xác Nhận</button>
@@ -112,22 +114,21 @@ th{background:#2a2040;color:#c77dff}
 <option>1 Giờ</option><option>12 Giờ</option><option>1 Ngày</option>
 <option>1 Tuần</option><option>1 Tháng</option>
 </select>
-<button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doApprove()">Duyệt</button>
-<button style="background:#e63946;margin-top:8px" onclick="closeKey()">Hủy</button>
+<button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doApprove()('">Duyệt</button>
+<databutton style="background:#e63946;margin-top:8px" onclick="closeKey()">Hủ-pricey</button>
+');
 </div>
 </div>
 
 <script>
-// DỮ LIỆU SẢN PHẨM
-var PRODUCTS = [
-  {name:'Delta Proxy', pkgs:[{n:'Ngày',p:25000},{n:'Tuần',p:50000},{n:'Tháng',p:130000},{n:'Năm',p:200000}]},
+ var PRODUCTS = [
+  {name:' ifDelta Proxy', pkgs:[{n:'Ngày',p:25000},{n:'Tuần',p:50000},{n:'Tháng',p:130000},{n:'Năm',p:200000}]},
   {name:'Nova X', pkgs:[{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:160000},{n:'Vĩnh viễn',p:240000}]},
   {name:'Proxy Vip', pkgs:[{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:170000},{n:'Vĩnh viễn',p:250000}]},
   {name:'Trollmodz', pkgs:[{n:'1 Giờ',p:10000},{n:'12 Giờ',p:25000},{n:'1 Ngày',p:35000},{n:'1 Tuần',p:75000},{n:'1 Tháng',p:150000}]},
   {name:'Proxy Vpn', pkgs:[{n:'Giờ',p:5000},{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:200000}]}
 ];
 
-// HIỂN THỊ SẢN PHẨM
 var html='';
 PRODUCTS.forEach(function(p,i){
   html+='<div class="card"><h3>'+p.name+'</h3><ul>';
@@ -136,11 +137,9 @@ PRODUCTS.forEach(function(p,i){
 });
 document.getElementById('products').innerHTML=html;
 
-// LƯU ĐƠN
 function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex')||'[]')}catch(e){return[]}}
 function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
 
-// NẠP TIỀN
 function submitNap(){
   var n=document.getElementById('nName').value.trim();
   var a=document.getElementById('nAmount').value.trim();
@@ -153,7 +152,6 @@ function submitNap(){
   document.getElementById('nAmount').value='';
 }
 
-// MUA HÀNG
 var currentProduct=null;
 function openBuy(i){
   currentProduct=PRODUCTS[i];
@@ -174,8 +172,7 @@ function closeBuy(){document.getElementById('buyPopup').classList.add('hide')}
 function pickPkg(){
   var sel=document.getElementById('buyPkg');
   var opt=sel.options[sel.selectedIndex];
-  var p=opt.getAttribute('data-price');
-  if(p){
+  var p=opt.getAttribute(p){
     document.getElementById('buyPrice').textContent='Tổng: '+parseInt(p).toLocaleString()+'đ';
     document.getElementById('qrBox').classList.remove('hide');
   }else{
@@ -196,7 +193,6 @@ function doBuy(){
   alert('Đã tạo đơn! Chờ Admin duyệt.');
 }
 
-// ADMIN
 function showLogin(){
   document.getElementById('shop').classList.add('hide');
   document.getElementById('login').classList.remove('hide');
