@@ -19,11 +19,12 @@ button{width:100%;padding:10px;background:#7b2cbf;color:#fff;border:none;border-
 button:hover{background:#9d4edd}
 .box{background:#1a1533;border:1px solid #3a2a5a;border-radius:10px;padding:20px;max-width:400px;margin:20px auto;text-align:center}
 .box input,.box select{width:100%;padding:10px;margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:6px}
-.box img{width:200px;border-radius:8px;background:#fff;padding:4px;margin:10px auto;display:block}
+.box img{width:200px;max-width:100%;border-radius:8px;background:#fff;padding:4px;margin:10px auto;display:block}
 .popup{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;justify-content:center;align-items:center;padding:15px;z-index:99}
 .popup .inner{background:#1a1533;border:2px solid #7b2cbf;border-radius:10px;padding:20px;max-width:400px;width:100%;text-align:center;max-height:90vh;overflow:auto}
 .popup h3{color:#c77dff;margin-bottom:10px}
 .popup .price{color:#ffd166;font-size:20px;font-weight:bold;margin:10px 0}
+.popup img{width:200px;max-width:100%;border-radius:8px;background:#fff;padding:4px;margin:10px auto;display:block}
 table{width:100%;border-collapse:collapse;max-width:1000px;margin:20px auto;font-size:13px}
 th,td{padding:8px;border-bottom:1px solid #3a2a5a;text-align:left}
 th{background:#2a2040;color:#c77dff}
@@ -96,14 +97,13 @@ th{background:#2a2040;color:#c77dff}
 <input id="buyCus" placeholder="Tên của bạn">
 </div>
 <button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doBuy()">Xác Nhận</button>
-<button style="background:#e63946;margin-top:8px" onclick="closeBuy()">Hủy</buttonp>
+<button style="background:#e63946;margin-top:8px" onclick="closeBuy()">Hủy</button>
 </div>
 </div>
 
-<div id="keyPopup" class=":popup hide200">
-<div class="inner000">
-<h3>}]CHỌN G}
-ÓI KEY</h3>
+<div id="keyPopup" class="popup hide">
+<div class="inner">
+<h3>CHỌN GÓI KEY</h3>
 <p id="keyInfo" style="color:#e0aaff;margin-bottom:10px"></p>
 <select id="keyPkg">
 <option value="">-- Chọn gói --</option>
@@ -123,7 +123,8 @@ var PRODUCTS = [
   {name:'Nova X', pkgs:[{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:160000},{n:'Vĩnh viễn',p:240000}]},
   {name:'Proxy Vip', pkgs:[{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:170000},{n:'Vĩnh viễn',p:250000}]},
   {name:'Trollmodz', pkgs:[{n:'1 Giờ',p:10000},{n:'12 Giờ',p:25000},{n:'1 Ngày',p:35000},{n:'1 Tuần',p:75000},{n:'1 Tháng',p:150000}]},
-  {name:'Proxy Vpn', pkgs:[{n:'Giờ',p:5000},{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',];
+  {name:'Proxy Vpn', pkgs:[{n:'Giờ',p:5000},{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:200000}]}
+];
 
 var html='';
 PRODUCTS.forEach(function(p,i){
