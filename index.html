@@ -3,531 +3,457 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZEB X VEX - Shop Proxy & Tool Game</title>
+<title>ZEB X VEX</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
-body { background-color: #0d0b1a; color: #e0e0e0; line-height: 1.6; }
-a { text-decoration: none; color: inherit; }
-.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-.hidden { display: none !important; }
-
-/* HEADER */
-header { background-color: #1a1533; padding: 15px 0; border-bottom: 2px solid #7b2cbf; position: sticky; top: 0; z-index: 100; }
-.header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.logo-area { display: flex; align-items: center; gap: 12px; }
-.logo-area img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #9d4edd; object-fit: cover; background: #2a2040; }
-.logo-area h1 { font-size: 24px; color: #c77dff; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 10px rgba(157, 78, 221, 0.5); }
-.nav-links a { margin-left: 18px; color: #b0a8c0; font-weight: 500; transition: 0.3s; cursor: pointer; }
-.nav-links a:hover { color: #c77dff; }
-.admin-btn { background: #7b2cbf; padding: 6px 15px; border-radius: 20px; color: white !important; font-size: 14px; }
-.admin-btn:hover { background: #9d4edd; }
-
-/* HERO */
-.hero { text-align: center; padding: 50px 20px; background: linear-gradient(135deg, #1a1533 0%, #0d0b1a 100%); border-radius: 15px; margin-top: 20px; border: 1px solid #3a2a5a; }
-.hero h2 { font-size: 36 }
-px; color: #c77dff; margin-bottom: 10px; text-shadow: 0 0 15px rgba(199, 125, 255, 0.5); }
-.hero p { color: #a0a0b0; font-size: 16px; }
-
-/* SECTION TITLE */
-.section-title { text-align: center; font-size: 26px; color: #c77dff; margin: 50px 0 25px; text-transform: uppercase; border-bottom: .mod2px solid #3a2aal5a; padding-bottom-box: 10px; display: inline .-block; width: 100%; }
-
-/* SẢN PHqrẨM */
-.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.product-card { background-color: #1a1533; border: 1px solid #3a2a5a; border-radius: 12px; padding: 20px; transition: 0.3s; }
-.product-card:hover { border-color: #9d4edd; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4); }
-.product-card h3 { color: #c77dff; font-size: 20px; margin-bottom: 15px; border-bottom: 1px dashed #3a2a5a; padding-bottom: 10px; text-align: center; }
-.price-list { list-style: none; }
-.price-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #2a2040; font-size: 15px; }
-.price-list li:last-child { border-bottom: none; }
-.price-list li span:last-child { color: #e0aaff; font-weight: bold; }
-.buy-btn { display: block; width: 100%; margin-top: 15px; background: #7b2cbf; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-.buy-btn:hover { background: #9d4edd; }
-
-/* THANH TOÁN */
-.payment-section { background-color: #1a1533; border: 1px solid #3a2a5a; border-radius: 12px; padding: 30px; margin-top: 20px; text-align: center; }
-.payment-section h3 { color: #c77dff; margin-bottom: 20px; font-size: 22px; }
-.bank-info { background-color: #0d0b1a; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #3a2a5a; display: inline-block; min-width: 320px; text-align: left; }
-.bank-info p { margin: 8px 0; font-size: 16px; }
-.bank-info strong { color: #e0aaff; }
-.qr-code { margin: 20px auto; max-width: 250px; border-radius: 10px; border: 3px solid #7b2cbf; padding: 5px; background: white; }
-.qr-code img { width: 100%; display: block; border-radius: 8px; }
-
-/* FORM NẠP */
-.nap-form { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin-left: auto; margin-right: auto; }
-.nap-form input { padding: 12px; border-radius: 8px; border: 1px solid #3a2a5a; background: #0d0b1a; color: white; outline: none; }
-.nap-form input:focus { border-color: #9d4edd; }
-.nap-form button { padding: 12px; background: #7b2cbf; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-.nap-form button:hover { background: #9d4edd; }
-
-/* LIÊN HỆ */
-.contact-section { text-align: center; padding: 30px; background-color: #1a1533; border-radius: 12px; margin-top: 50px; border: 1px solid #3a2a5a; }
-.contact-section h3 { color: #c77dff; margin-bottom: 15px; font-size: 22px; }
-.contact-btn { display: inline-block; background: linear-gradient(45deg, #7b2cbf, #9d4edd); color: white; padding: 12px 35px; border-radius: 50px; font-weight: bold; margin-top: 15px; transition: 0.3s; }
-.contact-btn:hover { background: linear-gradient(45deg, #9d4edd, #c77dff); transform: scale(1.05); }
-
-/* FOOTER */
-footer { text-align: center; padding: 25px; margin-top: 50px; border-top: 1px solid #3a2a5a; color: #6c5a8a; font-size: 14px; }
-
-/* ADMIN LOGIN */
-.admin-login-box { max-width: 400px; margin: 100px auto; background: #1a1533; border: 1px solid #3a2a5a; padding: 30px; border-radius: 12px; text-align: center; }
-.admin-login-box h2 { color: #c77dff; margin-bottom: 20px; }
-.admin-login-box input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #3a2a5a; background: #0d0b1a; color: white; outline: none; text-align: center; }
-.admin-login-box input:focus { border-color: #9d4edd; }
-.admin-login-box button { width: 100%; padding: 12px; background: #7b2cbf; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-.admin-login-box button:hover { background: #9d4edd; }
-.admin-login-box .error { color: #e63946; font-size: 14px; margin-top: 10px; }
-
-/* ADMIN PANEL */
-#adminPanel { background: #0d0b1a; min-height: 100vh; padding: 20px; }
-.admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #7b2cbf; padding-bottom: 10px; }
-.admin-header h2 { color: #c77dff; }
-.logout-btn { background: #e63946; color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-.order-table { width: 100%; border-collapse: collapse; background: #1a1533; border-radius: 8px; overflow: hidden; }
-.order-table th, .order-table td { padding: 12px; text-align: left; border-bottom: 1px solid #3a2a5a; }
-.order-table th { background: #2a2040; color: #c77dff; }
-.order-table tr:hover { background: #221a3a; }
-.status-pending { color: #ffd166; font-weight: bold; }
-.status-done { color: #06d6a0; font-weight: bold; }
-.action-btn { padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px; font-size: 13px; }
-.btn-approve { background: #06d6a0; color: #000; }
-.btn-delete { background: #e63946; color: white; }
-.key-badge { background: #7b2cbf; padding: 3px 8px; border-radius: 5px; font-size: 12px; color: white; }
-
-/* MODAL */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
-.modal-box { background: #1a1533; border: 2px solid #7b2cbf; border-radius: 12px; padding: 25px; max-width: 420px; width: 100%; text-align: center; max-height: 90vh; overflow-y: auto; }
-.modal-box h3 { color: #c77dff; margin-bottom: 10px; font-size: 22px; }
-.modal-box .product-name { color: #e0aaff; font-weight: bold; font-size: 16px; margin-bottom: 15px; }
-.modal-box label { display: block; text-align: left; color: #c77dff; font-size: 14px; margin-bottom: 6px; font-weight: bold; }
-.modal-box select, .modal-box input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #3a2a5a; background: #0d0b1a; color: white; outline: none; font-size: 15px; }
-.modal-box select:focus, .modal-box input:focus { border-color: #9d4edd;-preview { max-width: 180px; margin: 0 auto 15px; border: 2px solid #7b2cbf; border-radius: 8px; padding: 4px; background: white; }
-.modal-box .qr-preview img { width: 100%; display: block; border-radius: 6px; }
-.modal-actions { display: flex; gap: 10px; margin-top: 5px; }
-.modal-actions button { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 15px; }
-.btn-confirm { background: #06d6a0; color: #000; }
-.btn-cancel { background: #e63946; color: white; }
-.total-display { color: #ffd166; font-weight: bold; font-size: 20px; margin-bottom: 15px; padding: 10px; background: #0d0b1a; border-radius: 8px; border: 1px solid #3a2a5a; }
-
-@media (max-width: 600px) {
-  .hero h2 { font-size: 26px; }
-  .product-grid { grid-template-columns: 1fr; }
-  .bank-info { min-width: 100%; }
-  .order-table { font-size: 12px; }
-  .modal-box { padding: 20px; }
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0d0b1a;color:#e0e0e0;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+.hidden{display:none!important}
+header{background:#1a1533;padding:15px 0;border-bottom:2px solid #7b2cbf;position:sticky;top:0;z-index:100}
+.header-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-area img{width:50px;height:50px;border-radius:50%;border:2px solid #9d4edd;object-fit:cover;background:#2a2040}
+.logo-area h1{font-size:24px;color:#c77dff;text-transform:uppercase;letter-spacing:1px}
+.nav-links a{margin-left:18px;color:#b0a8c0;font-weight:500;cursor:pointer;transition:.3s}
+.nav-links a:hover{color:#c77dff}
+.admin-btn{background:#7b2cbf;padding:6px 15px;border-radius:20px;color:#fff!important;font-size:14px}
+.hero{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#1a1533,#0d0b1a);border-radius:15px;margin-top:20px;border:1px solid #3a2a5a}
+.hero h2{font-size:36px;color:#c77dff;margin-bottom:10px}
+.hero p{color:#a0a0b0}
+.section-title{text-align:center;font-size:26px;color:#c77dff;margin:50px 0 25px;text-transform:uppercase;border-bottom:2px solid #3a2a5a;padding-bottom:10px;width:100%}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.product-card{background:#1a1533;border:1px solid #3a2a5a;border-radius:12px;padding:20px;transition:.3s}
+.product-card:hover{border-color:#9d4edd;transform:translateY(-5px)}
+.product-card h3{color:#c77dff;font-size:20px;margin-bottom:15px;border-bottom:1px dashed #3a2a5a;padding-bottom:10px;text-align:center}
+.price-list{list-style:none}
+.price-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #2a2040}
+.price-list li:last-child{border-bottom:none}
+.price-list li span:last-child{color:#e0aaff;font-weight:bold}
+.buy-btn{display:block;width:100%;margin-top:15px;background:#7b2cbf;color:#fff;border:none;padding:10px;border-radius:8px;cursor:pointer;font-weight:bold;transition:.3s}
+.buy-btn:hover{background:#9d4edd}
+.payment-section{background:#1a1533;border:1px solid #3a2a5a;border-radius:12px;padding:30px;margin-top:20px;text-align:center}
+.payment-section h3{color:#c77dff;margin-bottom:20px}
+.bank-info{background:#0d0b1a;padding:20px;border-radius:8px;margin-bottom:20px;border:1px solid #3a2a5a;display:inline-block;min-width:320px;text-align:left}
+.bank-info strong{color:#e0aaff}
+.qr-code{margin:20px auto;max-width:250px;border:3px solid #7b2cbf;border-radius:10px;padding:5px;background:#fff}
+.qr-code img{width:100%;display:block;border-radius:8px}
+.nap-form{margin-top:20px;display:flex;flex-direction:column;gap:10px;max-width:400px;margin-left:auto;margin-right:auto}
+.nap-form input{padding:12px;border-radius:8px;border:1px solid #3a2a5a;background:#0d0b1a;color:#fff;outline:none}
+.nap-form input:focus{border-color:#9d4edd}
+.nap-form button{padding:12px;background:#7b2cbf;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
+.nap-form button:hover{background:#9d4edd}
+.contact-section{text-align:center;padding:30px;background:#1a1533;border-radius:12px;margin-top:50px;border:1px solid #3a2a5a}
+.contact-section h3{color:#c77dff;margin-bottom:15px}
+.contact-btn{display:inline-block;background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;padding:12px 35px;border-radius:50px;font-weight:bold;margin-top:15px}
+footer{text-align:center;padding:25px;margin-top:50px;border-top:1px solid #3a2a5a;color:#6c5a8a;font-size:14px}
+.admin-login-box{max-width:400px;margin:100px auto;background:#1a1533;border:1px solid #3a2a5a;padding:30px;border-radius:12px;text-align:center}
+.admin-login-box h2{color:#c77dff;margin-bottom:20px}
+.admin-login-box input{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #3a2a5a;background:#0d0b1a;color:#fff;outline:none;text-align:center}
+.admin-login-box button{width:100%;padding:12px;background:#7b2cbf;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
+.admin-login-box .error{color:#e63946;font-size:14px;margin-top:10px}
+#adminPanel{background:#0d0b1a;min-height:100vh;padding:20px}
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:2px solid #7b2cbf;padding-bottom:10px}
+.admin-header h2{color:#c77dff}
+.logout-btn{background:#e63946;color:#fff;border:none;padding:8px 15px;border-radius:8px;cursor:pointer;font-weight:bold}
+.order-table{width:100%;border-collapse:collapse;background:#1a1533;border-radius:8px;overflow:hidden}
+.order-table th,.order-table td{padding:12px;text-align:left;border-bottom:1px solid #3a2a5a}
+.order-table th{background:#2a2040;color:#c77dff}
+.status-pending{color:#ffd166;font-weight:bold}
+.status-done{color:#06d6a0;font-weight:bold}
+.action-btn{padding:6px 12px;border:none;border-radius:5px;cursor:pointer;font-weight:bold;margin-right:5px;font-size:13px}
+.btn-approve{background:#06d6a0;color:#000}
+.btn-delete{background:#e63946;color:#fff}
+.key-badge{background:#7b2cbf;padding:3px 8px;border-radius:5px;font-size:12px;color:#fff}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:flex;justify-content:center;align-items:center;z-index:1000;padding:15px}
+.modal-box{background:#1a1533;border:2px solid #7b2cbf;border-radius:12px;padding:25px;max-width:420px;width:100%;text-align:center;max-height:90vh;overflow-y:auto}
+.modal-box h3{color:#c77dff;margin-bottom:10px}
+.modal-box .product-name{color:#e0aaff;font-weight:bold;margin-bottom:15px}
+.modal-box label{display:block;text-align:left;color:#c77dff;font-size:14px;margin-bottom:6px;font-weight:bold}
+.modal-box select,.modal-box input{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #3a2a5a;background:#0d0b1a;color:#fff;outline:none;font-size:15px}
+.modal-box select:focus,.modal-box input:focus{border-color:#9d4edd}
+.qr-preview{max-width:180px;margin:0 auto 15px;border:2px solid #7b2cbf;border-radius:8px;padding:4px;background:#fff}
+.qr-preview img{width:100%;display:block;border-radius:6px}
+.modal-actions{display:flex;gap:10px;margin-top:5px}
+.modal-actions button{flex:1;padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
+.btn-confirm{background:#06d6a0;color:#000}
+.btn-cancel{background:#e63946;color:#fff}
+.total-display{color:#ffd166;font-weight:bold;font-size:20px;margin-bottom:15px;padding:10px;background:#0d0b1a;border-radius:8px;border:1px solid #3a2a5a}
+@media(max-width:600px){.hero h2{font-size:26px}.product-grid{grid-template-columns:1fr}.bank-info{min-width:100%}.order-table{font-size:12px}}
 </style>
 </head>
 <body>
 
-<!-- ==================== TRANG CHỦ ==================== -->
+<!-- TRANG CHỦ -->
 <div id="shopPage">
-  <header>
-    <div class="container header-content">
-      <div class="logo-area">
-        <img src="logo.jpg" alt="Logo" onerror="this.style.background='#7b2cbf';this.alt='Z'">
-        <h1>ZEB X VEX</h1>
-      </div>
-      <div class="nav-links">
-        <a href="#san-pham">Sản phẩm</a>
-        <a href="#thanh-toan">Nạp tiền</a>
-        <a href="#lien-he">Liên hệ</a>
-        <a class="admin-btn" onclick="showAdminLogin()">Admin</a>
-      </div>
-    </div>
-  </header>
+<header>
+<div class="container header-content">
+<div class="logo-area">
+<img src="logo.jpg" alt="Logo" onerror="this.style.background='#7b2cbf'">
+<h1>ZEB X VEX</h1>
+</div>
+<div class="nav-links">
+<a href="#san-pham">Sản phẩm</a>
+<a href="#thanh-toan">Nạp tiền</a>
+<a href="#lien-he">Liên hệ</a>
+<a class="admin-btn" onclick="showAdminLogin()">Admin</a>
+</div>
+</div>
+</header>
 
-  <div class="container">
-    <section class="hero">
-      <h2>ZEB X VEX</h2>
-      <p>Hệ thống cung cấp Proxy, VPN & Tool Game — Uy tín — Chất lượng — Tự động 24/7</p>
-    </section>
+<div class="container">
+<section class="hero">
+<h2>ZEB X VEX</h2>
+<p>Hệ thống cung cấp Proxy, VPN & Tool Game — Uy tín — Chất lượng — Tự động 24/7</p>
+</section>
 
-    <h2 class="section-title" id="san-pham">Kho Sản Phẩm</h2>
-    <div class="product-grid">
-      <!-- Delta Proxy -->
-      <div class="product-card">
-        <h3>Delta Proxy</h3>
-        <ul class="price-list">
-          <li><span>Ngày</span><span>25.000đ</span></li>
-          <li><span>Tuần</span><span>50.000đ</span></li>
-          <li><span>Tháng</span><span>130.000đ</span></li>
-          <li><span>Năm</span><span>200.000đ</span></li>
-        </ul>
-        <button class="buy-btn" onclick="openBuyModal('Delta Proxy')">Mua</button>
-      </div>
-      <!-- Nova X -->
-      <div class="product-card">
-        <h3>Nova X</h3>
-        <ul class="price-list">
-          <li><span>Ngày</span><span>20.000đ</span></li>
-          <li><span>Tuần</span><span>50.000đ</span></li>
-          <li><span>Tháng</span><span>100.000đ</span></li>
-          <li><span>Năm</span><span>160.000đ</span></li>
-          <li><span>Vĩnh viễn</span><span>240.000đ</span></li>
-        </ul>
-        <button class="buy-btn" onclick="openBuyModal('Nova X')">Mua</button>
-      </div>
-      <!-- Proxy Vip -->
-      <div class="product-card">
-        <h3>Proxy Vip</h3>
-        <ul class="price-list">
-          <li><span>Ngày</span><span>20.000đ</span></li>
-          <li><span>Tuần</span><span>50.000đ</span></li>
-          <li><span>Tháng</span><span>100.000đ</span></li>
-          <li><span>Năm</span><span>170.000đ</span></li>
-          <li><span>Vĩnh viễn</span><span>250.000đ</span></li>
-        </ul>
-        <button class="buy-btn" onclick="openBuyModal('Proxy Vip')">Mua</button>
-      </div>
-      <!-- Trollmodz -->
-      <div class="product-card">
-        <h3>Trollmodz</h3>
-        <ul class="price-list">
-          <li><span>1 Giờ</span><span>10.000đ</span></li>
-          <li><span>12 Giờ</span><span>25.000đ</span></li>
-          <li><span>1 Ngày</span><span>35.000đ</span></li>
-          <li><span>1 Tuần</span><span>75.000đ</span></li>
-          <li><span>1 Tháng</span><span>150.000đ</span></li>
-        </ul>
-        <button class="buy-btn" onclick="openBuyModal('Trollmodz')">Mua</button>
-      </div>
-      <!-- Proxy Vpn -->
-      <div class="product-card">
-        <h3>Proxy Vpn</h3>
-        <ul class="price-list">
-          <li><span>Giờ</span><span>5.000đ</span></li>
-          <li><span>Ngày</span><span>20.000đ</span></li>
-          <li><span>Tuần</span><span>50.000đ</span></li>
-          <li><span>Tháng</span><span>100.000đ</span></li>
-          <li><span>Năm</span><span>200.000đ</span></li>
-        </ul>
-        <button class="buy-btn" onclick="openBuyModal('Proxy Vpn')">Mua</button>
-      </div>
-    </div>
-
-    <h2 class="section-title" id="thanh-toan">Thanh Toán</h2>
-    <div class="payment-section">
-      <h3>Quét QR để thanh toán</h3>
-      <div class="bank-info">
-        <p><strong>Ngân hàng:</strong> ZaloPay</p>
-        <p><strong>Chủ tài khoản:</strong> HOÀNG BẢO NAM</p>
-        <p><strong>Số điện thoại:</strong> 0355417385</p>
-        <p><strong>Nội dung CK:</strong> <span id="refCode">ZEBXVEX</span></p>
-      </div>
-      <div class="qr-code">
-        <img src="qr.jpg" alt="QR ZaloPay" onerror="this.src='https://via.placeholder.com/250x250/1a1533/c77dff?text=QR+ZaloPay'">
-      </div>
-      <div class="nap-form">
-        <input type="text" id="customerName" placeholder="Tên của bạn (VD: Nam)">
-        <input type="number" id="amount" placeholder="Số tiền nạp (VD: 50000)">
-        <button onclick="submitNap()">Xác Nhận Đã Chuyển Khoản</button>
-      </div>
-      <p style="color:#a0a0b0;font-size:14px;margin-top:10px;">* Vui lòng ghi đúng nội dung để được duyệt nhanh nhất.</p>
-    </div>
-
-    <div class="contact-section" id="lien-he">
-      <h3>Liên Hệ Hỗ Trợ</h3>
-      <p>Zalo: <strong>0355417385</strong></p>
-      <a href="https://zalo.me/0355417385" class="contact-btn" target="_blank">Nhắn Zalo Ngay</a>
-    </div>
-  </div>
-
-  <footer><p>&copy; 2026 ZEB X VEX. All rights reserved.</p></footer>
+<h2 class="section-title" id="san-pham">Kho Sản Phẩm</h2>
+<div class="product-grid">
+<div class="product-card">
+<h3>Delta Proxy</h3>
+<ul class="price-list">
+<li><span>Ngày</span><span>25.000đ</span></li>
+<li><span>Tuần</span><span>50.000đ</span></li>
+<li><span>Tháng</span><span>130.000đ</span></li>
+<li><span>Năm</span><span>200.000đ</span></li>
+</ul>
+<button class="buy-btn" onclick="openBuyModal('Delta Proxy')">Mua</button>
 </div>
 
-<!-- ==================== MODAL MUA HÀNG ==================== -->
+<div class="product-card">
+<h3>Nova X</h3>
+<ul class="price-list">
+<li><span>Ngày</span><span>20.000đ</span></li>
+<li><span>Tuần</span><span>50.000đ</span></li>
+<li><span>Tháng</span><span>100.000đ</span></li>
+<li><span>Năm</span><span>160.000đ</span></li>
+<li><span>Vĩnh viễn</span><span>240.000đ</span></li>
+</ul>
+<button class="buy-btn" onclick="openBuyModal('Nova X')">Mua</button>
+</div>
+
+<div class="product-card">
+<h3>Proxy Vip</h3>
+<ul class="price-list">
+<li><span>Ngày</span><span>20.000đ</span></li>
+<li><span>Tuần</span><span>50.000đ</span></li>
+<li><span>Tháng</span><span>100.000đ</span></li>
+<li><span>Năm</span><span>170.000đ</span></li>
+<li><span>Vĩnh viễn</span><span>250.000đ</span></li>
+</ul>
+<button class="buy-btn" onclick="openBuyModal('Proxy Vip')">Mua</button>
+</div>
+
+<div class="product-card">
+<h3>Trollmodz</h3>
+<ul class="price-list">
+<li><span>1 Giờ</span><span>10.000đ</span></li>
+<li><span>12 Giờ</span><span>25.000đ</span></li>
+<li><span>1 Ngày</span><span>35.000đ</span></li>
+<li><span>1 Tuần</span><span>75.000đ</span></li>
+<li><span>1 Tháng</span><span>150.000đ</span></li>
+</ul>
+<button class="buy-btn" onclick="openBuyModal('Trollmodz')">Mua</button>
+</div>
+
+<div class="product-card">
+<h3>Proxy Vpn</h3>
+<ul class="price-list">
+<li><span>Giờ</span><span>5.000đ</span></li>
+<li><span>Ngày</span><span>20.000đ</span></li>
+<li><span>Tuần</span><span>50.000đ</span></li>
+<li><span>Tháng</span><span>100.000đ</span></li>
+<li><span>Năm</span><span>200.000đ</span></li>
+</ul>
+<button class="buy-btn" onclick="openBuyModal('Proxy Vpn')">Mua</button>
+</div>
+</div>
+
+<h2 class="section-title" id="thanh-toan">Thanh Toán</h2>
+<div class="payment-section">
+<h3>Quét QR để thanh toán</h3>
+<div class="bank-info">
+<p><strong>Ngân hàng:</strong> ZaloPay</p>
+<p><strong>Chủ tài khoản:</strong> HOÀNG BẢO NAM</p>
+<p><strong>Số điện thoại:</strong> 0355417385</p>
+<p><strong>Nội dung CK:</strong> <span id="refCode">ZEBXVEX</span></p>
+</div>
+<div class="qr-code">
+<img src="qr.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/250x250/1a1533/c77dff?text=QR'">
+</div>
+<div class="nap-form">
+<input type="text" id="customerName" placeholder="Tên của bạn">
+<input type="number" id="amount" placeholder="Số tiền nạp">
+<button onclick="submitNap()">Xác Nhận Đã Chuyển Khoản</button>
+</div>
+</div>
+
+<div class="contact-section" id="lien-he">
+<h3>Liên Hệ Hỗ Trợ</h3>
+<p>Zalo: <strong>0355417385</strong></p>
+<a href="https://zalo.me/0355417385" class="contact-btn" target="_blank">Nhắn Zalo Ngay</a>
+</div>
+</div>
+
+<footer><p>&copy; 2026 ZEB X VEX</p></footer>
+</div>
+
+<!-- MODAL MUA HÀNG -->
 <div id="buyModal" class="modal-overlay hidden">
-  <div class="modal-box">
-    <h3>🛒 MUA HÀNG</h3>
-    <p class="product-name" id="buyProductName"></p>
-    
-    <!-- BƯỚC 1: CHỌN GÓI -->
-    <div id="stepSelect">
-      <label>Chọn gói key:</label>
-      <select id="buyKeySelect" onchange="selectPackage()">
-        <option value="">-- Chọn gói --</option>
-      </select>
-    </div>
-
-    <!-- BƯỚC 2: HIỆN QR + GIÁ -->
-    <div id="stepQR" class="hidden">
-      <div class="total-display" id="buyTotal">Tổng: 0đ</div>
-      <p style="font-size:13px;margin-bottom:10px;color:#b0a8c0;">Quét QR bên dưới để thanh toán:</p>
-      <div class="qr-preview">
-        <img src="qr.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/180x180/1a1533/c77dff?text=QR'">
-      </div>
-      <label>Tên của bạn:</label>
-      <input type="text" id="buyCustomerName" placeholder="Nhập tên...">
-    </div>
-
-    <div class="modal-actions">
-      <button class="btn-confirm" id="btnConfirm" onclick="confirmBuy()">Xác Nhận</button>
-      <button class="btn-cancel" onclick="closeBuyModal()">Hủy</button>
-    </div>
-  </div>
+<div class="modal-box">
+<h3>🛒 MUA HÀNG</h3>
+<p class="product-name" id="buyProductName"></p>
+<label>Chọn gói key:</label>
+<select id="buyKeySelect" onchange="selectPackage()">
+<option value="">-- Chọn gói --</option>
+</select>
+<div id="stepQR" class="hidden">
+<div class="total-display" id="buyTotal">Tổng: 0đ</div>
+<p style="font-size:13px;margin-bottom:10px;color:#b0a8c0">Quét QR để thanh toán:</p>
+<div class="qr-preview">
+<img src="qr.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/180x180/1a1533/c77dff?text=QR'">
+</div>
+<label>Tên của bạn:</label>
+<input type="text" id="buyCustomerName" placeholder="Nhập tên...">
+</div>
+<div class="modal-actions">
+<button class="btn-confirm" onclick="confirmBuy()">Xác Nhận</button>
+<button class="btn-cancel" onclick="closeBuyModal()">Hủy</button>
+</div>
+</div>
 </div>
 
-<!-- ==================== ĐĂNG NHẬP ADMIN ==================== -->
+<!-- ĐĂNG NHẬP ADMIN -->
 <div id="adminLogin" class="hidden">
-  <div class="container">
-    <div class="admin-login-box">
-      <h2>🔐 ĐĂNG NHẬP ADMIN</h2>
-      <input type="password" id="adminPass" placeholder="Nhập mật khẩu admin...">
-      <button onclick="checkAdminLogin()">Đăng Nhập</button>
-      <p id="loginError" class="error hidden">Sai mật khẩu! Vui lòng thử lại.</p>
-      <p style="margin-top:15px;"><a href="#" onclick="hideAdminLogin()" style="color:#9d4edd;font-size:14px;">← Quay về trang chủ</a></p>
-    </div>
-  </div>
+<div class="container">
+<div class="admin-login-box">
+<h2>🔐 ĐĂNG NHẬP ADMIN</h2>
+<input type="password" id="adminPass" placeholder="Nhập mật khẩu...">
+<button onclick="checkAdminLogin()">Đăng Nhập</button>
+<p id="loginError" class="error hidden">Sai mật khẩu!</p>
+<p style="margin-top:15px"><a href="#" onclick="hideAdminLogin()" style="color:#9d4edd;font-size:14px">← Quay về trang chủ</a></p>
+</div>
+</div>
 </div>
 
-<!-- ==================== TRANG ADMIN ==================== -->
+<!-- TRANG ADMIN -->
 <div id="adminPanel" class="hidden">
-  <div class="container">
-    <div class="admin-header">
-      <h2>🛠️ QUẢN TRỊ ĐƠN HÀNG</h2>
-      <button class="logout-btn" onclick="logoutAdmin()">Thoát</button>
-    </div>
-    <p style="color:#a0a0b0;margin-bottom:15px;">Danh sách đơn hàng:</p>
-    <div style="overflow-x:auto;">
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th>Thời Gian</th>
-            <th>Tên Khách</th>
-            <th>Số Tiền</th>
-            <th>Gói Key</th>
-            <th>Trạng Thái</th>
-            <th>Hành Động</th>
-          </tr>
-        </thead>
-        <tbody id="orderList"></tbody>
-      </table>
-    </div>
-    <p id="noOrder" style="text-align:center;margin-top:20px;color:#6c5a8a;">Chưa có đơn hàng nào.</p>
-  </div>
+<div class="container">
+<div class="admin-header">
+<h2>🛠️ QUẢN TRỊ ĐƠN HÀNG</h2>
+<button class="logout-btn" onclick="logoutAdmin()">Thoát</button>
 </div>
-
-<!-- ==================== MODAL CHỌN KEY ADMIN ==================== -->
-<div id="keyModal" class="modal-overlay hidden">
-  <div class="modal-box">
-    <h3>🔑 CHỌN GÓI KEY</h3>
-    <p id="modalCustomerInfo" style="color:#e0aaff;"></p>
-    <select id="keySelect">
-      <option value="">-- Chọn gói key --</option>
-      <option value="Giờ">Giờ</option>
-      <option value="Ngày">Ngày</option>
-      <option value="Tuần">Tuần</option>
-      <option value="Tháng">Tháng</option>
-      <option value="Năm">Năm</option>
-      <option value="Vĩnh viễn">Vĩnh viễn</option>
-      <option value="1 Giờ">1 Giờ</option>
-      <option value="12 Giờ">12 Giờ</option>
-      <option value="1 Ngày">1 Ngày</option>
-      <option value="1 Tuần">1 Tuần</option>
-      <option value="1 Tháng">1 Tháng</option>
-    </select>
-    <div class="modal-actions">
-      <button class="btn-confirm" onclick="confirmApprove()">Xác Nhận</button>
-      <button class="btn-cancel" onclick="closeModal()">Hủy</button>
-    </div>
-  </div>
+<div style="overflow-x:auto">
+<table class="order-table">
+<thead>
+<tr>
+<th>Thời Gian</th>
+<th>Tên Khách</th>
+<th>Số Tiền</th>
+<th>Gói Key</th>
+<th>Trạng Thái</th>
+<th>Hành Động</th>
+</tr>
+</thead>
+<tbody id="orderList"></tbody>
+</table>
+</div>
+<p id="noOrder" style="text-align:center;margin-top:20px;color:#6c5a8a">Chưa có đơn hàng nào.</p>
+</div>
 </div>
 
 <script>
-// ========== CẤU HÌNH ADMIN ==========
 var ADMIN_PASSWORD = "Nam12";
 var ADMIN_SESSION_KEY = "zebxvex_admin_logged";
 
-// ========== DỮ LIỆU ==========
-function getOrders() {
-  try { return JSON.parse(localStorage.getItem('zebxvex_orders')) || []; }
-  catch(e) { return []; }
-}
-function saveOrders(orders) {
-  localStorage.setItem('zebxvex_orders', JSON.stringify(orders));
-}
-
-// ========== DANH SÁCH GÓI KEY CHO TỪNG SẢN PHẨM ==========
 var PACKAGES = {
-  'Delta Proxy': [
-    { name: 'Ngày', price: 25000 },
-    { name: 'Tuần', price: 50000 },
-    { name: 'Tháng', price: 130000 },
-    { name: 'Năm', price: 200000 }
-  ],
-  'Nova X': [
-    { name: 'Ngày', price: 20000 },
-    { name: 'Tuần', price: 50000 },
-    { name: 'Tháng', price: 100000 },
-    { name: 'Năm', price: 160000 },
-    { name: 'Vĩnh viễn', price: 240000 }
-  ],
-  'Proxy Vip': [
-    { name: 'Ngày', price: 20000 },
-    { name: 'Tuần', price: 50000 },
-    { name: 'Tháng', price: 100000 },
-    { name: 'Năm', price: 170000 },
-    { name: 'Vĩnh viễn', price: 250000 }
-  ],
-  'Trollmodz': [
-    { name: '1 Giờ', price: 10000 },
-    { name: '12 Giờ', price: 25000 },
-    { name: '1 Ngày', price: 35000 },
-    { name: '1 Tuần', price: 75000 },
-    { name: '1 Tháng', price: 150000 }
-  ],
-  'Proxy Vpn': [
-    { name: 'Giờ', price: 5000 },
-    { name: 'Ngày', price: 20000 },
-    { name: 'Tuần', price: 50000 },
-    { name: 'Tháng', price: 100000 },
-    { name: 'Năm', price: 200000 }
-  ]
+  'Delta Proxy':[{n:'Ngày',p:25000},{n:'Tuần',p:50000},{n:'Tháng',p:130000},{n:'Năm',p:200000}],
+  'Nova X':[{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:160000},{n:'Vĩnh viễn',p:240000}],
+  'Proxy Vip':[{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:170000},{n:'Vĩnh viễn',p:250000}],
+  'Trollmodz':[{n:'1 Giờ',p:10000},{n:'12 Giờ',p:25000},{n:'1 Ngày',p:35000},{n:'1 Tuần',p:75000},{n:'1 Tháng',p:150000}],
+  'Proxy Vpn':[{n:'Giờ',p:5000},{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:200000}]
 };
 
-// ========== NẠP TIỀN ==========
-function submitNap() {
-  var name = document.getElementById('customerName').value.trim();
-  var amount = document.getElementById('amount').value.trim();
-  if (!name || !amount) { alert('Vui lòng nhập đầy đủ Tên và Số tiền!'); return; }
-  var orders = getOrders();
-  orders.push({
-    id: Date.now(),
-    name: name,
-    amount: parseInt(amount),
-    time: new Date().toLocaleString('vi-VN'),
-    status: 'pending',
-    keyPackage: ''
-  });
+function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex_orders'))||[]}catch(e){return[]}}
+function saveOrders(o){localStorage.setItem('zebxvex_orders',JSON.stringify(o))}
+
+function submitNap(){
+  var name=document.getElementById('customerName').value.trim();
+  var amount=document.getElementById('amount').value.trim();
+  if(!name||!amount){alert('Nhập đầy đủ Tên và Số tiền!');return}
+  var orders=getOrders();
+  orders.push({id:Date.now(),name:name,amount:parseInt(amount),time:new Date().toLocaleString('vi-VN'),status:'pending',keyPackage:''});
   saveOrders(orders);
   alert('Đã gửi yêu cầu! Chờ Admin duyệt.');
-  document.getElementById('customerName').value = '';
-  document.getElementById('amount').value = '';
+  document.getElementById('customerName').value='';
+  document.getElementById('amount').value='';
 }
 
-// ========== MUA HÀNG ==========
-var currentBuyProduct = '';
-
-function openBuyModal(productName) {
-  currentBuyProduct = productName;
-  document.getElementById('buyProductName').innerText = 'Sản phẩm: ' + productName;
-  
-  // Đổ danh sách gói vào select
-  var select = document.getElementById('buyKeySelect');
-  select.innerHTML = '<option value="">-- Chọn gói --</option>';
-  var packages = PACKAGES[productName] || [];
-  packages.forEach(function(pkg) {
-    var opt = document.createElement('option');
-    opt.value = pkg.name;
-    opt.setAttribute('data-price', pkg.price);
-    opt.innerText = pkg.name + ' - ' + pkg.price.toLocaleString() + 'đ';
+var currentBuyProduct='';
+function openBuyModal(productName){
+  currentBuyProduct=productName;
+  document.getElementById('buyProductName').innerText='Sản phẩm: '+productName;
+  var select=document.getElementById('buyKeySelect');
+  select.innerHTML='<option value="">-- Chọn gói --</option>';
+  var pkgs=PACKAGES[productName]||[];
+  pkgs.forEach(function(pkg){
+    var opt=document.createElement('option');
+    opt.value=pkg.n;
+    opt.setAttribute('data-price',pkg.p);
+    opt.innerText=pkg.n+' - '+pkg.p.toLocaleString()+'đ';
     select.appendChild(opt);
   });
-  
-  // Reset giao diện
-  document.getElementById('stepSelect').classList.remove('hidden');
   document.getElementById('stepQR').classList.add('hidden');
-  document.getElementById('buyCustomerName').value = '';
+  document.getElementById('buyCustomerName').value='';
   document.getElementById('buyModal').classList.remove('hidden');
 }
-
-function closeBuyModal() {
-  document.getElementById('buyModal').classList.add('hidden');
-}
-
-function selectPackage() {
-  var select = document.getElementById('buyKeySelect');
-  var selectedOption = select.options[select.selectedIndex];
-  var price = selectedOption.getAttribute('data-price');
-  
-  if (price) {
-    // Hiện QR + giá tiền
-    document.getElementById('buyTotal').innerText = 'Tổng: ' + parseInt(price).toLocaleString() + 'đ';
+function closeBuyModal(){document.getElementById('buyModal').classList.add('hidden')}
+function selectPackage(){
+  var select=document.getElementById('buyKeySelect');
+  var opt=select.options[select.selectedIndex];
+  var price=opt.getAttribute('data-price');
+  if(price){
+    document.getElementById('buyTotal').innerText='Tổng: '+parseInt(price).toLocaleString()+'đ';
     document.getElementById('stepQR').classList.remove('hidden');
-  } else {
+  }else{
     document.getElementById('stepQR').classList.add('hidden');
   }
 }
-
-function confirmBuy() {
-  var select = document.getElementById('buyKeySelect');
-  var selectedOption = select.options[select.selectedIndex];
-  var keyPackage = selectedOption.value;
-  var price = selectedOption.getAttribute('data-price');
-  var name = document.getElementById('buyCustomerName').value.trim();
-
-  if (!keyPackage) { alert('Vui lòng chọn gói key!'); return; }
-  if (!name) { alert('Vui lòng nhập tên của bạn!'); return; }
-
-  var orders = getOrders();
-  orders.push({
-    id: Date.now(),
-    name: name + ' (Mua ' + currentBuyProduct + ' - ' + keyPackage + ')',
-    amount: parseInt(price),
-    time: new Date().toLocaleString('vi-VN'),
-    status: 'pending',
-    keyPackage: keyPackage
-  });
+function confirmBuy(){
+  var select=document.getElementById('buyKeySelect');
+  var opt=select.options[select.selectedIndex];
+  var keyPackage=opt.value;
+  var price=opt.getAttribute('data-price');
+  var name=document.getElementById('buyCustomerName').value.trim();
+  if(!keyPackage){alert('Chọn gói key!');return}
+  if(!name){alert('Nhập tên của bạn!');return}
+  var orders=getOrders();
+  orders.push({id:Date.now(),name:name+' (Mua '+currentBuyProduct+' - '+keyPackage+')',amount:parseInt(price),time:new Date().toLocaleString('vi-VN'),status:'pending',keyPackage:keyPackage});
   saveOrders(orders);
   closeBuyModal();
-  alert('Đã tạo đơn mua [' + currentBuyProduct + ' - ' + keyPackage + ']!\nVui lòng chuyển khoản và chờ Admin duyệt.');
+  alert('Đã tạo đơn ['+currentBuyProduct+' - '+keyPackage+']!\nChuyển khoản và chờ Admin duyệt.');
 }
 
-// ========== ĐIỀU HƯỚNG ADMIN ==========
-function showAdminLogin() {
-  if (localStorage.getItem(ADMIN_SESSION_KEY) === 'true') { showAdminPanel(); }
-  else {
+function showAdminLogin(){
+  if(localStorage.getItem(ADMIN_SESSION_KEY)==='true'){showAdminPanel()}
+  else{
     document.getElementById('shopPage').classList.add('hidden');
     document.getElementById('adminLogin').classList.remove('hidden');
   }
 }
-function hideAdminLogin() {
+function hideAdminLogin(){
   document.getElementById('adminLogin').classList.add('hidden');
   document.getElementById('shopPage').classList.remove('hidden');
 }
-function checkAdminLogin() {
-  var pass = document.getElementById('adminPass').value;
-  if (pass === ADMIN_PASSWORD) {
-    localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+function checkAdminLogin(){
+  var pass=document.getElementById('adminPass').value;
+  if(pass===ADMIN_PASSWORD){
+    localStorage.setItem(ADMIN_SESSION_KEY,'true');
     document.getElementById('adminLogin').classList.add('hidden');
     showAdminPanel();
-  } else {
+  }else{
     document.getElementById('loginError').classList.remove('hidden');
   }
 }
-function showAdminPanel() {
+function showAdminPanel(){
   document.getElementById('shopPage').classList.add('hidden');
   document.getElementById('adminLogin').classList.add('hidden');
   document.getElementById('adminPanel').classList.remove('hidden');
   renderAdminOrders();
 }
-function logoutAdmin() {
+function logoutAdmin(){
   localStorage.removeItem(ADMIN_SESSION_KEY);
   document.getElementById('adminPanel').classList.add('hidden');
   document.getElementById('shopPage').classList.remove('hidden');
 }
 
-// ========== RENDER ĐƠN HÀNG ==========
-function renderAdminOrders() {
-  var orders = getOrders();
-  var tbody = document.getElementById('orderList');
-  var noOrder = document.getElementById('noOrder');
-  tbody.innerHTML = '';
-  if (orders.length === 0) { noOrder.style.display = 'block'; return; }
-  noOrder.style.display = 'none';
-  orders.sort(function(a,b){ return b.id - a.id; });
-  orders.forEach(function(order) {
-    var tr = document.createElement('tr');
-    var statusClass = order.status === 'pending' ? 'status-pending' : 'status-done';
-    var statusText = order.status === 'pending' ? 'Chờ duyệt' : 'Đã duyệt';
-    var keyDisplay = order.keyPackage ? '<span class="key-badge">' + order.keyPackage + '</span>' : '<span style="color:#6c5a8a;">Chưa chọn</span>';
-    var actionHtml = '';
-    if (order.status === 'pending') {
-      actionHtml = '<button class="action-btn btn-approve" onclick="openKeyModal(' + order.id + ')">Duyệt</button>' +
-                   '<button class="action-btn btn-delete" onclick="deleteOrder(' + order.id + ')">Xóa</button>';
-    } else {
-      actionHtml = '<button class="action-btn btn-delete" onclick="deleteOrder(' + order.id + ')">Xóa</button>';
+function renderAdminOrders(){
+  var orders=getOrders();
+  var tbody=document.getElementById('orderList');
+  var noOrder=document.getElementById('noOrder');
+  tbody.innerHTML='';
+  if(orders.length===0){noOrder.style.display='block';return}
+  noOrder.style.display='none';
+  orders.sort(function(a,b){return b.id-a.id});
+  orders.forEach(function(order){
+    var tr=document.createElement('tr');
+    var statusClass=order.status==='pending'?'status-pending':'status-done';
+    var statusText=order.status==='pending'?'Chờ duyệt':'Đã duyệt';
+    var keyDisplay=order.keyPackage?'<span class="key-badge">'+order.keyPackage+'</span>':'<span style="color:#6c5a8a">Chưa chọn</span>';
+    var actionHtml='';
+    if(order.status==='pending'){
+      actionHtml='<button class="action-btn btn-approve" onclick="openKeyModal('+order.id+')">Duyệt</button><button class="action-btn btn-delete" onclick="deleteOrder('+order.id+')">Xóa</button>';
+    }else{
+      actionHtml='<button class="action-btn btn-delete" onclick="deleteOrder('+order.id+')">Xóa</button>';
     }
-    tr.innerHTML = '<td>' + order.time + '</td>' +
-                   '<td><strong>' + order.name + '</strong></td>' +
-                   '<td style="color:#e0aaff;font-weight
+    tr.innerHTML='<td>'+order.time+'</td><td><strong>'+order.name+'</strong></td><td style="color:#e0aaff;font-weight:bold">'+order.amount.toLocaleString()+'đ</td><td>'+keyDisplay+'</td><td class="'+statusClass+'">'+statusText+'</td><td>'+actionHtml+'</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+var currentOrderId=null;
+function openKeyModal(orderId){
+  currentOrderId=orderId;
+  var orders=getOrders();
+  var order=orders.find(function(o){return o.id===orderId});
+  if(order){
+    document.getElementById('modalCustomerInfo').innerText='Khách: '+order.name+' | Tiền: '+order.amount.toLocaleString()+'đ';
+  }
+  document.getElementById('keySelect').value='';
+  document.getElementById('keyModal').classList.remove('hidden');
+}
+function closeModal(){
+  document.getElementById('keyModal').classList.add('hidden');
+  currentOrderId=null;
+}
+function confirmApprove(){
+  var selectedKey=document.getElementById('keySelect').value;
+  if(!selectedKey){alert('Chọn gói key!');return}
+  var orders=getOrders();
+  orders=orders.map(function(o){
+    if(o.id===currentOrderId){o.status='done';o.keyPackage=selectedKey}
+    return o;
+  });
+  saveOrders(orders);
+  closeModal();
+  renderAdminOrders();
+  alert('Đã duyệt! Gói: '+selectedKey);
+}
+function deleteOrder(id){
+  if(!confirm('Xóa đơn này?'))return;
+  var orders=getOrders().filter(function(o){return o.id!==id});
+  saveOrders(orders);
+  renderAdminOrders();
+}
+
+document.getElementById('refCode').innerText='ZEBXVEX'+Math.floor(Math.random()*1000);
+</script>
+
+<!-- MODAL ADMIN CHỌN KEY (đặt cuối để không bị che) -->
+<div id="keyModal" class="modal-overlay hidden">
+<div class="modal-box">
+<h3>🔑 CHỌN GÓI KEY</h3>
+<p id="modalCustomerInfo" style="color:#e0aaff"></p>
+<select id="keySelect">
+<option value="">-- Chọn gói key --</option>
+<option value="Giờ">Giờ</option>
+<option value="Ngày">Ngày</option>
+<option value="Tuần">Tuần</option>
+<option value="Tháng">Tháng</option>
+<option value="Năm">Năm</option>
+<option value="Vĩnh viễn">Vĩnh viễn</option>
+<option value="1 Giờ">1 Giờ</option>
+<option value="12 Giờ">12 Giờ</option>
+<option value="1 Ngày">1 Ngày</option>
+<option value="1 Tuần">1 Tuần</option>
+<option value="1 Tháng">1 Tháng</option>
+</select>
+<div class="modal-actions">
+<button class="btn-confirm" onclick="confirmApprove()">Xác Nhận</button>
+<button class="btn-cancel" onclick="closeModal()">Hủy</button>
+</div>
+</div>
+</div>
+
+</body>
+</html>
