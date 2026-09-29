@@ -9,37 +9,26 @@
 body{background:#0d0b1a;color:#eee;padding:15px;padding-top:70px;background-image:radial-gradient(circle at 20% 0%,#2a1a4a 0%,transparent 50%),radial-gradient(circle at 80% 100%,#1a0a3a 0%,transparent 50%);min-height:100vh}
 h1{color:#c77dff;text-align:center;margin:15px 0;font-size:30px;text-shadow:0 0 20px #7b2cbf}
 h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3a2a5a;padding-bottom:8px}
-
-/* HEADER */
 .header{position:fixed;top:0;left:0;right:0;background:rgba(13,11,26,.95);backdrop-filter:blur(10px);border-bottom:1px solid #3a2a5a;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;z-index:100}
 .header .brand{display:flex;align-items:center;gap:8px;color:#c77dff;font-weight:bold;font-size:18px}
 .header .brand img{width:35px;height:35px;border-radius:50%;border:2px solid #9d4edd;object-fit:cover}
 .menu-btn{background:#7b2cbf;border:none;color:#fff;padding:8px 12px;border-radius:8px;font-size:20px;cursor:pointer;width:auto}
 .moon-btn{background:transparent;border:1px solid #7b2cbf;color:#c77dff;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:16px;width:auto;margin-left:8px}
-
-/* SIDEBAR */
 .sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#1a1533;border-right:2px solid #7b2cbf;padding:20px;z-index:200;transition:left .3s;overflow-y:auto}
 .sidebar.open{left:0}
 .sidebar .close{background:#e63946;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-size:18px;cursor:pointer;width:auto;margin-bottom:15px}
 .sidebar .item{display:block;padding:14px 15px;background:#0d0b1a;border:1px solid #3a2a5a;border-radius:10px;margin-bottom:10px;color:#c77dff;font-weight:bold;cursor:pointer;text-align:left}
 .sidebar .item:hover{background:#2a1a4a;border-color:#9d4edd}
-
-/* OVERLAY */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;display:none}
 .overlay.show{display:block}
-
-/* HERO */
 .hero{text-align:center;padding:30px 20px;background:linear-gradient(145deg,#1a1533,#221a44);border-radius:14px;margin:15px auto;max-width:1000px;border:1px solid #3a2a5a}
 .hero img{width:90px;height:90px;border-radius:50%;border:2px solid #9d4edd;margin-bottom:10px;box-shadow:0 0 20px #7b2cbf}
-.hero h1{margin:5px 0}
 .hero p{color:#a0a0b0;font-size:14px;margin-top:8px}
 .badge-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0}
 .badge{background:#1a1533;border:1px solid #3a2a5a;border-radius:20px;padding:6px 15px;font-size:13px;color:#c77dff}
 .status{color:#06d6a0;font-weight:bold;margin-top:10px;font-size:14px}
 .btn-main{background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;max-width:400px;margin:8px auto;display:block;box-shadow:0 4px 20px rgba(123,44,191,.5)}
 .btn-main:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
-
-/* MUSIC */
 .music-box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:15px;max-width:500px;margin:15px auto;text-align:center}
 .music-box .controls{display:flex;justify-content:center;align-items:center;gap:10px;margin:10px 0}
 .music-box button{width:auto;padding:8px 15px;font-size:14px}
@@ -47,8 +36,6 @@ h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3
 .warn{color:#ffd166;font-size:12px;margin-top:8px}
 .volume{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
 .volume input{width:180px}
-
-/* PRODUCTS */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;max-width:1000px;margin:0 auto}
 .card{background:linear-gradient(145deg,#1a1533,#221a44);border:1px solid #3a2a5a;border-radius:14px;padding:18px;transition:.3s;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2cbf,#c77dff,#7b2cbf)}
@@ -60,41 +47,31 @@ h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3
 .card li span:last-child{color:#e0aaff;font-weight:bold}
 button{width:100%;padding:11px;background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:.3s}
 button:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
-
-/* BOX */
 .box{background:linear-gradient(145deg,#1a1533,#221a44);border:1px solid #3a2a5a;border-radius:14px;padding:22px;max-width:420px;margin:20px auto;text-align:center;box-shadow:0 0 30px rgba(123,44,191,.2)}
 .box input,.box select{width:100%;padding:11px;margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:8px;outline:none}
 .box input:focus{border-color:#9d4edd}
 .box img{width:220px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:12px auto;display:block}
-
-/* POPUP */
 .popup{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;justify-content:center;align-items:center;padding:15px;z-index:300}
-.popup .inner{background:linear-gradient(145deg,#1a1533,#221a44);border:2px solid #7b2cbf;border-radius:14px;padding:22px;max-width:400px;width:100%;text-align:center;max-height:90vh;overflow:auto;box-shadow:0 0 40px rgba(157,78,221,.6)}
+.popup .inner{background:linear-gradient(145deg,#1a1533,#221a44);border:2px solid #7b2cbf;border-radius:14px;padding:22px;max-width:400px;width:100%;text-align:center;max-height:90vh;overflow:auto}
 .popup h3{color:#c77dff;margin-bottom:10px}
 .popup .price{color:#ffd166;font-size:22px;font-weight:bold;margin:12px 0}
 .popup img{width:200px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:10px auto;display:block}
-
-/* TABLE */
 table{width:100%;border-collapse:collapse;max-width:1000px;margin:20px auto;font-size:13px}
 th,td{padding:9px;border-bottom:1px solid #3a2a5a;text-align:left}
 th{background:#2a2040;color:#c77dff}
-
-/* FLOATING */
 .float-btn{position:fixed;bottom:80px;right:20px;width:55px;height:55px;background:linear-gradient(45deg,#7b2cbf,#9d4edd);border-radius:50%;display:flex;justify-content:center;align-items:center;color:#fff;font-size:24px;box-shadow:0 0 20px #7b2cbf;cursor:pointer;z-index:50;text-decoration:none}
 .float-btn.phone{bottom:145px}
 .float-btn:hover{transform:scale(1.1)}
-
 .hide{display:none}
 .err{color:#e63946;font-size:13px}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
 <div class="brand">
 <img src="logo.jpg.PNG" alt="Logo" onerror="this.src='https://via.placeholder.com/35/7b2cbf/fff?text=Z'">
-<span>Vphi Shop</span>
+<span>ZEB X VEX</span>
 </div>
 <div style="display:flex">
 <button class="moon-btn">🌙</button>
@@ -102,10 +79,8 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
 <button class="close" onclick="closeMenu()">✖ Đóng</button>
 <a class="item" onclick="closeMenu()">🏠 TRANG CHỦ</a>
@@ -115,10 +90,8 @@ th{background:#2a2040;color:#c77dff}
 <a class="item" onclick="closeMenu();showLogin()">👤 ĐĂNG NHẬP</a>
 </div>
 
-<!-- SHOP -->
 <div id="shop">
 
-<!-- HERO -->
 <div class="hero">
 <img src="logo.jpg.PNG" alt="Logo" onerror="this.src='https://via.placeholder.com/90/7b2cbf/fff?text=Z'">
 <h1>ZEB X VEX</h1>
@@ -135,14 +108,13 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- MUSIC -->
 <div class="music-box">
 <div class="controls">
 <button onclick="prevSong()">⏮</button>
 <button onclick="toggleMusic()" id="playBtn">▶ BẬT NHẠC</button>
 <button onclick="nextSong()">⏭</button>
 </div>
-<p class="music-title" id="songTitle">🎵 #1: Track Main</p>
+<p class="music-title" id="songTitle">🎵 #1: Nhạc Việt Chill</p>
 <p class="warn">⚠️ Trình duyệt chặn autoplay, vui lòng bấm BẬT NHẠC</p>
 <div class="volume">
 <span>🔊</span>
@@ -150,11 +122,9 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- SẢN PHẨM -->
 <h2 id="products">🛒 KHO SẢN PHẨM & KEY GAME</h2>
 <div class="grid" id="productList"></div>
 
-<!-- NẠP TIỀN -->
 <h2 id="nap">💳 NẠP TIỀN</h2>
 <div class="box">
 <p><b style="color:#e0aaff">ZaloPay:</b> HOÀNG BẢO NAM</p>
@@ -165,7 +135,6 @@ th{background:#2a2040;color:#c77dff}
 <button onclick="submitNap()">✅ Xác Nhận Đã Chuyển</button>
 </div>
 
-<!-- LIÊN HỆ -->
 <h2>📞 LIÊN HỆ</h2>
 <div class="box">
 <p>Zalo: <b style="color:#e0aaff">0355417385</b></p>
@@ -173,11 +142,9 @@ th{background:#2a2040;color:#c77dff}
 </div>
 
 <p style="text-align:center;margin-top:20px"><button style="width:auto;padding:10px 25px" onclick="showLogin()">🔐 Admin</button></p>
-
 <p style="text-align:center;color:#6c5a8a;font-size:12px;margin:30px 0">© 2026 ZEB X VEX. All rights reserved.</p>
 </div>
 
-<!-- LOGIN -->
 <div id="login" class="hide">
 <div class="box" style="margin-top:100px">
 <h3 style="color:#c77dff;margin-bottom:10px">🔐 ADMIN</h3>
@@ -188,7 +155,6 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- ADMIN -->
 <div id="admin" class="hide">
 <h2>🛠️ QUẢN TRỊ ĐƠN</h2>
 <button style="max-width:200px;margin:0 auto 15px;display:block" onclick="logout()">Thoát</button>
@@ -201,7 +167,6 @@ th{background:#2a2040;color:#c77dff}
 <p id="empty" style="text-align:center;color:#888">Chưa có đơn.</p>
 </div>
 
-<!-- POPUP MUA -->
 <div id="buyPopup" class="popup hide">
 <div class="inner">
 <h3>🛒 MUA HÀNG</h3>
@@ -221,7 +186,6 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- POPUP KEY ADMIN -->
 <div id="keyPopup" class="popup hide">
 <div class="inner">
 <h3>🔑 CHỌN GÓI KEY</h3>
@@ -238,32 +202,30 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<!-- NÚT NỔI -->
 <a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone" title="Chat Zalo">💬</a>
 <div class="float-btn" title="Hỗ trợ">🎧</div>
 
-<!-- NHẠC NỀN (thay src nếu muốn bài khác) -->
 <audio id="musicPlayer" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<source id="musicSource" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// ========== MENU ==========
 function openMenu(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
 
-// ========== NHẠC ==========
+// ========== NHẠC VIỆT ==========
 var songs=[
-  {name:'#1: Track Main',src:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'},
-  {name:'#2: Track Chill',src:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'},
-  {name:'#3: Track Night',src:'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'}
+  {name:'Nhạc Việt Chill',src:'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3'},
+  {name:'Nhạc Việt Lofi',src:'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3'},
+  {name:'Nhạc Việt Buồn',src:'https://cdn.pixabay.com/download/audio/2022/10/25/audio_946bc2b4e4.mp3'}
 ];
 var currentSong=0;
 var player=document.getElementById('musicPlayer');
 function loadSong(i){
   currentSong=(i+songs.length)%songs.length;
-  player.src=songs[currentSong].src;
-  document.getElementById('songTitle').textContent='🎵 '+songs[currentSong].name;
+  document.getElementById('musicSource').src=songs[currentSong].src;
+  player.load();
+  document.getElementById('songTitle').textContent='🎵 '+(currentSong+1)+': '+songs[currentSong].name;
 }
 function toggleMusic(){
   if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}
@@ -344,7 +306,6 @@ function doBuy(){
   alert('✅ Đã tạo đơn! Chờ Admin duyệt.');
 }
 
-// ========== ADMIN ==========
 function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
 function backHome(){document.getElementById('login').classList.add('hide');document.getElementById('shop').classList.remove('hide')}
 function login(){
