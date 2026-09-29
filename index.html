@@ -26,17 +26,17 @@ button:hover{background:#9d4edd}
 .popup .price{color:#ffd166;font-size:20px;font-weight:bold;margin:10px 0}
 .popup img{width:200px;max-width:100%;border-radius:8px;background:#fff;padding:4px;margin:10px auto;display:block}
 table{width:100%;border-collapse:collapse;max-width:1000px;margin:20px auto;font-size:13px}
-th,td{padding:8px;border-bottom:1px solid #3a2a5a;text-align:left}
+:th,td{padding:8px;border-bottom:1px solid #3a2a5a;text-align:left}
 th{background:#2a2040;color:#c77dff}
 .hide{display:none}
 .err{color:#e63946;font-size:13px}
-.logo-top{display:block;width:90px;height:90px;border-radius:50%;margin:10px auto;border:2px solid #9d4edd;object-fit:cover}
+.logo-top{displayblock;width:90px;height:90px;border-radius:50%;margin:10px auto;border:2px solid #9d4edd;object-fit:cover}
 </style>
 </head>
 <body>
 
 <div id="shop">
-<img src="logo.jpg.PNG" class="logo-top" alt="Logo" onerror="this.style.background='#7b2cbf'">
+<img src="logo.jpg.PNG" class="logo-top" alt="Logo" onerror="this.src='https://via.placeholder.com/90/7b2cbf/fff?text=Z'">
 <h1>ZEB X VEX</h1>
 <h2>SẢN PHẨM</h2>
 <div class="grid" id="products"></div>
@@ -45,7 +45,7 @@ th{background:#2a2040;color:#c77dff}
 <div class="box">
 <p><b>ZaloPay:</b> HOÀNG BẢO NAM</p>
 <p><b>SĐT:</b> 0355417385</p>
-<img src="qr.jpg.jpg" alt="QR">
+<img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
 <button onclick="submitNap()">Xác Nhận Đã Chuyển</button>
@@ -93,7 +93,7 @@ th{background:#2a2040;color:#c77dff}
 <div id="qrBox" class="hide">
 <div class="price" id="buyPrice"></div>
 <p style="font-size:13px">Quét QR:</p>
-<img src="qr.jpg.jpg" alt="QR">
+<img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
 <input id="buyCus" placeholder="Tên của bạn">
 </div>
 <button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doBuy()">Xác Nhận</button>
