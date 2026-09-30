@@ -82,7 +82,7 @@
 <button class="btn-main" onclick="loginUser()">ĐĂNG NHẬP</button>
 <p class="err hide" id="logErr" style="text-align:center">SĐT hoặc mật khẩu sai!</p>
 <button class="btn-main" style="background:#7c3aed;color:#fff;margin-top:10px" onclick="showRegister()">CHƯA CÓ TÀI KHOẢN? ĐĂNG KÝ</button>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="backHome()">QUAY LẠI</button>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
 </div>
 </div>
 
@@ -102,13 +102,13 @@
 <input id="adminPass" type="password" placeholder="Mật khẩu admin...">
 <button class="btn-main" onclick="adminLogin()">ĐĂNG NHẬP</button>
 <p class="err hide" id="adminErr" style="text-align:center">Sai mật khẩu!</p>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="backHome()">QUAY LẠI</button>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
 </div>
 </div>
 
 <div id="admin" class="hide container">
 <h2>🛠️ QUẢN TRỊ</h2>
-<button class="btn-main" style="max-width:200px;margin-bottom:15px" onclick="backHome()">Thoát</button>
+<button class="btn-main" style="max-width:200px;margin-bottom:15px" onclick="showTab('shop')">Thoát</button>
 <div style="overflow-x:auto"><table>
 <thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Sản phẩm</th><th>Nền tảng</th><th>Trạng thái</th><th>HĐ</th></tr></thead>
 <tbody id="orders"></tbody>
@@ -127,7 +127,6 @@
 </div>
 
 <a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone">💬</a>
-<div class="float-btn">🎧</div>
 
 <div class="bottom-nav">
 <div class="nav-item active" data-tab="shop" onclick="showTab('shop')"><div class="icon">🛍️</div><div class="label">SHOP</div></div>
