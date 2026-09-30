@@ -27,9 +27,9 @@ h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3
 .badge-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0}
 .badge{background:#1a1533;border:1px solid #3a2a5a;border-radius:20px;padding:6px 15px;font-size:13px;color:#c77dff}
 .status{color:#06d6a0;font-weight:bold;margin-top:10px;font-size:14px}
-.btn-main{background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer%;;width:100%;max-width:400px;margin:8px auto;display:block;box-shadow:0 4px 20px rgba(123,44,191,.5)}
+.btn-main{background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;max-width:400px;margin:8px auto;display:block;box-shadow:0 4px 20px rgba(123,44,191,.5)}
 .btn-main:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
-.music-box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14padding:11pxpx;padding:15;px;max-width:500px;margin:15px auto;text-align:center}
+.music-box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:15px;max-width:500px;margin:15px auto;text-align:center}
 .music-box .controls{display:flex;justify-content:center;align-items:center;gap:10px;margin:10px 0}
 .music-box button{width:auto;padding:8px 15px;font-size:14px}
 .music-title{color:#e0aaff;font-size:14px;margin:8px 0}
@@ -48,7 +48,7 @@ h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3
 button{width:100%;padding:11px;background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:.3s}
 button:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
 .box{background:linear-gradient(145deg,#1a1533,#221a44);border:1px solid #3a2a5a;border-radius:14px;padding:22px;max-width:420px;margin:20px auto;text-align:center;box-shadow:0 0 30px rgba(123,44,191,.2)}
-.box input,.box select{width:100margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:8px;outline:none}
+.box input,.box select{width:100%;padding:11px;margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:8px;outline:none}
 .box input:focus{border-color:#9d4edd}
 .box img{width:220px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:12px auto;display:block}
 .popup{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;justify-content:center;align-items:center;padding:15px;z-index:300}
@@ -126,7 +126,7 @@ th{background:#2a2040;color:#c77dff}
 <div class="box">
 <p><b style="color:#e0aaff">MB Bank:</b> VI THANH HUY</p>
 <p><b style="color:#e0aaff">STK:</b> 0375374529</p>
-<img src="qr.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
+<img src="qr.JPG" alt="QR" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
 <button onclick="submitNap()">✅ Xác Nhận Đã Chuyển</button>
@@ -173,7 +173,7 @@ th{background:#2a2040;color:#c77dff}
 <div id="qrBox" class="hide">
 <div class="price" id="buyPrice"></div>
 <p style="font-size:13px">📷 Quét QR:</p>
-<img src="qr.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
+<img src="qr.JPG" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
 <p style="font-size:13px;margin:8px 0">Nội dung CK: <b id="buyContent" style="color:#ffd166"></b></p>
 <input id="buyCus" placeholder="Tên của bạn">
 <button style="background:linear-gradient(45deg,#06d6a0,#00b894);color:#000;margin-top:10px" onclick="checkPayment()" id="checkBtn">✅ Tôi Đã Chuyển Khoản</button>
@@ -207,15 +207,12 @@ th{background:#2a2040;color:#c77dff}
 </audio>
 
 <script>
-// ========== CẤU HÌNH SEPAY ==========
 var SEPAY_TOKEN = '0OA3FKDFL27IG1PRWCYNLJU64FWOJN7UKXJIRLYZT4GXH3NVDG5M0PXVTVSTVJKQ';
 var SEPAY_API = 'https://my.sepay.vn/userapi/transactions/list';
 
-// ========== MENU ==========
 function openMenu(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
 
-// ========== NHẠC ==========
 var songs=[
   {name:'Nhạc Việt Chill',src:'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3'},
   {name:'Nhạc Việt Lofi',src:'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3'},
@@ -230,7 +227,6 @@ function prevSong(){loadSong(currentSong-1);player.play();document.getElementByI
 function setVolume(){player.volume=document.getElementById('volume').value/100}
 player.volume=0.5;
 
-// ========== SẢN PHẨM ==========
 var PRODUCTS=[
   {name:'Delta Proxy',pkgs:[{n:'Ngày',p:25000},{n:'Tuần',p:50000},{n:'Tháng',p:130000},{n:'Năm',p:200000}]},
   {name:'Nova X',pkgs:[{n:'Ngày',p:20000},{n:'Tuần',p:50000},{n:'Tháng',p:100000},{n:'Năm',p:160000},{n:'Vĩnh viễn',p:240000}]},
@@ -246,12 +242,10 @@ PRODUCTS.forEach(function(p,i){
 });
 document.getElementById('productList').innerHTML=html;
 
-// ========== ĐƠN HÀNG ==========
 function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex')||'[]')}catch(e){return[]}}
 function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
 function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
 
-// ========== NẠP TIỀN ==========
 function submitNap(){
   var n=document.getElementById('nName').value.trim();
   var a=document.getElementById('nAmount').value.trim();
@@ -265,7 +259,6 @@ function submitNap(){
   document.getElementById('nAmount').value='';
 }
 
-// ========== MUA HÀNG ==========
 var currentProduct=null;
 var currentOrder=null;
 function openBuy(i){
@@ -300,7 +293,6 @@ function pickPkg(){
   }
 }
 
-// ========== CHECK THANH TOÁN QUA SEPAY API ==========
 function checkPayment(){
   var name=document.getElementById('buyCus').value.trim();
   if(!name){alert('Nhập tên của bạn!');return}
@@ -353,7 +345,6 @@ function checkPayment(){
   });
 }
 
-// ========== ADMIN ==========
 function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
 function backHome(){document.getElementById('login').classList.add('hide');document.getElementById('shop').classList.remove('hide')}
 function login(){
