@@ -18,7 +18,7 @@ var DELIVER={
 };
 
 var PRODUCTS=[
-{name:'Aimlock V1',price:100000,desc:'Menu Aimlock V1 — kéo tâm, bám đầu cơ bản.'},
+{name:'Aimlock V1',price:1000,desc:'Menu Aimlock V1 — kéo tâm, bám đầu cơ bản.'},
 {name:'Aimlock V2',price:200000,desc:'Menu Aimlock V2 — nâng cấp độ bám.'},
 {name:'Aimlock V3',price:300000,desc:'Menu Aimlock V3 — fix lố, giật.'},
 {name:'Aimlock V4',price:400000,desc:'Menu Aimlock V4 — full chức năng.'},
