@@ -35,7 +35,7 @@ var PRODUCTS=[
 
 var html='';
 PRODUCTS.forEach(function(p,i){
-html+='<div class="card" onclick="openBuy('+i+')"><img src="'+p.img+'"><h3>'+p.name+'</h3><div class="desc">'+p.desc+'</div><div class="price">'+p.price.toLocaleString()+'đ</div><button>Mua Ngay</button></div>';
+html+='<div class="card" onclick="openBuy('+i+')"><div class="tag">KEY</div><img src="'+p.img+'"><h3>'+p.name+'</h3><div class="desc">'+p.desc+'</div><div class="price">'+p.price.toLocaleString()+'đ</div><button>Mua Ngay</button></div>';
 });
 document.getElementById('productList').innerHTML=html;
 
@@ -57,7 +57,11 @@ function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
 function showTab(tab){
 ['shop','napPage','historyPage','accountPage','login','register','adminLogin','admin'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.add('hide')});
 if(tab==='shop'){document.getElementById('shop').classList.remove('hide')}
-if(tab==='nap'){if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}document.getElementById('napPage').classList.remove('hide')}
+if(tab==='nap'){
+if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
+document.getElementById('napPage').classList.remove('hide');
+document.getElementById('napPage').innerHTML='<h2>💳 NẠP TIỀN</h2><div class="box"><p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p><p><b style="color:#14b8a6">STK:</b> 0375374529</p><img src="qr.JPG" onerror="this.src=\'https://via.placeholder.com/200/fff/000?text=QR\'"><input id="nName" placeholder="Tên của bạn"><input id="nAmount" type="number" placeholder="Số tiền nạp"><button class="btn-main" onclick="submitNap()">✅ XÁC NHẬN ĐÃ CHUYỂN</button></div><div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)"><h3>📌 LƯU Ý</h3><ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2"><li>• Số dư chỉ được cộng sau khi Admin xác nhận.</li><li>• Không tạo nhiều yêu cầu nạp cùng lúc.</li><li>• Liên hệ Zalo 0355417385 nếu chưa được cộng.</li></ul></div>';
+}
 if(tab==='don'){if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}document.getElementById('historyPage').classList.remove('hide');renderHistory()}
 if(tab==='box'){alert('📦 BOX: Tính năng đang phát triển!');return}
 if(tab==='account'){if(!currentUser){showUserLogin();return}showAccountPage()}
@@ -98,16 +102,16 @@ var code=genCode();
 var o=getOrders();
 o.push({id:Date.now(),phone:currentUser.phone,name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});
 saveOrders(o);
-alert('✅ Đã tạo đơn nạp!\nNội dung CK: '+code+'\nChuyển khoản xong, Admin sẽ cộng tiền.');
-document.getElementById('nName').value='';
-document.getElementById('nAmount').value='';
+document.getElementById('napPage').innerHTML='<h2>💳 NẠP TIỀN</h2><div class="ck-display"><div class="label">📌 NỘI DUNG CHUYỂN KHOẢN</div><div class="code" id="ckCode">'+code+'</div><button onclick="copyCK()">📋 COPY NỘI DUNG</button><p style="color:#94a3b8;font-size:12px;margin-top:8px">Chuyển đúng số tiền + nội dung → Admin cộng tiền</p></div><div class="box"><p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p><p><b style="color:#14b8a6">STK:</b> 0375374529</p><img src="qr.JPG" onerror="this.src=\'https://via.placeholder.com/200/fff/000?text=QR\'"><input id="nName" placeholder="Tên của bạn"><input id="nAmount" type="number" placeholder="Số tiền nạp"><button class="btn-main" onclick="submitNap()">✅ XÁC NHẬN ĐÃ CHUYỂN</button></div><div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)"><h3>📌 LƯU Ý</h3><ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2"><li>• Số dư chỉ được cộng sau khi Admin xác nhận.</li><li>• Không tạo nhiều yêu cầu nạp cùng lúc.</li><li>• Liên hệ Zalo 0355417385 nếu chưa được cộng.</li></ul></div>';
 }
+function copyCK(){var c=document.getElementById('ckCode').textContent;navigator.clipboard.writeText(c).then(function(){alert('✅ Đã copy: '+c)})}
 
 function openBuy(i){
 if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
 currentProduct=PRODUCTS[i];
-document.getElementById('platformProduct').textContent='Sản phẩm: '+currentProduct.name+' — '+currentProduct.price.toLocaleString()+'đ';
-document.getElementById('platformPopup').classList.remove('hide');
+var p=document.getElementById('platformPopup');
+p.innerHTML='<div class="inner"><h3>📱 MUA '+currentProduct.name+' <button class="close" onclick="closePlatform()">×</button></h3><img src="'+currentProduct.img+'" class="img-big"><p style="text-align:center;color:#14b8a6;font-size:20px;font-weight:bold;margin:10px 0">'+currentProduct.price.toLocaleString()+'đ</p><p style="text-align:center;color:#94a3b8;font-size:13px;margin-bottom:15px">'+currentProduct.desc+'</p><button class="btn-main" onclick="choosePlatform(\'ios\')">🍎 Mua cho iOS</button><button class="btn-main" style="background:#3b82f6;color:#fff;margin-top:8px" onclick="choosePlatform(\'adr\')">🤖 Mua cho Android</button><button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:8px" onclick="closePlatform()">❌ Đóng</button></div>';
+p.classList.remove('hide');
 }
 function closePlatform(){document.getElementById('platformPopup').classList.add('hide')}
 function choosePlatform(p){
@@ -136,7 +140,7 @@ if(fileLink){
 alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nBấm OK để tải file.');
 window.open(fileLink,'_blank');
 }else{
-alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nVui lòng liên hệ Zalo 0355417385 để nhận file.');
+alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nLiên hệ Zalo 0355417385 để nhận file.');
 }
 }
 
@@ -164,34 +168,3 @@ tbody.innerHTML='';
 if(o.length===0){document.getElementById('empty').style.display='block';return}
 document.getElementById('empty').style.display='none';
 o.sort(function(a,b){return b.id-a.id});
-o.forEach(function(x){
-var tr=document.createElement('tr');
-var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#14b8a6">Đã duyệt</span>';
-var btn=x.status==='pending'&&x.product==='Nạp tiền'
-?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>'
-:x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>'
-:'<button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>';
-tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
-tbody.appendChild(tr);
-});
-}
-
-function approveNap(id){
-if(!confirm('Xác nhận cộng tiền cho khách?'))return;
-var o=getOrders();
-var order=o.find(function(x){return x.id===id});
-if(!order){alert('Không tìm thấy!');return}
-var users=getUsers();
-var idx=users.findIndex(function(u){return u.phone===order.phone});
-if(idx<0){alert('Không tìm thấy khách!');return}
-users[idx].balance+=order.amount;
-saveUsers(users);
-o=o.map(function(x){if(x.id===id){x.status='done'}return x});
-saveOrders(o);
-renderAdmin();
-alert('✅ Đã cộng '+order.amount.toLocaleString()+'đ cho '+order.phone);
-}
-function approveOrder(id){var o=getOrders().map(function(x){if(x.id===id){x.status='done'}return x});saveOrders(o);renderAdmin()}
-function delOrder(id){saveOrders(getOrders().filter(function(x){return x.id!==id}));renderAdmin()}
-
-(function(){var phone=localStorage.getItem('zebxvex_current');if(phone){var users=getUsers();currentUser=users.find(function(u){return u.phone===phone})||null}updateUserUI()})();
