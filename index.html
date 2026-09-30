@@ -37,16 +37,6 @@
 <h2>🛒 KHO SẢN PHẨM</h2>
 <div class="grid" id="productList"></div>
 
-<h2 id="nap">💳 NẠP TIỀN</h2>
-<div class="box">
-<p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p>
-<p><b style="color:#14b8a6">STK:</b> 0375374529</p>
-<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/200/fff/000?text=QR'">
-<input id="nName" placeholder="Tên của bạn">
-<input id="nAmount" type="number" placeholder="Số tiền nạp">
-<button class="btn-main" onclick="submitNap()">✅ XÁC NHẬN ĐÃ CHUYỂN</button>
-</div>
-
 <h2>⭐ ĐÁNH GIÁ UY TÍN</h2>
 <div class="feedback">
 <div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Ch*********</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-16</span></div>
@@ -63,6 +53,28 @@
 <p style="text-align:center;color:#6b7280;font-size:12px;margin:30px 0">© 2026 ZEB X VEX</p>
 </div>
 
+<!-- TRANG NẠP TIỀN (ẩn, chỉ hiện khi bấm tab NẠP) -->
+<div id="napPage" class="hide container">
+<h2>💳 NẠP TIỀN</h2>
+<div class="box">
+<p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p>
+<p><b style="color:#14b8a6">STK:</b> 0375374529</p>
+<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/200/fff/000?text=QR'">
+<input id="nName" placeholder="Tên của bạn">
+<input id="nAmount" type="number" placeholder="Số tiền nạp">
+<button class="btn-main" onclick="submitNap()">✅ XÁC NHẬN ĐÃ CHUYỂN</button>
+</div>
+<div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)">
+<h3>📌 LƯU Ý</h3>
+<ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2">
+<li>• Số dư chỉ được cộng sau khi Admin xác nhận.</li>
+<li>• Không tạo nhiều yêu cầu nạp cùng lúc.</li>
+<li>• Nếu đã thanh toán nhưng chưa cộng số dư, liên hệ Zalo 0355417385.</li>
+</ul>
+</div>
+</div>
+
+<!-- TRANG LỊCH SỬ -->
 <div id="historyPage" class="hide container">
 <h2>🔄 LỊCH SỬ MUA HÀNG</h2>
 <table>
@@ -72,6 +84,7 @@
 <p id="noHistory" style="text-align:center;color:#6b7280;padding:20px">Chưa có đơn nào.</p>
 </div>
 
+<!-- TRANG TÀI KHOẢN -->
 <div id="accountPage" class="hide container"></div>
 
 <div id="login" class="hide">
