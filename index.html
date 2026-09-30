@@ -46,12 +46,12 @@
 
 <h2>📞 LIÊN HỆ & HỖ TRỢ</h2>
 <div class="box">
-<p>Zalo cá nhân: <b style="color:#14b8a6">0355417385</b></p>
-<a href="https://zalo.me/0355417385" target="_blank"><button class="btn-main">💬 NHẮN ZALO CÁ NHÂN</button></a>
-<p style="margin-top:15px">Box Chat Cộng Đồng:</p>
-<a href="https://zalo.me/g/vidlzgvqrmealqpg8dta" target="_blank"><button class="btn-main" style="background:#3b82f6;color:#fff">💬 VÀO BOX CHAT</button></a>
-<p style="margin-top:15px">Box Thông Báo:</p>
-<a href="https://zalo.me/g/wi2mlifc7mvbwyx25zid" target="_blank"><button class="btn-main" style="background:#7c3aed;color:#fff">🔔 BOX THÔNG BÁO</button></a>
+<p>💬 Zalo cá nhân: <b style="color:#14b8a6">0355417385</b></p>
+<a href="https://zalo.me/0355417385" target="_blank"><button class="btn-main">NHẮN ZALO CÁ NHÂN</button></a>
+<p style="margin-top:15px">👥 Box Chat Cộng Đồng:</p>
+<a href="https://zalo.me/g/vidlzgvqrmealqpg8dta" target="_blank"><button class="btn-main" style="background:#3b82f6;color:#fff">VÀO BOX CHAT</button></a>
+<p style="margin-top:15px">🔔 Box Thông Báo:</p>
+<a href="https://zalo.me/g/wi2mlifc7mvbwyx25zid" target="_blank"><button class="btn-main" style="background:#7c3aed;color:#fff">BOX THÔNG BÁO</button></a>
 </div>
 
 <p style="text-align:center;color:#6b7280;font-size:12px;margin:30px 0">© 2026 ZEB X VEX</p>
@@ -106,4 +106,26 @@
 <h2>🛠️ QUẢN TRỊ</h2>
 <button class="btn-main" style="max-width:200px;margin-bottom:15px" onclick="showTab('shop')">Thoát</button>
 <div style="overflow-x:auto"><table>
-<thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Sản phẩm</th><th>Nền tảng
+<thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Sản phẩm</th><th>Nền tảng</th><th>Trạng thái</th><th>HĐ</th></tr></thead>
+<tbody id="orders"></tbody>
+</table></div>
+<p id="empty" style="text-align:center;color:#6b7280;padding:20px">Chưa có đơn.</p>
+</div>
+
+<div id="platformPopup" class="popup hide"></div>
+
+<a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone">💬</a>
+
+<div class="bottom-nav">
+<div class="nav-item active" data-tab="shop" onclick="showTab('shop')"><div class="icon">🛍️</div><div class="label">SHOP</div></div>
+<div class="nav-item" data-tab="nap" onclick="showTab('nap')"><div class="icon">💳</div><div class="label">NẠP</div></div>
+<div class="nav-item" data-tab="don" onclick="showTab('don')"><div class="icon">📋</div><div class="label">ĐƠN</div></div>
+<div class="nav-item" data-tab="box" onclick="showTab('box')"><div class="icon">⚔️</div><div class="label">BOX</div></div>
+<div class="nav-item" data-tab="account" onclick="showTab('account')"><div class="icon">👤</div><div class="label">TÀI KHOẢN</div></div>
+</div>
+
+<audio id="musicPlayer" loop><source id="musicSource" src="nhac1.mp3" type="audio/mpeg"></audio>
+
+<script src="app.js"></script>
+</body>
+</html>
