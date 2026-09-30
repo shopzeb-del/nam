@@ -20,13 +20,14 @@ h2::before{content:'';width:4px;height:20px;background:#14b8a6;border-radius:2px
 .music-title{color:#14b8a6;font-size:13px;margin:8px 0}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:1000px;margin:0 auto;padding:0 15px}
 @media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr)}}
-.card{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:12px;display:flex;flex-direction:column;cursor:pointer;transition:.2s}
+.card{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:12px;display:flex;flex-direction:column;cursor:pointer;transition:.2s;position:relative;overflow:hidden}
 .card:hover{border-color:#14b8a6}
 .card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;margin-bottom:10px}
 .card h3{color:#fff;font-size:14px;margin-bottom:6px}
 .card .desc{color:#94a3b8;font-size:11px;margin-bottom:8px;flex:1}
 .card .price{color:#14b8a6;font-weight:bold;font-size:18px;margin-bottom:8px}
 .card button{background:#14b8a6;color:#000;border:none;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;width:100%}
+.card .tag{position:absolute;background:#14b8a6;color:#000;font-size:10px;font-weight:bold;padding:3px 8px;border-radius:0 0 8px 0;top:12px;left:12px;z-index:2}
 .box{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:20px;max-width:480px;margin:15px auto}
 .box h3{color:#14b8a6;font-size:16px;margin-bottom:15px}
 .box input{width:100%;padding:12px;background:#0a0a0f;border:1px solid #1f2937;border-radius:8px;color:#fff;margin-bottom:10px;outline:none}
@@ -37,6 +38,7 @@ h2::before{content:'';width:4px;height:20px;background:#14b8a6;border-radius:2px
 .popup .inner{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:20px;max-width:420px;width:100%;max-height:90vh;overflow:auto}
 .popup h3{color:#14b8a6;font-size:18px;margin-bottom:15px;display:flex;justify-content:space-between}
 .popup h3 .close{background:transparent;border:none;color:#6b7280;font-size:22px;cursor:pointer;width:auto}
+.popup .img-big{width:100%;max-width:180px;border-radius:12px;margin:10px auto;display:block;background:#0f172a;padding:4px}
 .float-btn{position:fixed;bottom:100px;right:15px;width:50px;height:50px;background:#14b8a6;border-radius:50%;display:flex;justify-content:center;align-items:center;color:#000;font-size:22px;cursor:pointer;z-index:50;text-decoration:none}
 .float-btn.phone{bottom:160px}
 .hide{display:none}
@@ -55,3 +57,7 @@ th{background:#1f2937;color:#14b8a6}
 .bottom-nav .nav-item.active::before{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:40px;height:3px;background:#14b8a6;border-radius:0 0 3px 3px}
 .bottom-nav .nav-item .icon{font-size:22px;line-height:1}
 .bottom-nav .nav-item .label{font-weight:bold;letter-spacing:0.5px}
+.ck-display{background:#0a0a0f;border:2px dashed #14b8a6;border-radius:10px;padding:15px;margin:12px auto;max-width:400px;text-align:center}
+.ck-display .label{color:#6b7280;font-size:12px;margin-bottom:5px}
+.ck-display .code{color:#ffd166;font-size:20px;font-weight:bold;letter-spacing:1px;word-break:break-all;margin:8px 0}
+.ck-display button{background:#14b8a6;color:#000;border:none;padding:8px 15px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;width:auto;margin:5px}
