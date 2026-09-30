@@ -27,9 +27,9 @@ h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3
 .badge-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0}
 .badge{background:#1a1533;border:1px solid #3a2a5a;border-radius:20px;padding:6px 15px;font-size:13px;color:#c77dff}
 .status{color:#06d6a0;font-weight:bold;margin-top:10px;font-size:14px}
-.btn-main{background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;max-width:400px;margin:8px auto;display:block;box-shadow:0 4px 20px rgba(123,44,191,.5)}
+.btn-main{background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer%;;width:100%;max-width:400px;margin:8px auto;display:block;box-shadow:0 4px 20px rgba(123,44,191,.5)}
 .btn-main:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
-.music-box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:15px;max-width:500px;margin:15px auto;text-align:center}
+.music-box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14padding:11pxpx;padding:15;px;max-width:500px;margin:15px auto;text-align:center}
 .music-box .controls{display:flex;justify-content:center;align-items:center;gap:10px;margin:10px 0}
 .music-box button{width:auto;padding:8px 15px;font-size:14px}
 .music-title{color:#e0aaff;font-size:14px;margin:8px 0}
@@ -48,7 +48,7 @@ h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3
 button{width:100%;padding:11px;background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:.3s}
 button:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
 .box{background:linear-gradient(145deg,#1a1533,#221a44);border:1px solid #3a2a5a;border-radius:14px;padding:22px;max-width:420px;margin:20px auto;text-align:center;box-shadow:0 0 30px rgba(123,44,191,.2)}
-.box input,.box select{width:100%;padding:11px;margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:8px;outline:none}
+.box input,.box select{width:100margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:8px;outline:none}
 .box input:focus{border-color:#9d4edd}
 .box img{width:220px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:12px auto;display:block}
 .popup{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;justify-content:center;align-items:center;padding:15px;z-index:300}
@@ -126,7 +126,7 @@ th{background:#2a2040;color:#c77dff}
 <div class="box">
 <p><b style="color:#e0aaff">MB Bank:</b> VI THANH HUY</p>
 <p><b style="color:#e0aaff">STK:</b> 0375374529</p>
-<img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
+<img src="qr.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
 <button onclick="submitNap()">✅ Xác Nhận Đã Chuyển</button>
@@ -173,7 +173,7 @@ th{background:#2a2040;color:#c77dff}
 <div id="qrBox" class="hide">
 <div class="price" id="buyPrice"></div>
 <p style="font-size:13px">📷 Quét QR:</p>
-<img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
+<img src="qr.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
 <p style="font-size:13px;margin:8px 0">Nội dung CK: <b id="buyContent" style="color:#ffd166"></b></p>
 <input id="buyCus" placeholder="Tên của bạn">
 <button style="background:linear-gradient(45deg,#06d6a0,#00b894);color:#000;margin-top:10px" onclick="checkPayment()" id="checkBtn">✅ Tôi Đã Chuyển Khoản</button>
