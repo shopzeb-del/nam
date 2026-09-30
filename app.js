@@ -1,17 +1,17 @@
 var WORKER_URL='https://shopzeb-api.baonam310112.workers.dev';
-var currentProduct=null,currentOrder=null,currentUser=null;
+var currentProduct=null,currentUser=null;
 function gd(link){var m=link.match(/\/d\/([^\/]+)/);if(m)return 'https://drive.google.com/uc?export=download&id='+m[1];return link}
 
 var DELIVER={
-'Aimlock V1':{ios:'https://drive.google.com/file/d/1PmAEDCWPl3FOwesF1Q788MUU6i8TpPJy/view',adr:'https://drive.google.com/file/d/1b2JFRojjmMrvj4TAuBwyqPIklqrpbUUd/view'},
+'Aimlock V1':{ios:'https://drive/view.google.com/file/d/1'},
+PmAEDCWPl3FOwesF'1Q788MUU6i8TFixpPJy/view',adr:'https R://drive.google.com/file/d/1b2JFRojjmMrvj4TAuBwyqPIklqrpbUUd/view'},
 'Aimlock V2':{ios:'https://drive.google.com/file/d/1Bv05ffTVqxm3xsjnB3xMBkv1us7lYdIW/view',adr:'https://drive.google.com/file/d/1V3ISkx2AlD8pWS3nOfHYysKyIsjxSM9B/view'},
 'Aimlock V3':{ios:'https://drive.google.com/file/d/1WrdSAghk359nqlQd6f_nT1d1z0hDDeqO/view',adr:'https://drive.google.com/file/d/1KeNT3FENmHrMw1EdO22HUyFrMYq5P0bt/view'},
 'Aimlock V4':{ios:'https://drive.google.com/file/d/1bzuZlWQVMxli3If5xJpLD7N-KVUtKutR/view',adr:'https://drive.google.com/file/d/13ii39vZERuB4Wt9k48EFqxUP3tAwBf6P/view'},
 'Aimlock V5':{ios:'https://drive.google.com/file/d/1K6HXDHh0GprkNNKtVPHTXzV-NpO-9Hau/view',adr:'https://drive.google.com/file/d/1f7hF-skRcQklxCLS2LTd7-MUvrTuc6NV/view'},
 'Aimlock V6':{ios:'https://drive.google.com/file/d/1GTdc5OdGc6PDhAAeWztcTs1dBnF1__8c/view',adr:'https://drive.google.com/file/d/1HUrRMrvBsCZe1EZex87mL7SgPSrnMM9F/view'},
 'Nhẹ Tâm':{ios:'https://drive.google.com/file/d/1NlfI9oFI0-4_Kel-iakIN2Eqllfje3BN/view',adr:'https://drive.google.com/file/d/17NYqLFyer8YC6drXDMNJE6ASh1uvWBVE/view'},
-'Bám Đầu':{ios:'https://drive.google.com/file/d/1fH6sFt9M_IfOUGoM9b6eSq27la3GRXvZ/view',adr:'https://drive.google.com/file/d/1z3uV5IZo-tpzkeSewntQJQ-hnHmgkSr3/view'},
-'Fix Rung Tâm':{ios:'https://drive.google.com/file/d/1CDH20znYYM_d99EYHnsljPZV9A2vlKFE/view',adr:'https://drive.google.com/file/d/1HRe9kyQZ6jZjyVDGUn8gielFG1P2GquT/view'},
+'Bám Đầu':{ios:'https://drive.google.com/file/d/1fH6sFt9M_IfOUGoM9b6eSq27la3GRXvZ/view',adr:'https://drive.google.com/file/d/1z3uV5IZo-tpzkeSewntQJQ-hnHmgkSr3ung Tâm':{ios:'https://drive.google.com/file/d/1CDH20znYYM_d99EYHnsljPZV9A2vlKFE/view',adr:'https://drive.google.com/file/d/1HRe9kyQZ6jZjyVDGUn8gielFG1P2GquT/view'},
 'Combo Nhẹ Tâm + Bám Đầu V1':{ios:'https://drive.google.com/file/d/1NlfI9oFI0-4_Kel-iakIN2Eqllfje3BN/view',adr:'https://drive.google.com/file/d/17NYqLFyer8YC6drXDMNJE6ASh1uvWBVE/view'},
 'Combo Nhẹ Tâm + Bám Đầu V2':{ios:'https://drive.google.com/file/d/1NlfI9oFI0-4_Kel-iakIN2Eqllfje3BN/view',adr:'https://drive.google.com/file/d/17NYqLFyer8YC6drXDMNJE6ASh1uvWBVE/view'},
 'Combo Nhẹ Tâm + Bám Đầu V3':{ios:'https://drive.google.com/file/d/1v6Z4vivt9Z-x1e-_cvb8jEAzirICqwKV/view',adr:'https://drive.google.com/file/d/1MXTaO1tl4cshWkB18JyYTgkB1hW4nNhz/view'},
@@ -42,9 +42,8 @@ function openMenu(){document.getElementById('sidebar').classList.add('open');doc
 function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
 
 var songs=[
-{name:'Nhạc Việt Chill',src:'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3'},
-{name:'Nhạc Việt Lofi',src:'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3'},
-{name:'Nhạc Việt Buồn',src:'https://cdn.pixabay.com/download/audio/2022/10/25/audio_946bc2b4e4.mp3'}
+{name:'Great Little Things',src:'great%20little%20things%20%C3%97%20long%20n%C3%B3n%20l%C3%A1.mp3'},
+{name:'Đô Trường',src:'%C4%91%C3%B4%20tr%C6%B0%E1%BB%9Dng_1.mp3'}
 ];
 var currentSong=0,player=document.getElementById('musicPlayer');
 function loadSong(i){currentSong=(i+songs.length)%songs.length;document.getElementById('musicSource').src=songs[currentSong].src;player.load();document.getElementById('songTitle').textContent='🎵 '+(currentSong+1)+': '+songs[currentSong].name}
@@ -54,194 +53,187 @@ function prevSong(){loadSong(currentSong-1);player.play();document.getElementByI
 function setVolume(){player.volume=document.getElementById('volume').value/100}
 player.volume=0.5;
 
-// ========== TÀI KHOẢN KHÁCH ==========
 function getUsers(){try{return JSON.parse(localStorage.getItem('zebxvex_users')||'[]')}catch(e){return[]}}
 function saveUsers(u){localStorage.setItem('zebxvex_users',JSON.stringify(u))}
-
 function showRegister(){document.getElementById('login').classList.add('hide');document.getElementById('register').classList.remove('hide')}
 function showLoginForm(){document.getElementById('register').classList.add('hide');document.getElementById('login').classList.remove('hide')}
 
 function register(){
-  var phone=document.getElementById('regPhone').value.trim();
-  var pass=document.getElementById('regPass').value.trim();
-  if(!phone||!pass){alert('Nhập đủ SĐT và mật khẩu!');return}
-  if(phone.length<10){alert('SĐT không hợp lệ!');return}
-  var users=getUsers();
-  if(users.find(function(u){return u.phone===phone})){alert('SĐT đã đăng ký!');return}
-  users.push({phone:phone,pass:pass,balance:0});
-  saveUsers(users);
-  alert('✅ Đăng ký thành công! Vui lòng đăng nhập.');
-  document.getElementById('regPhone').value='';
-  document.getElementById('regPass').value='';
-  showLoginForm();
+var phone=document.getElementById('regPhone').value.trim();
+var pass=document.getElementById('regPass').value.trim();
+if(!phone||!pass){alert('Nhập đủ SĐT và mật khẩu!');return}
+if(phone.length<10){alert('SĐT không hợp lệ!');return}
+var users=getUsers();
+if(users.find(function(u){return u.phone===phone})){alert('SĐT đã đăng ký!');return}
+users.push({phone:phone,pass:pass,balance:0});
+saveUsers(users);
+alert('✅ Đăng ký thành công! Vui lòng đăng nhập.');
+document.getElementById('regPhone').value='';
+document.getElementById('regPass').value='';
+showLoginForm();
 }
 
 function loginUser(){
-  var phone=document.getElementById('logPhone').value.trim();
-  var pass=document.getElementById('logPass').value.trim();
-  if(!phone||!pass){alert('Nhập đủ SĐT và mật khẩu!');return}
-  var users=getUsers();
-  var u=users.find(function(x){return x.phone===phone && x.pass===pass});
-  if(!u){document.getElementById('logErr').classList.remove('hide');return}
-  currentUser=u;
-  localStorage.setItem('zebxvex_current',phone);
-  alert('✅ Đăng nhập thành công!');
-  backHome();
-  updateUserUI();
+var phone=document.getElementById('logPhone').value.trim();
+var pass=document.getElementById('logPass').value.trim();
+if(!phone||!pass){alert('Nhập đủ SĐT và mật khẩu!');return}
+var users=getUsers();
+var u=users.find(function(x){return x.phone===phone && x.pass===pass});
+if(!u){document.getElementById('logErr').classList.remove('hide');return}
+currentUser=u;
+localStorage.setItem('zebxvex_current',phone);
+alert('✅ Đăng nhập thành công!');
+backHome();
+updateUserUI();
 }
 
 function logoutUser(){
-  currentUser=null;
-  localStorage.removeItem('zebxvex_current');
-  updateUserUI();
-  alert('Đã đăng xuất!');
+currentUser=null;
+localStorage.removeItem('zebxvex_current');
+updateUserUI();
+alert('Đã đăng xuất!');
 }
 
 function updateUserUI(){
-  var el=document.getElementById('userInfo');
-  if(!el)return;
-  if(currentUser){
-    el.innerHTML='👤 <b>'+currentUser.phone+'</b> | 💰 <b style="color:#06d6a0">'+currentUser.balance.toLocaleString()+'đ</b> <button style="width:auto;padding:4px 10px;font-size:12px;background:#e63946;margin-left:8px" onclick="logoutUser()">Đăng xuất</button>';
-  }else{
-    el.innerHTML='<button style="width:auto;padding:6px 15px" onclick="showUserLogin()">👤 Đăng nhập / Đăng ký</button>';
-  }
+var el=document.getElementById('userInfo');
+if(!el)return;
+if(currentUser){
+el.innerHTML='👤 <b>'+currentUser.phone+'</b> | 💰 <b style="color:#06d6a0">'+currentUser.balance.toLocaleString()+'đ</b> <button style="width:auto;padding:4px 10px;font-size:12px;background:#e63946;margin-left:8px" onclick="logoutUser()">Đăng xuất</button>';
+}else{
+el.innerHTML='<button style="width:auto;padding:6px 15px" onclick="showUserLogin()">👤 Đăng nhập / Đăng ký</button>';
+}
 }
 
 function showUserLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
 
-// ========== NẠP TIỀN ==========
 function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex')||'[]')}catch(e){return[]}}
 function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
 function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
 
 function submitNap(){
-  if(!currentUser){alert('Vui lòng đăng nhập trước!');showUserLogin();return}
-  var n=document.getElementById('nName').value.trim();
-  var a=document.getElementById('nAmount').value.trim();
-  if(!n||!a){alert('Nhập đủ tên và số tiền!');return}
-  var code=genCode();
-  var o=getOrders();
-  o.push({id:Date.now(),phone:currentUser.phone,name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});
-  saveOrders(o);
-  alert('✅ Đã tạo đơn nạp!\nNội dung CK: '+code+'\nSau khi chuyển khoản, Admin sẽ cộng tiền vào tài khoản.');
-  document.getElementById('nName').value='';
-  document.getElementById('nAmount').value='';
+if(!currentUser){alert('Vui lòng đăng nhập trước!');showUserLogin();return}
+var n=document.getElementById('nName').value.trim();
+var a=document.getElementById('nAmount').value.trim();
+if(!n||!a){alert('Nhập đủ tên và số tiền!');return}
+var code=genCode();
+var o=getOrders();
+o.push({id:Date.now(),phone:currentUser.phone,name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});
+saveOrders(o);
+alert('✅ Đã tạo đơn nạp!\nNội dung CK: '+code+'\nChuyển khoản xong, Admin sẽ cộng tiền.');
+document.getElementById('nName').value='';
+document.getElementById('nAmount').value='';
 }
 
-// ========== MUA HÀNG ==========
 function openPlatform(i){
-  if(!currentUser){alert('Vui lòng đăng nhập trước!');showUserLogin();return}
-  currentProduct=PRODUCTS[i];
-  document.getElementById('platformProduct').textContent='Sản phẩm: '+currentProduct.name+' — '+currentProduct.price.toLocaleString()+'đ';
-  document.getElementById('platformPopup').classList.remove('hide');
+if(!currentUser){alert('Vui lòng đăng nhập trước!');showUserLogin();return}
+currentProduct=PRODUCTS[i];
+document.getElementById('platformProduct').textContent='Sản phẩm: '+currentProduct.name+' — '+currentProduct.price.toLocaleString()+'đ';
+document.getElementById('platformPopup').classList.remove('hide');
 }
 function closePlatform(){document.getElementById('platformPopup').classList.add('hide')}
+
 function choosePlatform(p){
-  closePlatform();
-  if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
-  if(currentUser.balance<currentProduct.price){
-    alert('❌ Số dư không đủ!\n\nSố dư hiện tại: '+currentUser.balance.toLocaleString()+'đ\nCần: '+currentProduct.price.toLocaleString()+'đ\n\nVui lòng nạp thêm tiền.');
-    document.getElementById('nap').scrollIntoView({behavior:'smooth'});
-    return;
-  }
-  if(!confirm('Xác nhận mua '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?\nGiá: '+currentProduct.price.toLocaleString()+'đ\n\nSố dư sẽ bị trừ.'))return;
-  
-  var users=getUsers();
-  var idx=users.findIndex(function(u){return u.phone===currentUser.phone});
-  users[idx].balance-=currentProduct.price;
-  saveUsers(users);
-  currentUser=users[idx];
-  localStorage.setItem('zebxvex_current',currentUser.phone);
-  
-  var o=getOrders();
-  o.push({id:Date.now(),phone:currentUser.phone,name:currentUser.phone+' (Mua '+currentProduct.name+')',amount:currentProduct.price,time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:currentProduct.name,platform:p});
-  saveOrders(o);
-  
-  updateUserUI();
-  alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nFile đã sẵn sàng tải.');
-  deliverProduct(currentProduct.name,p);
+closePlatform();
+if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
+if(currentUser.balance<currentProduct.price){
+alert('❌ Số dư không đủ!\n\nSố dư: '+currentUser.balance.toLocaleString()+'đ\nCần: '+currentProduct.price.toLocaleString()+'đ\n\nVui lòng nạp thêm tiền.');
+document.getElementById('nap').scrollIntoView({behavior:'smooth'});
+return;
+}
+if(!confirm('Xác nhận mua '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?\nGiá: '+currentProduct.price.toLocaleString()+'đ\n\nSố dư sẽ bị trừ.'))return;
+
+var users=getUsers();
+var idx=users.findIndex(function(u){return u.phone===currentUser.phone});
+users[idx].balance-=currentProduct.price;
+saveUsers(users);
+currentUser=users[idx];
+localStorage.setItem('zebxvex_current',currentUser.phone);
+
+var o=getOrders();
+o.push({id:Date.now(),phone:currentUser.phone,name:currentUser.phone+' (Mua '+currentProduct.name+')',amount:currentProduct.price,time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:currentProduct.name,platform:p});
+saveOrders(o);
+
+updateUserUI();
+alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nFile đã sẵn sàng tải.');
+deliverProduct(currentProduct.name,p);
 }
 
 function deliverProduct(productName,platform){
-  var d=DELIVER[productName];
-  if(!d){alert('Liên hệ Zalo 0355417385 để nhận file.');return}
-  var link=d[platform];
-  if(!link){alert('Sản phẩm chưa hỗ trợ nền tảng này.');return}
-  var finalLink=gd(link);
-  window.open(finalLink,'_blank');
+var d=DELIVER[productName];
+if(!d){alert('Liên hệ Zalo 0355417385 để nhận file.');return}
+var link=d[platform];
+if(!link){alert('Sản phẩm chưa hỗ trợ nền tảng này.');return}
+window.open(gd(link),'_blank');
 }
 
-// ========== LỊCH SỬ ==========
 function showHistory(){
-  if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
-  document.getElementById('shop').classList.add('hide');
-  document.getElementById('historyPage').classList.remove('hide');
-  renderHistory();
+if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
+document.getElementById('shop').classList.add('hide');
+document.getElementById('historyPage').classList.remove('hide');
+renderHistory();
 }
 
 function renderHistory(){
-  var o=getOrders().filter(function(x){return x.phone===currentUser.phone && x.status==='done'});
-  var tbody=document.getElementById('historyList');
-  tbody.innerHTML='';
-  if(o.length===0){document.getElementById('noHistory').style.display='block';return}
-  document.getElementById('noHistory').style.display='none';
-  o.sort(function(a,b){return b.id-a.id});
-  o.forEach(function(x){
-    var tr=document.createElement('tr');
-    tr.innerHTML='<td>'+(x.product||'—')+'</td><td>1</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+x.time+'</td>';
-    tbody.appendChild(tr);
-  });
+var o=getOrders().filter(function(x){return x.phone===currentUser.phone && x.status==='done'});
+var tbody=document.getElementById('historyList');
+tbody.innerHTML='';
+if(o.length===0){document.getElementById('noHistory').style.display='block';return}
+document.getElementById('noHistory').style.display='none';
+o.sort(function(a,b){return b.id-a.id});
+o.forEach(function(x){
+var tr=document.createElement('tr');
+tr.innerHTML='<td>'+(x.product||'—')+'</td><td>1</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+x.time+'</td>';
+tbody.appendChild(tr);
+});
 }
 
-// ========== ADMIN ==========
 function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('adminLogin').classList.remove('hide')}
 function adminLogin(){if(document.getElementById('adminPass').value==='Hoangbaonam@2012'){document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.remove('hide');renderAdmin()}else{document.getElementById('adminErr').classList.remove('hide')}}
 function backHome(){document.getElementById('login').classList.add('hide');document.getElementById('register').classList.add('hide');document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.add('hide');document.getElementById('historyPage').classList.add('hide');document.getElementById('shop').classList.remove('hide')}
 
 function renderAdmin(){
-  var o=getOrders();
-  var tbody=document.getElementById('orders');
-  tbody.innerHTML='';
-  if(o.length===0){document.getElementById('empty').style.display='block';return}
-  document.getElementById('empty').style.display='none';
-  o.sort(function(a,b){return b.id-a.id});
-  o.forEach(function(x){
-    var tr=document.createElement('tr');
-    var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#06d6a0">Đã duyệt</span>';
-    var btn=x.status==='pending'&&x.product==='Nạp tiền'
-      ?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>'
-      :x.status==='pending'?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="approveOrder('+x.id+')">Duyệt</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>'
-      :'<button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>';
-    tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
-    tbody.appendChild(tr);
-  });
+var o=getOrders();
+var tbody=document.getElementById('orders');
+tbody.innerHTML='';
+if(o.length===0){document.getElementById('empty').style.display='block';return}
+document.getElementById('empty').style.display='none';
+o.sort(function(a,b){return b.id-a.id});
+o.forEach(function(x){
+var tr=document.createElement('tr');
+var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#06d6a0">Đã duyệt</span>';
+var btn=x.status==='pending'&&x.product==='Nạp tiền'
+?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>'
+:x.status==='pending'?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="approveOrder('+x.id+')">Duyệt</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>'
+:'<button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>';
+tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
+tbody.appendChild(tr);
+});
 }
 
 function approveNap(id){
-  if(!confirm('Xác nhận đã nhận tiền và cộng vào tài khoản khách?'))return;
-  var o=getOrders();
-  var order=o.find(function(x){return x.id===id});
-  if(!order){alert('Không tìm thấy đơn!');return}
-  var users=getUsers();
-  var idx=users.findIndex(function(u){return u.phone===order.phone});
-  if(idx<0){alert('Không tìm thấy tài khoản khách!');return}
-  users[idx].balance+=order.amount;
-  saveUsers(users);
-  o=o.map(function(x){if(x.id===id){x.status='done'}return x});
-  saveOrders(o);
-  renderAdmin();
-  alert('✅ Đã cộng '+order.amount.toLocaleString()+'đ cho '+order.phone);
+if(!confirm('Xác nhận cộng tiền cho khách?'))return;
+var o=getOrders();
+var order=o.find(function(x){return x.id===id});
+if(!order){alert('Không tìm thấy!');return}
+var users=getUsers();
+var idx=users.findIndex(function(u){return u.phone===order.phone});
+if(idx<0){alert('Không tìm thấy khách!');return}
+users[idx].balance+=order.amount;
+saveUsers(users);
+o=o.map(function(x){if(x.id===id){x.status='done'}return x});
+saveOrders(o);
+renderAdmin();
+alert('✅ Đã cộng '+order.amount.toLocaleString()+'đ cho '+order.phone);
 }
 
 function approveOrder(id){var o=getOrders().map(function(x){if(x.id===id){x.status='done'}return x});saveOrders(o);renderAdmin()}
 function delOrder(id){saveOrders(getOrders().filter(function(x){return x.id!==id}));renderAdmin()}
 
-// Khởi tạo
 (function(){
-  var phone=localStorage.getItem('zebxvex_current');
-  if(phone){
-    var users=getUsers();
-    currentUser=users.find(function(u){return u.phone===phone})||null;
-  }
-  updateUserUI();
+var phone=localStorage.getItem('zebxvex_current');
+if(phone){
+var users=getUsers();
+currentUser=users.find(function(u){return u.phone===phone})||null;
+}
+updateUserUI();
 })();
