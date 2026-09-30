@@ -9,50 +9,42 @@
 <body>
 
 <div class="header">
-<div class="brand"><img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/35/7b2cbf/fff?text=Z'"><span>ZEB X VEX</span></div>
-<div><button class="moon-btn">🌙</button><button class="menu-btn" onclick="openMenu()">☰</button></div>
+<div class="brand"><img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/35/14b8a6/000?text=Z'"><span>ZEB X VEX</span></div>
+<div id="userBox" style="font-size:12px;color:#14b8a6"></div>
 </div>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-<div class="sidebar" id="sidebar">
-<button class="close" onclick="closeMenu()">✖ Đóng</button>
-<a class="item" onclick="closeMenu()">🏠 TRANG CHỦ</a>
-<a class="item" onclick="closeMenu();document.getElementById('nap').scrollIntoView({behavior:'smooth'})">💳 NẠP TIỀN</a>
-<a class="item" onclick="closeMenu();showHistory()">🔄 LỊCH SỬ</a>
-<a class="item" onclick="closeMenu();showUserLogin()">👤 ĐĂNG NHẬP</a>
-</div>
-
-<div id="shop">
+<div id="shop" class="container">
 <div class="hero">
-<img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/90/7b2cbf/fff?text=Z'">
+<img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/120/14b8a6/000?text=Z'">
 <h1>ZEB X VEX</h1>
 <p>UY TÍN • CHẤT LƯỢNG • AN TOÀN • NHANH GỌN<br>Hệ thống nạp & cấp phát Key tự động 100%</p>
-<p class="status">🟢 Đang hoạt động — Cập nhật mới nhất 2026</p>
-<div id="userInfo" style="text-align:center;margin:15px 0"></div>
-<button class="btn-main" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🚀 Khám Phá Ngay</button>
-<button class="btn-main" style="background:transparent;border:2px solid #9d4edd;color:#c77dff" onclick="document.getElementById('nap').scrollIntoView({behavior:'smooth'})">✨ Nạp Tiền Ngay</button>
-<div class="badge-row"><div class="badge">💳 Nạp Auto Bank 24/7</div><div class="badge">🔒 An toàn 100%</div><div class="badge">⚡ Cấp key tức thì</div><div class="badge">🎧 Hỗ trợ 24/7</div></div>
+<p class="status">🟢 Đang hoạt động — 2026</p>
+<button class="btn-main" onclick="document.getElementById('productList').scrollIntoView({behavior:'smooth'})">🚀 Khám Phá Ngay</button>
+<div class="badge-row">
+<div class="badge">💳 Nạp Auto 24/7</div>
+<div class="badge">🔒 An toàn 100%</div>
+<div class="badge">⚡ Cấp key tức thì</div>
+<div class="badge">🎧 Hỗ trợ 24/7</div>
+</div>
 </div>
 
 <div class="music-box">
 <div class="controls"><button onclick="prevSong()">⏮</button><button onclick="toggleMusic()" id="playBtn">▶ BẬT NHẠC</button><button onclick="nextSong()">⏭</button></div>
 <p class="music-title" id="songTitle">🎵 #1: Nhạc 1</p>
-<p class="warn">⚠️ Bấm BẬT NHẠC để nghe</p>
-<input type="range" id="volume" min="0" max="100" value="50" onchange="setVolume()" style="width:60%;margin-top:8px">
+<input type="range" id="volume" min="0" max="100" value="50" onchange="setVolume()">
 </div>
 
-<h2 id="products">🛒 KHO SẢN PHẨM</h2>
+<h2>🛒 KHO SẢN PHẨM</h2>
 <div class="grid" id="productList"></div>
 
 <h2 id="nap">💳 NẠP TIỀN</h2>
 <div class="box">
-<p><b style="color:#e0aaff">MB Bank:</b> VI THANH HUY</p>
-<p><b style="color:#e0aaff">STK:</b> 0375374529</p>
-<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
+<p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p>
+<p><b style="color:#14b8a6">STK:</b> 0375374529</p>
+<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/200/fff/000?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
-<button onclick="submitNap()">✅ Xác Nhận Đã Chuyển</button>
+<button class="btn-main" onclick="submitNap()">✅ XÁC NHẬN ĐÃ CHUYỂN</button>
 </div>
 
 <h2>⭐ ĐÁNH GIÁ UY TÍN</h2>
@@ -60,83 +52,90 @@
 <div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Ch*********</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-16</span></div>
 <div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Ba*</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-12</span></div>
 <div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Kh***</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-11</span></div>
-<div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Vp**</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-09</span></div>
 </div>
 
 <h2>📞 LIÊN HỆ</h2>
 <div class="box">
-<p>Zalo: <b style="color:#e0aaff">0355417385</b></p>
-<a href="https://zalo.me/0355417385" target="_blank"><button>💬 Nhắn Zalo</button></a>
+<p>Zalo: <b style="color:#14b8a6">0355417385</b></p>
+<a href="https://zalo.me/0355417385" target="_blank"><button class="btn-main">💬 NHẮN ZALO</button></a>
 </div>
 
-<p style="text-align:center;margin-top:20px"><button style="width:auto;padding:10px 25px" onclick="showLogin()">🔐 Admin</button></p>
-<p style="text-align:center;color:#6c5a8a;font-size:12px;margin:30px 0">© 2026 ZEB X VEX. All rights reserved.</p>
+<p style="text-align:center;color:#6b7280;font-size:12px;margin:30px 0">© 2026 ZEB X VEX</p>
 </div>
 
-<div id="historyPage" class="hide" style="max-width:1000px;margin:0 auto">
+<div id="historyPage" class="hide container">
 <h2>🔄 LỊCH SỬ MUA HÀNG</h2>
-<button style="max-width:200px;margin:0 auto 15px;display:block" onclick="backHome()">← Quay lại</button>
-<div style="overflow-x:auto"><table>
-<thead><tr><th>Sản phẩm</th><th>SL</th><th>Tổng tiền</th><th>Thời gian</th></tr></thead>
+<table>
+<thead><tr><th>Sản phẩm</th><th>SL</th><th>Tổng</th><th>Thời gian</th></tr></thead>
 <tbody id="historyList"></tbody>
-</table></div>
-<p id="noHistory" style="text-align:center;color:#888">Chưa có đơn nào.</p>
+</table>
+<p id="noHistory" style="text-align:center;color:#6b7280;padding:20px">Chưa có đơn nào.</p>
 </div>
+
+<div id="accountPage" class="hide container"></div>
 
 <div id="login" class="hide">
 <div class="box" style="margin-top:100px">
-<h3 style="color:#c77dff">👤 ĐĂNG NHẬP</h3>
+<h3 style="text-align:center">👤 ĐĂNG NHẬP</h3>
 <input id="logPhone" placeholder="Số điện thoại">
 <input id="logPass" type="password" placeholder="Mật khẩu">
-<button onclick="loginUser()">Đăng Nhập</button>
-<p id="logErr" class="err hide">SĐT hoặc mật khẩu sai!</p>
-<button style="background:#06d6a0;color:#000;margin-top:10px" onclick="showRegister()">Chưa có tài khoản? Đăng ký</button>
-<button style="background:#444;margin-top:10px" onclick="backHome()">Quay lại</button>
+<button class="btn-main" onclick="loginUser()">ĐĂNG NHẬP</button>
+<p class="err hide" id="logErr" style="text-align:center">SĐT hoặc mật khẩu sai!</p>
+<button class="btn-main" style="background:#7c3aed;color:#fff;margin-top:10px" onclick="showRegister()">CHƯA CÓ TÀI KHOẢN? ĐĂNG KÝ</button>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="backHome()">QUAY LẠI</button>
 </div>
 </div>
 
 <div id="register" class="hide">
 <div class="box" style="margin-top:100px">
-<h3 style="color:#c77dff">📝 ĐĂNG KÝ</h3>
+<h3 style="text-align:center">📝 ĐĂNG KÝ</h3>
 <input id="regPhone" placeholder="Số điện thoại">
 <input id="regPass" type="password" placeholder="Mật khẩu">
-<button onclick="register()">Đăng Ký</button>
-<button style="background:#444;margin-top:10px" onclick="showLoginForm()">Đã có tài khoản? Đăng nhập</button>
+<button class="btn-main" onclick="register()">ĐĂNG KÝ</button>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showLoginForm()">ĐÃ CÓ TÀI KHOẢN? ĐĂNG NHẬP</button>
 </div>
 </div>
 
 <div id="adminLogin" class="hide">
 <div class="box" style="margin-top:100px">
-<h3 style="color:#c77dff">🔐 ADMIN</h3>
+<h3 style="text-align:center">🔐 ADMIN</h3>
 <input id="adminPass" type="password" placeholder="Mật khẩu admin...">
-<button onclick="adminLogin()">Đăng Nhập</button>
-<p id="adminErr" class="err hide">Sai mật khẩu!</p>
-<button style="background:#444;margin-top:10px" onclick="backHome()">Quay lại</button>
+<button class="btn-main" onclick="adminLogin()">ĐĂNG NHẬP</button>
+<p class="err hide" id="adminErr" style="text-align:center">Sai mật khẩu!</p>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="backHome()">QUAY LẠI</button>
 </div>
 </div>
 
-<div id="admin" class="hide" style="max-width:1000px;margin:0 auto">
+<div id="admin" class="hide container">
 <h2>🛠️ QUẢN TRỊ</h2>
-<button style="max-width:200px;margin:0 auto 15px;display:block" onclick="backHome()">Thoát</button>
+<button class="btn-main" style="max-width:200px;margin-bottom:15px" onclick="backHome()">Thoát</button>
 <div style="overflow-x:auto"><table>
 <thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Sản phẩm</th><th>Nền tảng</th><th>Trạng thái</th><th>HĐ</th></tr></thead>
 <tbody id="orders"></tbody>
 </table></div>
-<p id="empty" style="text-align:center;color:#888">Chưa có đơn.</p>
+<p id="empty" style="text-align:center;color:#6b7280;padding:20px">Chưa có đơn.</p>
 </div>
 
 <div id="platformPopup" class="popup hide">
 <div class="inner">
-<h3>📱 CHỌN NỀN TẢNG</h3>
-<p id="platformProduct" style="color:#e0aaff;margin-bottom:15px"></p>
-<button class="platform-btn" onclick="choosePlatform('ios')">🍎 iOS</button>
-<button class="platform-btn" onclick="choosePlatform('adr')">🤖 Android</button>
-<button style="background:#e63946;margin-top:8px" onclick="closePlatform()">❌ Đóng</button>
+<h3>📱 CHỌN NỀN TẢNG <button class="close" onclick="closePlatform()">×</button></h3>
+<p id="platformProduct" style="color:#14b8a6;margin-bottom:15px"></p>
+<button class="btn-main" onclick="choosePlatform('ios')">🍎 iOS</button>
+<button class="btn-main" style="background:#3b82f6;color:#fff;margin-top:8px" onclick="choosePlatform('adr')">🤖 Android</button>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:8px" onclick="closePlatform()">❌ Đóng</button>
 </div>
 </div>
 
 <a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone">💬</a>
 <div class="float-btn">🎧</div>
+
+<div class="bottom-nav">
+<div class="nav-item active" data-tab="shop" onclick="showTab('shop')"><div class="icon">🛍️</div><div class="label">SHOP</div></div>
+<div class="nav-item" data-tab="nap" onclick="showTab('nap')"><div class="icon">💳</div><div class="label">NẠP</div></div>
+<div class="nav-item" data-tab="don" onclick="showTab('don')"><div class="icon">📋</div><div class="label">ĐƠN</div></div>
+<div class="nav-item" data-tab="box" onclick="showTab('box')"><div class="icon">⚔️</div><div class="label">BOX</div></div>
+<div class="nav-item" data-tab="account" onclick="showTab('account')"><div class="icon">👤</div><div class="label">TÀI KHOẢN</div></div>
+</div>
 
 <audio id="musicPlayer" loop><source id="musicSource" src="nhac1.mp3" type="audio/mpeg"></audio>
 
