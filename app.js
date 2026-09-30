@@ -1,4 +1,5 @@
-var currentProduct=null,currentUser=null;
+var WORKER_URL='https://shopzeb-api.baonam310112.workers.dev';
+var currentProduct=null,currentUser=null,autoCheckTimer=null,currentNapCode=null,currentNapAmount=0;
 function gd(link){var m=link.match(/\/d\/([^\/]+)/);if(m)return 'https://drive.google.com/file/d/'+m[1]+'/view';return link}
 
 var DELIVER={
@@ -18,7 +19,7 @@ var DELIVER={
 };
 
 var PRODUCTS=[
-{name:'Aimlock V1',price:1000,desc:'Menu Aimlock V1 — kéo tâm.',img:'logo.jpg.PNG'},
+{name:'Aimlock V1',price:100000,desc:'Menu Aimlock V1 — kéo tâm.',img:'logo.jpg.PNG'},
 {name:'Aimlock V2',price:200000,desc:'Menu Aimlock V2 — nâng cấp.',img:'logo.jpg.PNG'},
 {name:'Aimlock V3',price:300000,desc:'Menu Aimlock V3 — fix lố.',img:'logo.jpg.PNG'},
 {name:'Aimlock V4',price:400000,desc:'Menu Aimlock V4 — full.',img:'logo.jpg.PNG'},
@@ -42,7 +43,7 @@ document.getElementById('productList').innerHTML=html;
 var songs=[{name:'Nhạc 1',src:'nhac1.mp3'},{name:'Nhạc 2',src:'nhac2.mp3'}];
 var currentSong=0,player=document.getElementById('musicPlayer');
 function loadSong(i){currentSong=(i+songs.length)%songs.length;document.getElementById('musicSource').src=songs[currentSong].src;player.load();document.getElementById('songTitle').textContent='🎵 '+(currentSong+1)+': '+songs[currentSong].name}
-function toggleMusic(){if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}else{player.pause();tddocument.getElementById('playBtn').textContent='▶ BẬT NHẠC'}}
+function toggleMusic(){if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}else{player.pause();document.getElementById('playBtn').textContent='▶ BẬT NHẠC'}}
 function nextSong(){loadSong(currentSong+1);player.play()}
 function prevSong(){loadSong(currentSong-1);player.play()}
 function setVolume(){player.volume=document.getElementById('volume').value/100}
@@ -50,8 +51,8 @@ player.volume=0.5;
 
 function getUsers(){try{return JSON.parse(localStorage.getItem('zebxvex_users')||'[]')}catch(e){return[]}}
 function saveUsers(u){localStorage.setItem('zebxvex_users',JSON.stringify(u))}
-function getOrders(){try{return>< JSON.parse(localStorage.getItem('tdzebxvex')||'>[]')}catch(e'+){return[]}}
-function saveOrdersst(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
+function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex')||'[]')}catch(e){return[]}}
+function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
 function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
 
 function showTab(tab){
@@ -60,7 +61,7 @@ if(tab==='shop'){document.getElementById('shop').classList.remove('hide')}
 if(tab==='nap'){
 if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
 document.getElementById('napPage').classList.remove('hide');
-document.getElementById('napPage').innerHTML='<h2>💳 NẠP TIỀN</h2><div class="box"><p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p><p><b style="color:#14b8a6">STK:</b> 0375374529</p><img src="qr.JPG" onerror="this.src=\'https://via.placeholder.com/200/fff/000?text=QR\'"><input id="nName" placeholder="Tên của bạn"><input id="nAmount" type="number" placeholder="Số tiền nạp"><button class="btn-main" onclick="submitNap()">✅ XÁC NHẬN ĐÃ CHUYỂN</button></div><div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)"><h3>📌 LƯU Ý</h3><ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2"><li>• Số dư chỉ được cộng sau khi Admin xác nhận.</li><li>• Không tạo nhiều yêu cầu nạp cùng lúc.</li><li>• Liên hệ Zalo 0355417385 nếu chưa được cộng.</li></ul></div>';
+document.getElementById('napPage').innerHTML='<h2>💳 NẠP TIỀN</h2><div class="box"><h3>📌 NỘI DUNG CHUYỂN KHOẢN</h3><div style="background:#0a0a0f;border:2px dashed #14b8a6;border-radius:10px;padding:15px;text-align:center;margin:10px 0"><div style="color:#6b7280;font-size:11px;margin-bottom:5px">MÃ NẠP TIỀN</div><div id="napCodeShow" style="color:#ffd166;font-size:20px;font-weight:bold;letter-spacing:2px">-------</div></div><p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p><p><b style="color:#14b8a6">STK:</b> 0375374529</p><img src="qr.JPG" onerror="this.src=\'https://via.placeholder.com/200/fff/000?text=QR\'"><input id="nName" placeholder="Tên của bạn"><input id="nAmount" type="number" placeholder="Số tiền nạp (VD: 50000)"><button class="btn-main" onclick="submitNap()">✅ TẠO MÃ NẠP TIỀN</button><p id="napStatus" style="text-align:center;color:#94a3b8;font-size:13px;margin-top:10px"></p></div><div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)"><h3>📌 LƯU Ý</h3><ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2"><li>• Nhập số tiền → bấm TẠO MÃ.</li><li>• Chuyển khoản đúng nội dung mã đó.</li><li>• Hệ thống tự động cộng tiền sau 5-10 giây.</li><li>• Liên hệ Zalo 0355417385 nếu chưa được cộng.</li></ul></div>';
 }
 if(tab==='don'){if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}document.getElementById('historyPage').classList.remove('hide');renderHistory()}
 if(tab==='box'){alert('📦 BOX: Tính năng đang phát triển!');return}
@@ -76,7 +77,7 @@ var acc=document.getElementById('accountPage');
 acc.classList.remove('hide');
 var orders=getOrders().filter(function(o){return o.phone===currentUser.phone});
 var done=orders.filter(function(o){return o.status==='done'});
-acc.innerHTML='<h2>👤 TÀI KHOẢN</h2><div class="box" style="text-align:center"><div style="width:80px;height:80px;background:#7c3aed;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:32px;font-weight:bold;margin:0 auto 15px">'+currentUser.phone.charAt(0).toUpperCase()+'</div><h3 style="text-align:center;margin-bottom:5px">'+currentUser.phone+'</h3><p style="text-align:center;color:#6b7280;margin-bottom:15px">'+currentUser.phone+'@zebxvex.com</p><div style="background:#0a0a0f;border:1px solid #1f2937;border-radius:10px;padding:15px;margin-bottom:15px"><div style="color:#6b7280;font-size:11px;margin-bottom:5px">SỐ DƯ</div><div style="color:#14b8a6;font-size:24px;font-weight:bold">'+currentUser.balance.toLocaleString()+' VND</div></div><button class="btn-main" onclick="showTab(\'nap\')" style="max-width:200px;margin:0 auto">💳 NẠP TIỀN</button></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px"><div style="background:#111827;border:1px solid #1f2937;border-radius:12px;padding:15px;text-align:center"><div style="font-size:24px;font-weight:bold;color:#14b8a6">'+orders.length+'</div><div style="color:#6b7280;font-size:11px">TỔNG ĐƠN</div></div><div style="background:#111827;border:1px solid #1f2937;border-radius:12px;padding:15px;text-align:center"><div style="font-size:24px;font-weight:bold;color:#14b8a6">'+done.length+'</div><div style="color:#6b7280;font-size:11px">HOÀN TẤT</div></div></div><button class="btn-main" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;margin-top:15px" onclick="logoutUser();showTab(\'shop\')">ĐĂNG XUẤT</button>';
+acc.innerHTML='<h2>👤 TÀI KHOẢN</h2><div class="box" style="text-align:center"><div style="width:80px;height:80px;background:#7c3aed;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:32px;font-weight:bold;margin:0 auto 15px">'+currentUser.phone.charAt(0).toUpperCase()+'</div><h3 style="text-align:center;margin-bottom:5px">'+currentUser.phone+'</h3><div style="background:#0a0a0f;border:1px solid #1f2937;border-radius:10px;padding:15px;margin-bottom:15px"><div style="color:#6b7280;font-size:11px;margin-bottom:5px">SỐ DƯ</div><div style="color:#14b8a6;font-size:24px;font-weight:bold">'+currentUser.balance.toLocaleString()+' VND</div></div><button class="btn-main" onclick="showTab(\'nap\')" style="max-width:200px;margin:0 auto">💳 NẠP TIỀN</button></div><button class="btn-main" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;margin-top:15px" onclick="logoutUser();showTab(\'shop\')">ĐĂNG XUẤT</button>';
 }
 
 function updateUserUI(){
@@ -97,14 +98,49 @@ function submitNap(){
 if(!currentUser){alert('Vui lòng đăng nhập!');return}
 var n=document.getElementById('nName').value.trim();
 var a=document.getElementById('nAmount').value.trim();
-if(!n||!a){alert('Nhập đủ!');return}
+if(!n||!a){alert('Nhập đủ tên và số tiền!');return}
 var code=genCode();
+currentNapCode=code;
+currentNapAmount=parseInt(a);
 var o=getOrders();
 o.push({id:Date.now(),phone:currentUser.phone,name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});
 saveOrders(o);
-document.getElementById('napPage').innerHTML='<h2>💳 NẠP TIỀN</h2><div class="ck-display"><div class="label">📌 NỘI DUNG CHUYỂN KHOẢN</div><div class="code" id="ckCode">'+code+'</div><button onclick="copyCK()">📋 COPY NỘI DUNG</button><p style="color:#94a3b8;font-size:12px;margin-top:8px">Chuyển đúng số tiền + nội dung → Admin cộng tiền</p></div><div class="box"><p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p><p><b style="color:#14b8a6">STK:</b> 0375374529</p><img src="qr.JPG" onerror="this.src=\'https://via.placeholder.com/200/fff/000?text=QR\'"><input id="nName" placeholder="Tên của bạn"><input id="nAmount" type="number" placeholder="Số tiền nạp"><button class="btn-main" onclick="submitNap()">✅ XÁC NHẬN ĐÃ CHUYỂN</button></div><div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)"><h3>📌 LƯU Ý</h3><ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2"><li>• Số dư chỉ được cộng sau khi Admin xác nhận.</li><li>• Không tạo nhiều yêu cầu nạp cùng lúc.</li><li>• Liên hệ Zalo 0355417385 nếu chưa được cộng.</li></ul></div>';
+document.getElementById('napCodeShow').textContent=code;
+document.getElementById('napStatus').innerHTML='<span style="color:#ffd166">⏳ Đang chờ chuyển khoản... Hệ thống tự kiểm tra mỗi 5 giây.</span>';
+if(autoCheckTimer)clearInterval(autoCheckTimer);
+autoCheckTimer=setInterval(checkNapAuto,5000);
+alert('✅ Đã tạo mã nạp: '+code+'\n\nChuyển khoản đúng nội dung này.\nHệ thống tự cộng tiền sau 5-10 giây.');
 }
-function copyCK(){var c=document.getElementById('ckCode').textContent;navigator.clipboard.writeText(c).then(function(){alert('✅ Đã copy: '+c)})}
+
+function checkNapAuto(){
+if(!currentNapCode){return}
+fetch(WORKER_URL).then(function(r){return r.json()}).then(function(data){
+var txs=data.transactions||data.data||[];
+var found=null;
+txs.forEach(function(t){
+var content=(t.transaction_content||t.content||'').toUpperCase();
+var amountIn=t.amount_in||t.amountIn||t.amount||0;
+if(content.indexOf(currentNapCode)>-1 && parseInt(amountIn)>=currentNapAmount){found=t}
+});
+if(found){
+if(autoCheckTimer){clearInterval(autoCheckTimer);autoCheckTimer=null}
+var users=getUsers();
+var idx=users.findIndex(function(u){return u.phone===currentUser.phone});
+if(idx>=0){
+users[idx].balance+=currentNapAmount;
+saveUsers(users);
+currentUser=users[idx];
+localStorage.setItem('zebxvex_current',currentUser.phone);
+}
+var o=getOrders().map(function(x){if(x.code===currentNapCode){x.status='done'}return x});
+saveOrders(o);
+updateUserUI();
+document.getElementById('napStatus').innerHTML='<span style="color:#14b8a6;font-weight:bold">✅ ĐÃ CỘNG '+currentNapAmount.toLocaleString()+'đ VÀO TÀI KHOẢN!</span>';
+alert('🎉 Nạp tiền thành công!\nSố dư mới: '+currentUser.balance.toLocaleString()+'đ');
+currentNapCode=null;
+}
+}).catch(function(){});
+}
 
 function openBuy(i){
 if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
@@ -137,7 +173,7 @@ var d=DELIVER[currentProduct.name];
 var fileLink='';
 if(d&&d[p]){fileLink=gd(d[p])}
 if(fileLink){
-alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nBấm OK để tải file.');
+alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nBấm OK để mở file.');
 window.open(fileLink,'_blank');
 }else{
 alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nLiên hệ Zalo 0355417385 để nhận file.');
@@ -175,7 +211,7 @@ var btn=x.status==='pending'&&x.product==='Nạp tiền'
 ?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>'
 :x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>'
 :'<button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>';
-tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</+'</td><td>'+btn+'</td>';
+tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
 tbody.appendChild(tr);
 });
 }
