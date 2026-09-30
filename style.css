@@ -1,0 +1,63 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0d0b1a;color:#eee;padding:15px;padding-top:70px}
+h1{color:#c77dff;text-align:center;margin:15px 0;font-size:28px}
+h2{color:#c77dff;text-align:center;margin:25px 0 15px;border-bottom:1px solid #3a2a5a;padding-bottom:8px}
+.header{position:fixed;top:0;left:0;right:0;background:#0d0b1a;border-bottom:1px solid #3a2a5a;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.brand{display:flex;align-items:center;gap:8px;color:#c77dff;font-weight:bold;font-size:18px}
+.brand img{width:35px;height:35px;border-radius:50%;border:2px solid #9d4edd;object-fit:cover}
+.menu-btn{background:#7b2cbf;border:none;color:#fff;padding:8px 12px;border-radius:8px;font-size:20px;cursor:pointer;width:auto}
+.moon-btn{background:transparent;border:1px solid #7b2cbf;color:#c77dff;padding:6px 10px;border-radius:8px;cursor:pointer;width:auto;margin-left:8px}
+.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#1a1533;border-right:2px solid #7b2cbf;padding:20px;z-index:200;transition:left .3s;overflow-y:auto}
+.sidebar.open{left:0}
+.sidebar .close{background:#e63946;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;width:auto;margin-bottom:15px}
+.sidebar .item{display:block;padding:14px;background:#0d0b1a;border:1px solid #3a2a5a;border-radius:10px;margin-bottom:10px;color:#c77dff;font-weight:bold;cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;display:none}
+.overlay.show{display:block}
+.hero{text-align:center;padding:25px 20px;background:#1a1533;border-radius:14px;margin:15px auto;max-width:1000px;border:1px solid #3a2a5a}
+.hero img{width:90px;height:90px;border-radius:50%;border:2px solid #9d4edd;margin-bottom:10px}
+.hero p{color:#a0a0b0;font-size:14px;margin-top:8px}
+.badge-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0}
+.badge{background:#1a1533;border:1px solid #3a2a5a;border-radius:20px;padding:6px 15px;font-size:13px;color:#c77dff}
+.status{color:#06d6a0;font-weight:bold;margin-top:10px}
+.btn-main{background:#7b2cbf;color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;max-width:400px;margin:8px auto;display:block}
+.music-box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:15px;max-width:500px;margin:15px auto;text-align:center}
+.music-box .controls{display:flex;justify-content:center;gap:10px;margin:10px 0}
+.music-box button{width:auto;padding:8px 15px;font-size:14px}
+.music-title{color:#e0aaff;font-size:14px;margin:8px 0}
+.warn{color:#ffd166;font-size:12px;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;max-width:1000px;margin:0 auto}
+.card{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:18px;display:flex;flex-direction:column}
+.card:hover{border-color:#9d4edd}
+.card h3{color:#c77dff;text-align:center;margin-bottom:8px;font-size:16px}
+.card .desc{color:#a0a0b0;font-size:12px;text-align:center;margin-bottom:10px;flex:1;line-height:1.5}
+.card .price{color:#e0aaff;font-weight:bold;text-align:center;font-size:20px;margin:10px 0}
+button{width:100%;padding:11px;background:#7b2cbf;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold}
+button:hover{background:#9d4edd}
+.box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:22px;max-width:420px;margin:20px auto;text-align:center}
+.box input,.box select{width:100%;padding:11px;margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:8px;outline:none}
+.box img{width:220px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:12px auto;display:block}
+.popup{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;justify-content:center;align-items:center;padding:15px;z-index:300}
+.popup .inner{background:#1a1533;border:2px solid #7b2cbf;border-radius:14px;padding:22px;max-width:420px;width:100%;text-align:center;max-height:90vh;overflow:auto}
+.popup h3{color:#c77dff;margin-bottom:10px}
+.popup .price{color:#ffd166;font-size:22px;font-weight:bold;margin:12px 0}
+.popup img{width:200px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:10px auto;display:block}
+.platform-btn{padding:15px;margin:8px 0;background:#2a2040;border:2px solid #3a2a5a;border-radius:10px;cursor:pointer;font-weight:bold;color:#fff;width:100%}
+.platform-btn:hover{background:#7b2cbf}
+table{width:100%;border-collapse:collapse;max-width:1000px;margin:20px auto;font-size:13px}
+th,td{padding:9px;border-bottom:1px solid #3a2a5a;text-align:left}
+th{background:#2a2040;color:#c77dff}
+.float-btn{position:fixed;bottom:80px;right:20px;width:55px;height:55px;background:#7b2cbf;border-radius:50%;display:flex;justify-content:center;align-items:center;color:#fff;font-size:24px;cursor:pointer;z-index:50;text-decoration:none}
+.float-btn.phone{bottom:145px}
+.hide{display:none}
+.err{color:#e63946;font-size:13px}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top:2px solid transparent;border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.auto-status{color:#06d6a0;font-size:13px;margin-top:8px;font-weight:bold}
+.deliver-box{background:#0d0b1a;border:2px solid #06d6a0;border-radius:10px;padding:15px;margin-top:12px;text-align:left}
+.deliver-box h4{color:#06d6a0;margin-bottom:8px}
+.deliver-box a{display:block;background:#06d6a0;color:#000;padding:12px;border-radius:6px;text-decoration:none;font-weight:bold;text-align:center;margin-top:8px}
+.feedback{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:20px;max-width:1000px;margin:20px auto}
+.feedback-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #2a2040;font-size:13px}
+.feedback-item:last-child{border-bottom:none}
+.feedback-item .stars{color:#ffd166}
+.feedback-item .trust{color:#06d6a0;font-weight:bold}
