@@ -113,4 +113,40 @@
 <input id="regPhone" placeholder="Số điện thoại">
 <input id="regPass" type="password" placeholder="Mật khẩu">
 <button class="btn-main" onclick="register()">ĐĂNG KÝ</button>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showLoginForm()">ĐÃ CÓ TÀI KHOẢN? Đ
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showLoginForm()">ĐÃ CÓ TÀI KHOẢN? ĐĂNG NHẬP</button>
+</div>
+</div>
+
+<div id="adminLogin" class="hide">
+<div class="box" style="margin-top:100px">
+<h3 style="text-align:center">🔐 ADMIN</h3>
+<input id="adminPass" type="password" placeholder="Mật khẩu admin...">
+<button class="btn-main" onclick="adminLogin()">ĐĂNG NHẬP</button>
+<p class="err hide" id="adminErr" style="text-align:center">Sai mật khẩu!</p>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
+</div>
+</div>
+
+<div id="admin" class="hide container">
+<h2>🛠️ QUẢN TRỊ</h2>
+<button class="btn-main" style="max-width:200px;margin-bottom:15px" onclick="showTab('shop')">Thoát</button>
+<div id="adminContent"></div>
+</div>
+
+<div id="platformPopup" class="popup hide"></div>
+
+<a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone">💬</a>
+
+<div class="bottom-nav">
+<div class="nav-item active" data-tab="shop" onclick="showTab('shop')"><div class="icon">🛍️</div><div class="label">SHOP</div></div>
+<div class="nav-item" data-tab="nap" onclick="showTab('nap')"><div class="icon">💳</div><div class="label">NẠP</div></div>
+<div class="nav-item" data-tab="don" onclick="showTab('don')"><div class="icon">📋</div><div class="label">ĐƠN</div></div>
+<div class="nav-item" data-tab="box" onclick="showTab('box')"><div class="icon">⚔️</div><div class="label">BOX</div></div>
+<div class="nav-item" data-tab="account" onclick="showTab('account')"><div class="icon">👤</div><div class="label">TÀI KHOẢN</div></div>
+</div>
+
+<audio id="musicPlayer" loop><source id="musicSource" src="nhac1.mp3" type="audio/mpeg"></audio>
+
+<script src="app.js"></script>
+</body>
+</html>
