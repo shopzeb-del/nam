@@ -1,5 +1,5 @@
 var WORKER_URL='https://shopzeb-api.baonam310112.workers.dev';
-var currentUser=null,currentProduct=null,autoTimer=null,napCode=null,napAmount=0;
+var currentUser=null,currentProduct=null,autoTimer=null,napCode=null,napAmount=0,isAdmin=false;
 function gd(l){var m=l.match(/\/d\/([^\/]+)/);return m?'https://drive.google.com/file/d/'+m[1]+'/view':l}
 
 var DELIVER={
@@ -80,7 +80,7 @@ acc.innerHTML='<h2>👤 TÀI KHOẢN</h2><div class="box" style="text-align:cent
 
 function updateUserUI(){
 var b=document.getElementById('userBox');if(!b)return;
-if(currentUser){b.innerHTML='👤 '+currentUser.phone+' | 💰 <b>'+currentUser.balance.toLocaleString()+'đ</b>'}
+if(currentUser){b.innerHTML='👤 '+currentUser.phone+' | 💰 <b>'+currentUser.balance.toLocaleString()+'đ</b>'+(isAdmin?' <span style="color:#ffd166;font-weight:bold">[ADMIN]</span>':'')}
 else{b.innerHTML='<button style="background:#14b8a6;color:#000;border:none;padding:6px 12px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:12px" onclick="showUserLogin()">ĐĂNG NHẬP</button>'}
 }
 function showUserLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
@@ -89,7 +89,7 @@ function showLoginForm(){document.getElementById('register').classList.add('hide
 
 function register(){var p=document.getElementById('regPhone').value.trim(),pw=document.getElementById('regPass').value.trim();if(!p||!pw){alert('Nhập đủ!');return}if(p.length<10){alert('SĐT không hợp lệ!');return}var u=getUsers();if(u.find(function(x){return x.phone===p})){alert('SĐT đã đăng ký!');return}u.push({phone:p,pass:pw,balance:0});saveUsers(u);alert('✅ Đăng ký thành công!');showLoginForm()}
 function loginUser(){var p=document.getElementById('logPhone').value.trim(),pw=document.getElementById('logPass').value.trim();var u=getUsers();var x=u.find(function(y){return y.phone===p&&y.pass===pw});if(!x){document.getElementById('logErr').classList.remove('hide');return}currentUser=x;localStorage.setItem('zxc',p);alert('✅ Đăng nhập thành công!');showTab('shop');updateUserUI()}
-function logoutUser(){currentUser=null;localStorage.removeItem('zxc');updateUserUI();alert('Đã đăng xuất!');showTab('shop')}
+function logoutUser(){currentUser=null;isAdmin=false;localStorage.removeItem('zxc');updateUserUI();alert('Đã đăng xuất!');showTab('shop')}
 
 function submitNap(){
 if(!currentUser){alert('Vui lòng đăng nhập!');return}
@@ -133,7 +133,7 @@ function openBuy(i){
 if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
 currentProduct=PRODUCTS[i];
 var p=document.getElementById('platformPopup');
-p.innerHTML='<div class="inner"><h3>📱 MUA '+currentProduct.name+' <button class="close" onclick="closePlatform()">×</button></h3><img src="'+currentProduct.img+'" class="img-big"><p style="text-align:center;color:#14b8a6;font-size:20px;font-weight:bold;margin:10px 0">'+currentProduct.price.toLocaleString()+'đ</p><p style="text-align:center;color:#94a3b8;font-size:13px;margin-bottom:15px">'+currentProduct.desc+'</p><button class="btn-main" onclick="choosePlatform(\'ios\')">🍎 iOS</button><button class="btn-main" style="background:#3b82f6;color:#fff;margin-top:8px" onclick="choosePlatform(\'adr\')">🤖 Android</button><button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:8px" onclick="closePlatform()">❌ Đóng</button></div>';
+p.innerHTML='<div class="inner"><h3>📱 MUA '+currentProduct.name+(isAdmin?' <span style="color:#ffd166">[ADMIN FREE]</span>':'')+' <button class="close" onclick="closePlatform()">×</button></h3><img src="'+currentProduct.img+'" class="img-big"><p style="text-align:center;color:#14b8a6;font-size:20px;font-weight:bold;margin:10px 0">'+(isAdmin?'MIỄN PHÍ (ADMIN)':currentProduct.price.toLocaleString()+'đ')+'</p><p style="text-align:center;color:#94a3b8;font-size:13px;margin-bottom:15px">'+currentProduct.desc+'</p><button class="btn-main" onclick="choosePlatform(\'ios\')">🍎 iOS</button><button class="btn-main" style="background:#3b82f6;color:#fff;margin-top:8px" onclick="choosePlatform(\'adr\')">🤖 Android</button><button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:8px" onclick="closePlatform()">❌ Đóng</button></div>';
 p.classList.remove('hide');
 }
 function closePlatform(){document.getElementById('platformPopup').classList.add('hide')}
@@ -141,16 +141,19 @@ function closePlatform(){document.getElementById('platformPopup').classList.add(
 function choosePlatform(p){
 closePlatform();
 if(!currentUser){alert('Vui lòng đăng nhập!');return}
-if(currentUser.balance<currentProduct.price){alert('❌ Số dư không đủ!\nSố dư: '+currentUser.balance.toLocaleString()+'đ\nCần: '+currentProduct.price.toLocaleString()+'đ');showTab('nap');return}
-if(!confirm('Xác nhận mua '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?'))return;
+if(!isAdmin && currentUser.balance<currentProduct.price){alert('❌ Số dư không đủ!\nSố dư: '+currentUser.balance.toLocaleString()+'đ\nCần: '+currentProduct.price.toLocaleString()+'đ');showTab('nap');return}
+if(!isAdmin && !confirm('Xác nhận mua '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?'))return;
+if(isAdmin && !confirm('ADMIN MUA MIỄN PHÍ '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?'))return;
+if(!isAdmin){
 var u=getUsers(),idx=u.findIndex(function(x){return x.phone===currentUser.phone});
 u[idx].balance-=currentProduct.price;saveUsers(u);currentUser=u[idx];localStorage.setItem('zxc',currentUser.phone);
+}
 var o=getOrders();
-o.push({id:Date.now(),phone:currentUser.phone,name:currentUser.phone+' (Mua '+currentProduct.name+')',amount:currentProduct.price,time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:currentProduct.name,platform:p});
+o.push({id:Date.now(),phone:currentUser.phone,name:currentUser.phone+(isAdmin?' [ADMIN FREE]':'')+' (Mua '+currentProduct.name+')',amount:isAdmin?0:currentProduct.price,time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:currentProduct.name,platform:p});
 saveOrders(o);updateUserUI();
 var d=DELIVER[currentProduct.name],l='';
 if(d&&d[p])l=gd(d[p]);
-if(l){alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nBấm OK để mở file.');window.open(l,'_blank')}
+if(l){alert('✅ Mua thành công!'+(isAdmin?'\n[ADMIN - MIỄN PHÍ]':'')+'\n\nBấm OK để mở file.');window.open(l,'_blank')}
 else{alert('✅ Mua thành công!\nLiên hệ Zalo 0355417385 để nhận file.')}
 }
 
@@ -164,24 +167,40 @@ o.forEach(function(x){var tr=document.createElement('tr');tr.innerHTML='<td>'+(x
 }
 
 function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('adminLogin').classList.remove('hide')}
-function adminLogin(){if(document.getElementById('adminPass').value==='Hoangbaonam@2012'){document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.remove('hide');renderAdmin()}else{document.getElementById('adminErr').classList.remove('hide')}}
+function adminLogin(){if(document.getElementById('adminPass').value==='Hoangbaonam@2012'){isAdmin=true;document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.remove('hide');renderAdmin();updateUserUI()}else{document.getElementById('adminErr').classList.remove('hide')}}
 
 function renderAdmin(){
 var o=getOrders(),tb=document.getElementById('orders');
 tb.innerHTML='';
-if(o.length===0){document.getElementById('empty').style.display='block';return}
+var u=getUsers();
+var add='<div class="box"><h3>💰 CỘNG TIỀN CHO KHÁCH</h3><input id="addPhone" placeholder="SĐT khách"><input id="addAmount" type="number" placeholder="Số tiền"><button class="btn-main" onclick="adminAddMoney()">✅ CỘNG TIỀN</button></div><div class="box"><h3>👥 DANH SÁCH TÀI KHOẢN</h3><table style="font-size:12px"><thead><tr><th>SĐT</th><th>Số dư</th></tr></thead><tbody>';
+u.forEach(function(x){add+='<tr><td>'+x.phone+'</td><td style="color:#14b8a6">'+x.balance.toLocaleString()+'đ</td></tr>'});
+add+='</tbody></table></div>';
+if(o.length===0){document.getElementById('empty').style.display='block';document.getElementById('empty').innerHTML=add+'Chưa có đơn.';return}
 document.getElementById('empty').style.display='none';
 o.sort(function(a,b){return b.id-a.id});
+var tbHtml='';
 o.forEach(function(x){
-var tr=document.createElement('tr');
 var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#14b8a6">Đã duyệt</span>';
 var btn=x.status==='pending'&&x.product==='Nạp tiền'
-?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>'
-:x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>'
-:'<button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>';
-tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
-tb.appendChild(tr);
+?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveNap('+x.id+')">Cộng tiền</button>'
+:x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>':'';
+tbHtml+='<tr><td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+st+'</td><td>'+btn+'</td></tr>';
 });
+tb.innerHTML='<tr><td colspan="6">'+add+'</td></tr>'+tbHtml;
+}
+
+function adminAddMoney(){
+var p=document.getElementById('addPhone').value.trim(),a=document.getElementById('addAmount').value.trim();
+if(!p||!a){alert('Nhập SĐT và số tiền!');return}
+var u=getUsers(),idx=u.findIndex(function(x){return x.phone===p});
+if(idx<0){alert('❌ Không tìm thấy tài khoản: '+p);return}
+u[idx].balance+=parseInt(a);saveUsers(u);
+var o=getOrders();
+o.push({id:Date.now(),phone:p,name:p+' [ADMIN CỘNG TIỀN]',amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:'Admin cộng tiền',platform:''});
+saveOrders(o);
+alert('✅ Đã cộng '+parseInt(a).toLocaleString()+'đ cho '+p+'\nSố dư mới: '+u[idx].balance.toLocaleString()+'đ');
+renderAdmin();
 }
 
 function approveNap(id){
@@ -196,6 +215,5 @@ saveOrders(o);renderAdmin();
 alert('✅ Đã cộng '+order.amount.toLocaleString()+'đ');
 }
 function approveOrder(id){var o=getOrders().map(function(x){if(x.id===id)x.status='done';return x});saveOrders(o);renderAdmin()}
-function delOrder(id){saveOrders(getOrders().filter(function(x){return x.id!==id}));renderAdmin()}
 
 (function(){var p=localStorage.getItem('zxc');if(p){var u=getUsers();currentUser=u.find(function(x){return x.phone===p})||null}updateUserUI()})();
