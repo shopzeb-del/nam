@@ -1,5 +1,5 @@
 var currentProduct=null,currentUser=null;
-function gd(link){var m=link.match(/\/d\/([^\/]+)/);if(m)return 'https://drive.google.com/uc?export=download&id='+m[1];return link}
+function gd(link){var m=link.match(/\/d\/([^\/]+)/);if(m)return 'https://drive.google.com/file/d/'+m[1]+'/view';return link}
 
 var DELIVER={
 'Aimlock V1':{ios:'https://drive.google.com/file/d/1PmAEDCWPl3FOwesF1Q788MUU6i8TpPJy/view',adr:'https://drive.google.com/file/d/1b2JFRojjmMrvj4TAuBwyqPIklqrpbUUd/view'},
@@ -18,7 +18,7 @@ var DELIVER={
 };
 
 var PRODUCTS=[
-{name:'Aimlock V1',price:100000,desc:'Menu Aimlock V1 — kéo tâm.',img:'logo.jpg.PNG'},
+{name:'Aimlock V1',price:1000,desc:'Menu Aimlock V1 — kéo tâm.',img:'logo.jpg.PNG'},
 {name:'Aimlock V2',price:200000,desc:'Menu Aimlock V2 — nâng cấp.',img:'logo.jpg.PNG'},
 {name:'Aimlock V3',price:300000,desc:'Menu Aimlock V3 — fix lố.',img:'logo.jpg.PNG'},
 {name:'Aimlock V4',price:400000,desc:'Menu Aimlock V4 — full.',img:'logo.jpg.PNG'},
@@ -42,7 +42,7 @@ document.getElementById('productList').innerHTML=html;
 var songs=[{name:'Nhạc 1',src:'nhac1.mp3'},{name:'Nhạc 2',src:'nhac2.mp3'}];
 var currentSong=0,player=document.getElementById('musicPlayer');
 function loadSong(i){currentSong=(i+songs.length)%songs.length;document.getElementById('musicSource').src=songs[currentSong].src;player.load();document.getElementById('songTitle').textContent='🎵 '+(currentSong+1)+': '+songs[currentSong].name}
-function toggleMusic(){if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}else{player.pause();document.getElementById('playBtn').textContent='▶ BẬT NHẠC'}}
+function toggleMusic(){if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}else{player.pause();tddocument.getElementById('playBtn').textContent='▶ BẬT NHẠC'}}
 function nextSong(){loadSong(currentSong+1);player.play()}
 function prevSong(){loadSong(currentSong-1);player.play()}
 function setVolume(){player.volume=document.getElementById('volume').value/100}
@@ -50,8 +50,8 @@ player.volume=0.5;
 
 function getUsers(){try{return JSON.parse(localStorage.getItem('zebxvex_users')||'[]')}catch(e){return[]}}
 function saveUsers(u){localStorage.setItem('zebxvex_users',JSON.stringify(u))}
-function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex')||'[]')}catch(e){return[]}}
-function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
+function getOrders(){try{return>< JSON.parse(localStorage.getItem('tdzebxvex')||'>[]')}catch(e'+){return[]}}
+function saveOrdersst(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
 function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
 
 function showTab(tab){
@@ -175,7 +175,7 @@ var btn=x.status==='pending'&&x.product==='Nạp tiền'
 ?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>'
 :x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>'
 :'<button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>';
-tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
+tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</+'</td><td>'+btn+'</td>';
 tbody.appendChild(tr);
 });
 }
