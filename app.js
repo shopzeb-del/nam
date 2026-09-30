@@ -59,7 +59,6 @@ if(t==='shop')document.getElementById('shop').classList.remove('hide');
 if(t==='nap'){
 if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
 document.getElementById('napPage').classList.remove('hide');
-document.getElementById('napPage').innerHTML='<h2>💳 NẠP TIỀN</h2><div class="box"><h3>📌 NỘI DUNG CHUYỂN KHOẢN</h3><div style="background:#0a0a0f;border:2px dashed #14b8a6;border-radius:10px;padding:15px;text-align:center;margin:10px 0"><div style="color:#6b7280;font-size:11px;margin-bottom:5px">MÃ NẠP TIỀN</div><div id="napCodeShow" style="color:#ffd166;font-size:20px;font-weight:bold;letter-spacing:2px">-------</div></div><p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p><p><b style="color:#14b8a6">STK:</b> 0375374529</p><img src="qr.JPG"><input id="nName" placeholder="Tên của bạn"><input id="nAmount" type="number" placeholder="Số tiền nạp (VD: 50000)"><button class="btn-main" onclick="submitNap()">✅ TẠO MÃ NẠP TIỀN</button><p id="napStatus" style="text-align:center;color:#94a3b8;font-size:13px;margin-top:10px"></p></div>';
 }
 if(t==='don'){if(!currentUser){alert('Vui lòng đăng nhập!');return}document.getElementById('historyPage').classList.remove('hide');renderHistory()}
 if(t==='box'){alert('📦 BOX đang phát triển!');return}
@@ -101,10 +100,9 @@ var o=getOrders();
 o.push({id:Date.now(),phone:currentUser.phone,name:n,amount:napAmount,time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});
 saveOrders(o);
 document.getElementById('napCodeShow').textContent=code;
-document.getElementById('napStatus').innerHTML='<span style="color:#ffd166">⏳ Đang chờ... Tự kiểm tra mỗi 5 giây.</span>';
+document.getElementById('napStatus').innerHTML='<span style="color:#ffd166">⏳ Đang chờ chuyển khoản... Tự kiểm tra mỗi 5 giây.</span>';
 if(autoTimer)clearInterval(autoTimer);
 autoTimer=setInterval(checkNapAuto,5000);
-alert('✅ Mã nạp: '+code+'\nChuyển khoản đúng nội dung này.');
 }
 
 function checkNapAuto(){
@@ -123,7 +121,6 @@ if(idx>=0){u[idx].balance+=napAmount;saveUsers(u);currentUser=u[idx];localStorag
 var o=getOrders().map(function(x){if(x.code===napCode)x.status='done';return x});
 saveOrders(o);updateUserUI();
 document.getElementById('napStatus').innerHTML='<span style="color:#14b8a6;font-weight:bold">✅ ĐÃ CỘNG '+napAmount.toLocaleString()+'đ!</span>';
-alert('🎉 Nạp thành công!\nSố dư: '+currentUser.balance.toLocaleString()+'đ');
 napCode=null;
 }
 }).catch(function(){});
@@ -170,16 +167,13 @@ function showLogin(){document.getElementById('shop').classList.add('hide');docum
 function adminLogin(){if(document.getElementById('adminPass').value==='Hoangbaonam@2012'){isAdmin=true;document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.remove('hide');renderAdmin();updateUserUI()}else{document.getElementById('adminErr').classList.remove('hide')}}
 
 function renderAdmin(){
-var o=getOrders(),tb=document.getElementById('orders');
-tb.innerHTML='';
-var u=getUsers();
-var add='<div class="box"><h3>💰 CỘNG TIỀN CHO KHÁCH</h3><input id="addPhone" placeholder="SĐT khách"><input id="addAmount" type="number" placeholder="Số tiền"><button class="btn-main" onclick="adminAddMoney()">✅ CỘNG TIỀN</button></div><div class="box"><h3>👥 DANH SÁCH TÀI KHOẢN</h3><table style="font-size:12px"><thead><tr><th>SĐT</th><th>Số dư</th></tr></thead><tbody>';
+var o=getOrders(),tb=document.getElementById('orders'),u=getUsers();
+var add='<div class="box"><h3>💰 CỘNG TIỀN CHO KHÁCH</h3><input id="addPhone" placeholder="SĐT khách"><input id="addAmount" type="number" placeholder="Số tiền"><button class="btn-main" onclick="adminAddMoney()">✅ CỘNG TIỀN</button></div><div class="box"><h3>👥 DANH SÁCH TÀI KHOẢN ('+u.length+')</h3><table style="font-size:12px"><thead><tr><th>SĐT</th><th>Số dư</th></tr></thead><tbody>';
 u.forEach(function(x){add+='<tr><td>'+x.phone+'</td><td style="color:#14b8a6">'+x.balance.toLocaleString()+'đ</td></tr>'});
 add+='</tbody></table></div>';
-if(o.length===0){document.getElementById('empty').style.display='block';document.getElementById('empty').innerHTML=add+'Chưa có đơn.';return}
-document.getElementById('empty').style.display='none';
-o.sort(function(a,b){return b.id-a.id});
 var tbHtml='';
+if(o.length>0){
+o.sort(function(a,b){return b.id-a.id});
 o.forEach(function(x){
 var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#14b8a6">Đã duyệt</span>';
 var btn=x.status==='pending'&&x.product==='Nạp tiền'
@@ -187,6 +181,7 @@ var btn=x.status==='pending'&&x.product==='Nạp tiền'
 :x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>':'';
 tbHtml+='<tr><td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+st+'</td><td>'+btn+'</td></tr>';
 });
+}
 tb.innerHTML='<tr><td colspan="6">'+add+'</td></tr>'+tbHtml;
 }
 
