@@ -20,7 +20,7 @@
 <a class="item" onclick="closeMenu()">🏠 TRANG CHỦ</a>
 <a class="item" onclick="closeMenu();document.getElementById('nap').scrollIntoView({behavior:'smooth'})">💳 NẠP TIỀN</a>
 <a class="item" onclick="closeMenu();showHistory()">🔄 LỊCH SỬ</a>
-<a class="item" onclick="closeMenu();showLogin()">👤 ĐĂNG NHẬP</a>
+<a class="item" onclick="closeMenu();showUserLogin()">👤 ĐĂNG NHẬP</a>
 </div>
 
 <div id="shop">
@@ -29,6 +29,7 @@
 <h1>ZEB X VEX</h1>
 <p>UY TÍN • CHẤT LƯỢNG • AN TOÀN • NHANH GỌN<br>Hệ thống nạp & cấp phát Key tự động 100%</p>
 <p class="status">🟢 Đang hoạt động — Cập nhật mới nhất 2026</p>
+<div id="userInfo" style="text-align:center;margin:15px 0"></div>
 <button class="btn-main" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🚀 Khám Phá Ngay</button>
 <button class="btn-main" style="background:transparent;border:2px solid #9d4edd;color:#c77dff" onclick="document.getElementById('nap').scrollIntoView({behavior:'smooth'})">✨ Nạp Tiền Ngay</button>
 <div class="badge-row"><div class="badge">💳 Nạp Auto Bank 24/7</div><div class="badge">🔒 An toàn 100%</div><div class="badge">⚡ Cấp key tức thì</div><div class="badge">🎧 Hỗ trợ 24/7</div></div>
@@ -60,7 +61,6 @@
 <div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Ba*</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-12</span></div>
 <div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Kh***</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-11</span></div>
 <div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Vp**</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-09</span></div>
-<div class="feedback-item"><span><span class="trust">UY TÍN 100%</span> Kh***</span><span class="stars">⭐⭐⭐⭐⭐ 2026-09-08</span></div>
 </div>
 
 <h2>📞 LIÊN HỆ</h2>
@@ -85,17 +85,39 @@
 
 <div id="login" class="hide">
 <div class="box" style="margin-top:100px">
+<h3 style="color:#c77dff">👤 ĐĂNG NHẬP KHÁCH</h3>
+<input id="logPhone" placeholder="Số điện thoại">
+<input id="logPass" type="password" placeholder="Mật khẩu">
+<button onclick="loginUser()">Đăng Nhập</button>
+<p id="logErr" class="err hide">SĐT hoặc mật khẩu sai!</p>
+<button style="background:#06d6a0;color:#000;margin-top:10px" onclick="showRegister()">Chưa có tài khoản? Đăng ký</button>
+<button style="background:#444;margin-top:10px" onclick="backHome()">Quay lại</button>
+</div>
+</div>
+
+<div id="register" class="hide">
+<div class="box" style="margin-top:100px">
+<h3 style="color:#c77dff">📝 ĐĂNG KÝ</h3>
+<input id="regPhone" placeholder="Số điện thoại">
+<input id="regPass" type="password" placeholder="Mật khẩu">
+<button onclick="register()">Đăng Ký</button>
+<button style="background:#444;margin-top:10px" onclick="showLoginForm()">Đã có tài khoản? Đăng nhập</button>
+</div>
+</div>
+
+<div id="adminLogin" class="hide">
+<div class="box" style="margin-top:100px">
 <h3 style="color:#c77dff">🔐 ADMIN</h3>
-<input id="pass" type="password" placeholder="Mật khẩu...">
-<button onclick="login()">Đăng Nhập</button>
-<p id="err" class="err hide">Sai mật khẩu!</p>
+<input id="adminPass" type="password" placeholder="Mật khẩu admin...">
+<button onclick="adminLogin()">Đăng Nhập</button>
+<p id="adminErr" class="err hide">Sai mật khẩu!</p>
 <button style="background:#444;margin-top:10px" onclick="backHome()">Quay lại</button>
 </div>
 </div>
 
 <div id="admin" class="hide" style="max-width:1000px;margin:0 auto">
-<h2>🛠️ QUẢN TRỊ ĐƠN</h2>
-<button style="max-width:200px;margin:0 auto 15px;display:block" onclick="logout()">Thoát</button>
+<h2>🛠️ QUẢN TRỊ</h2>
+<button style="max-width:200px;margin:0 auto 15px;display:block" onclick="backHome()">Thoát</button>
 <div style="overflow-x:auto"><table>
 <thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Sản phẩm</th><th>Nền tảng</th><th>Trạng thái</th><th>HĐ</th></tr></thead>
 <tbody id="orders"></tbody>
@@ -110,22 +132,6 @@
 <button class="platform-btn" onclick="choosePlatform('ios')">🍎 iOS</button>
 <button class="platform-btn" onclick="choosePlatform('adr')">🤖 Android</button>
 <button style="background:#e63946;margin-top:8px" onclick="closePlatform()">❌ Đóng</button>
-</div>
-</div>
-
-<div id="buyPopup" class="popup hide">
-<div class="inner">
-<h3>🛒 MUA HÀNG</h3>
-<p id="buyName" style="color:#e0aaff;margin-bottom:10px"></p>
-<div class="price" id="buyPrice"></div>
-<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
-<p style="font-size:13px;margin:8px 0">Nội dung CK: <b id="buyContent" style="color:#ffd166"></b></p>
-<input id="buyCus" placeholder="Tên của bạn">
-<button style="background:#06d6a0;color:#000;margin-top:10px" onclick="startAutoCheck()" id="checkBtn">✅ Tôi Đã Chuyển Khoản</button>
-<p id="checkMsg" style="font-size:13px;margin-top:8px"></p>
-<p id="autoStatus" class="auto-status hide">🔄 Đang tự động kiểm tra giao dịch...</p>
-<div id="deliverBox" class="deliver-box hide"></div>
-<button style="background:#e63946;margin-top:8px" onclick="closeBuy()">❌ Đóng</button>
 </div>
 </div>
 
