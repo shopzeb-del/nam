@@ -1,6 +1,6 @@
 var WORKER_URL='https://shopzeb-api.baonam310112.workers.dev';
 var currentUser=null,currentProduct=null,autoTimer=null,napCode=null,napAmount=0,isAdmin=false;
-function gd(l){var m=l.match(/\/d\/([^\/]+)/);return m?'https://drive.google.com/file/d/'+m[1]+'/view':l}
+function gd(l){var m=l.match(/\/d\/([^\/]+)/);return m?'https://drive.google.com/uc?export=download&id='+m[1]:l}
 
 var DELIVER={
 'Aimlock V1':{ios:'https://drive.google.com/file/d/1PmAEDCWPl3FOwesF1Q788MUU6i8TpPJy/view',adr:'https://drive.google.com/file/d/1b2JFRojjmMrvj4TAuBwyqPIklqrpbUUd/view'},
@@ -59,6 +59,9 @@ if(t==='shop')document.getElementById('shop').classList.remove('hide');
 if(t==='nap'){
 if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
 document.getElementById('napPage').classList.remove('hide');
+if(!napCode){napCode=genCode()}
+document.getElementById('napCodeShow').textContent=napCode;
+document.getElementById('napStatus').innerHTML='<span style="color:#94a3b8">Nhập số tiền và chuyển khoản đúng nội dung: <b style="color:#ffd166">'+napCode+'</b></span>';
 }
 if(t==='don'){if(!currentUser){alert('Vui lòng đăng nhập!');return}document.getElementById('historyPage').classList.remove('hide');renderHistory()}
 if(t==='box'){alert('📦 BOX đang phát triển!');return}
@@ -90,23 +93,23 @@ function register(){var p=document.getElementById('regPhone').value.trim(),pw=do
 function loginUser(){var p=document.getElementById('logPhone').value.trim(),pw=document.getElementById('logPass').value.trim();var u=getUsers();var x=u.find(function(y){return y.phone===p&&y.pass===pw});if(!x){document.getElementById('logErr').classList.remove('hide');return}currentUser=x;localStorage.setItem('zxc',p);alert('✅ Đăng nhập thành công!');showTab('shop');updateUserUI()}
 function logoutUser(){currentUser=null;isAdmin=false;localStorage.removeItem('zxc');updateUserUI();alert('Đã đăng xuất!');showTab('shop')}
 
-function submitNap(){
+function startCheckNap(){
 if(!currentUser){alert('Vui lòng đăng nhập!');return}
-var n=document.getElementById('nName').value.trim(),a=document.getElementById('nAmount').value.trim();
-if(!n||!a){alert('Nhập đủ!');return}
-var code=genCode();
-napCode=code;napAmount=parseInt(a);
+var a=document.getElementById('nAmount').value.trim();
+if(!a){alert('Nhập số tiền!');return}
+napAmount=parseInt(a);
+if(!napCode)napCode=genCode();
+document.getElementById('napCodeShow').textContent=napCode;
 var o=getOrders();
-o.push({id:Date.now(),phone:currentUser.phone,name:n,amount:napAmount,time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});
+o.push({id:Date.now(),phone:currentUser.phone,name:currentUser.phone,amount:napAmount,time:new Date().toLocaleString('vi-VN'),status:'pending',code:napCode,product:'Nạp tiền',platform:''});
 saveOrders(o);
-document.getElementById('napCodeShow').textContent=code;
 document.getElementById('napStatus').innerHTML='<span style="color:#ffd166">⏳ Đang chờ chuyển khoản... Tự kiểm tra mỗi 5 giây.</span>';
 if(autoTimer)clearInterval(autoTimer);
 autoTimer=setInterval(checkNapAuto,5000);
 }
 
 function checkNapAuto(){
-if(!napCode)return;
+if(!napCode||!napAmount)return;
 fetch(WORKER_URL).then(function(r){return r.json()}).then(function(data){
 var txs=data.transactions||data.data||[],found=null;
 txs.forEach(function(t){
@@ -121,7 +124,7 @@ if(idx>=0){u[idx].balance+=napAmount;saveUsers(u);currentUser=u[idx];localStorag
 var o=getOrders().map(function(x){if(x.code===napCode)x.status='done';return x});
 saveOrders(o);updateUserUI();
 document.getElementById('napStatus').innerHTML='<span style="color:#14b8a6;font-weight:bold">✅ ĐÃ CỘNG '+napAmount.toLocaleString()+'đ!</span>';
-napCode=null;
+napCode=null;napAmount=0;
 }
 }).catch(function(){});
 }
@@ -150,7 +153,7 @@ o.push({id:Date.now(),phone:currentUser.phone,name:currentUser.phone+(isAdmin?' 
 saveOrders(o);updateUserUI();
 var d=DELIVER[currentProduct.name],l='';
 if(d&&d[p])l=gd(d[p]);
-if(l){alert('✅ Mua thành công!'+(isAdmin?'\n[ADMIN - MIỄN PHÍ]':'')+'\n\nBấm OK để mở file.');window.open(l,'_blank')}
+if(l){alert('✅ Mua thành công!'+(isAdmin?'\n[ADMIN - MIỄN PHÍ]':'')+'\n\nBấm OK để tải file.');window.open(l,'_blank')}
 else{alert('✅ Mua thành công!\nLiên hệ Zalo 0355417385 để nhận file.')}
 }
 
