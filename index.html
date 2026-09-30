@@ -54,11 +54,35 @@
 <a href="https://zalo.me/g/wi2mlifc7mvbwyx25zid" target="_blank"><button class="btn-main" style="background:#7c3aed;color:#fff">BOX THÔNG BÁO</button></a>
 </div>
 
-<p style="text-align:center;margin:25px 0"><button class="btn-main" style="max-width:200px" onclick="showLogin()">🔐 ADMIN</button></p>
 <p style="text-align:center;color:#6b7280;font-size:12px;margin:30px 0">© 2026 ZEB X VEX</p>
 </div>
 
-<div id="napPage" class="hide container"></div>
+<div id="napPage" class="hide container">
+<h2>💳 NẠP TIỀN</h2>
+<div class="box">
+<h3>📌 NỘI DUNG CHUYỂN KHOẢN</h3>
+<div style="background:#0a0a0f;border:2px dashed #14b8a6;border-radius:10px;padding:15px;text-align:center;margin:10px 0">
+<div style="color:#6b7280;font-size:11px;margin-bottom:5px">MÃ NẠP TIỀN</div>
+<div id="napCodeShow" style="color:#ffd166;font-size:22px;font-weight:bold;letter-spacing:2px">-------</div>
+</div>
+<p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p>
+<p><b style="color:#14b8a6">STK:</b> 0375374529</p>
+<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/200/fff/000?text=QR'">
+<input id="nName" placeholder="Tên của bạn">
+<input id="nAmount" type="number" placeholder="Số tiền nạp (VD: 50000)">
+<button class="btn-main" onclick="submitNap()">✅ TẠO MÃ NẠP TIỀN</button>
+<p id="napStatus" style="text-align:center;color:#94a3b8;font-size:13px;margin-top:10px"></p>
+</div>
+<div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)">
+<h3>📌 LƯU Ý</h3>
+<ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2">
+<li>• Nhập số tiền → bấm TẠO MÃ.</li>
+<li>• Chuyển khoản đúng nội dung mã đó.</li>
+<li>• Hệ thống tự động cộng tiền sau 5-10 giây.</li>
+<li>• Liên hệ Zalo 0355417385 nếu chưa được cộng.</li>
+</ul>
+</div>
+</div>
 
 <div id="historyPage" class="hide container">
 <h2>🔄 LỊCH SỬ MUA HÀNG</h2>
@@ -89,44 +113,4 @@
 <input id="regPhone" placeholder="Số điện thoại">
 <input id="regPass" type="password" placeholder="Mật khẩu">
 <button class="btn-main" onclick="register()">ĐĂNG KÝ</button>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showLoginForm()">ĐÃ CÓ TÀI KHOẢN? ĐĂNG NHẬP</button>
-</div>
-</div>
-
-<div id="adminLogin" class="hide">
-<div class="box" style="margin-top:100px">
-<h3 style="text-align:center">🔐 ADMIN</h3>
-<input id="adminPass" type="password" placeholder="Mật khẩu admin...">
-<button class="btn-main" onclick="adminLogin()">ĐĂNG NHẬP</button>
-<p class="err hide" id="adminErr" style="text-align:center">Sai mật khẩu!</p>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
-</div>
-</div>
-
-<div id="admin" class="hide container">
-<h2>🛠️ QUẢN TRỊ</h2>
-<button class="btn-main" style="max-width:200px;margin-bottom:15px" onclick="showTab('shop')">Thoát</button>
-<div style="overflow-x:auto"><table>
-<thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Sản phẩm</th><th>Nền tảng</th><th>Trạng thái</th><th>HĐ</th></tr></thead>
-<tbody id="orders"></tbody>
-</table></div>
-<p id="empty" style="text-align:center;color:#6b7280;padding:20px">Chưa có đơn.</p>
-</div>
-
-<div id="platformPopup" class="popup hide"></div>
-
-<a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone">💬</a>
-
-<div class="bottom-nav">
-<div class="nav-item active" data-tab="shop" onclick="showTab('shop')"><div class="icon">🛍️</div><div class="label">SHOP</div></div>
-<div class="nav-item" data-tab="nap" onclick="showTab('nap')"><div class="icon">💳</div><div class="label">NẠP</div></div>
-<div class="nav-item" data-tab="don" onclick="showTab('don')"><div class="icon">📋</div><div class="label">ĐƠN</div></div>
-<div class="nav-item" data-tab="box" onclick="showTab('box')"><div class="icon">⚔️</div><div class="label">BOX</div></div>
-<div class="nav-item" data-tab="account" onclick="showTab('account')"><div class="icon">👤</div><div class="label">TÀI KHOẢN</div></div>
-</div>
-
-<audio id="musicPlayer" loop><source id="musicSource" src="nhac1.mp3" type="audio/mpeg"></audio>
-
-<script src="app.js"></script>
-</body>
-</html>
+<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showLoginForm()">ĐÃ CÓ TÀI KHOẢN? Đ
