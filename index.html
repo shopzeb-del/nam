@@ -5,62 +5,58 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ZEB X VEX</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#0d0b1a;color:#eee;padding:15px;padding-top:70px;min-height:100vh}
-h1{color:#c77dff;text-align:center;margin:15px 0;font-size:30px;text-shadow:0 0 20px #7b2cbf}
-h2{color:#c77dff;text-align:center;margin:30px 0 15px;border-bottom:1px solid #3a2a5a;padding-bottom:8px}
-.header{position:fixed;top:0;left:0;right:0;background:rgba(13,11,26,.95);border-bottom:1px solid #3a2a5a;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;z-index:100}
-.header .brand{display:flex;align-items:center;gap:8px;color:#c77dff;font-weight:bold;font-size:18px}
-.header .brand img{width:35px;height:35px;border-radius:50%;border:2px solid #9d4edd;object-fit:cover}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0d0b1a;color:#eee;padding:15px;padding-top:70px}
+h1{color:#c77dff;text-align:center;margin:15px 0;text-shadow:0 0 15px #7b2cbf}
+h2{color:#c77dff;text-align:center;margin:25px 0 15px;border-bottom:1px solid #3a2a5a;padding-bottom:8px}
+.header{position:fixed;top:0;left:0;right:0;background:#0d0b1a;border-bottom:1px solid #3a2a5a;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.brand{display:flex;align-items:center;gap:8px;color:#c77dff;font-weight:bold;font-size:18px}
+.brand img{width:35px;height:35px;border-radius:50%;border:2px solid #9d4edd;object-fit:cover}
 .menu-btn{background:#7b2cbf;border:none;color:#fff;padding:8px 12px;border-radius:8px;font-size:20px;cursor:pointer;width:auto}
 .moon-btn{background:transparent;border:1px solid #7b2cbf;color:#c77dff;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:16px;width:auto;margin-left:8px}
-.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#1a1533;border-right:2px solid #7b2cbf;padding:20px;z-index:200;transition:left .3s;overflow-y:auto}
+.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#1a1533;border-right:2px solid #7b2cbf;padding:20px;z-index:200;transition:left .3s}
 .sidebar.open{left:0}
 .sidebar .close{background:#e63946;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-size:18px;cursor:pointer;width:auto;margin-bottom:15px}
-.sidebar .item{display:block;padding:14px 15px;background:#0d0b1a;border:1px solid #3a2a5a;border-radius:10px;margin-bottom:10px;color:#c77dff;font-weight:bold;cursor:pointer;text-align:left}
-.sidebar .item:hover{background:#2a1a4a;border-color:#9d4edd}
+.sidebar .item{display:block;padding:14px;background:#0d0b1a;border:1px solid #3a2a5a;border-radius:10px;margin-bottom:10px;color:#c77dff;font-weight:bold;cursor:pointer}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;display:none}
 .overlay.show{display:block}
-.hero{text-align:center;padding:30px 20px;background:linear-gradient(145deg,#1a1533,#221a44);border-radius:14px;margin:15px auto;max-width:1000px;border:1px solid #3a2a5a}
-.hero img{width:90px;height:90px;border-radius:50%;border:2px solid #9d4edd;margin-bottom:10px;box-shadow:0 0 20px #7b2cbf}
+.hero{text-align:center;padding:25px 20px;background:#1a1533;border-radius:14px;margin:15px auto;max-width:1000px;border:1px solid #3a2a5a}
+.hero img{width:90px;height:90px;border-radius:50%;border:2px solid #9d4edd;margin-bottom:10px}
 .hero p{color:#a0a0b0;font-size:14px;margin-top:8px}
 .badge-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0}
 .badge{background:#1a1533;border:1px solid #3a2a5a;border-radius:20px;padding:6px 15px;font-size:13px;color:#c77dff}
-.status{color:#06d6a0;font-weight:bold;margin-top:10px;font-size:14px}
-.btn-main{background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;max-width:400px;margin:8px auto;display:block}
-.btn-main:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
+.status{color:#06d6a0;font-weight:bold;margin-top:10px}
+.btn-main{background:#7b2cbf;color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;max-width:400px;margin:8px auto;display:block}
+.btn-main:hover{background:#9d4edd}
 .music-box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:15px;max-width:500px;margin:15px auto;text-align:center}
-.music-box .controls{display:flex;justify-content:center;align-items:center;gap:10px;margin:10px 0}
+.music-box .controls{display:flex;justify-content:center;gap:10px;margin:10px 0}
 .music-box button{width:auto;padding:8px 15px;font-size:14px}
 .music-title{color:#e0aaff;font-size:14px;margin:8px 0}
 .warn{color:#ffd166;font-size:12px;margin-top:8px}
 .volume{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
-.volume input{width:180px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;max-width:1000px;margin:0 auto}
-.card{background:linear-gradient(145deg,#1a1533,#221a44);border:1px solid #3a2a5a;border-radius:14px;padding:18px;transition:.3s}
-.card:hover{border-color:#9d4edd;transform:translateY(-5px);box-shadow:0 10px 30px rgba(157,78,221,.4)}
-.card h3{color:#c77dff;text-align:center;margin-bottom:12px;font-size:18px}
+.card{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:18px}
+.card:hover{border-color:#9d4edd}
+.card h3{color:#c77dff;text-align:center;margin-bottom:12px}
 .card ul{list-style:none;margin-bottom:12px}
 .card li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #2a2040;font-size:14px}
 .card li:last-child{border-bottom:none}
 .card li span:last-child{color:#e0aaff;font-weight:bold}
-button{width:100%;padding:11px;background:linear-gradient(45deg,#7b2cbf,#9d4edd);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:.3s}
-button:hover{background:linear-gradient(45deg,#9d4edd,#c77dff)}
-.box{background:linear-gradient(145deg,#1a1533,#221a44);border:1px solid #3a2a5a;border-radius:14px;padding:22px;max-width:420px;margin:20px auto;text-align:center}
+button{width:100%;padding:11px;background:#7b2cbf;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold}
+button:hover{background:#9d4edd}
+.box{background:#1a1533;border:1px solid #3a2a5a;border-radius:14px;padding:22px;max-width:420px;margin:20px auto;text-align:center}
 .box input,.box select{width:100%;padding:11px;margin:8px 0;background:#0d0b1a;color:#fff;border:1px solid #3a2a5a;border-radius:8px;outline:none}
-.box input:focus{border-color:#9d4edd}
 .box img{width:220px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:12px auto;display:block}
 .popup{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;justify-content:center;align-items:center;padding:15px;z-index:300}
-.popup .inner{background:linear-gradient(145deg,#1a1533,#221a44);border:2px solid #7b2cbf;border-radius:14px;padding:22px;max-width:400px;width:100%;text-align:center;max-height:90vh;overflow:auto}
+.popup .inner{background:#1a1533;border:2px solid #7b2cbf;border-radius:14px;padding:22px;max-width:400px;width:100%;text-align:center;max-height:90vh;overflow:auto}
 .popup h3{color:#c77dff;margin-bottom:10px}
 .popup .price{color:#ffd166;font-size:22px;font-weight:bold;margin:12px 0}
 .popup img{width:200px;max-width:100%;border-radius:10px;background:#fff;padding:5px;margin:10px auto;display:block}
 table{width:100%;border-collapse:collapse;max-width:1000px;margin:20px auto;font-size:13px}
 th,td{padding:9px;border-bottom:1px solid #3a2a5a;text-align:left}
 th{background:#2a2040;color:#c77dff}
-.float-btn{position:fixed;bottom:80px;right:20px;width:55px;height:55px;background:linear-gradient(45deg,#7b2cbf,#9d4edd);border-radius:50%;display:flex;justify-content:center;align-items:center;color:#fff;font-size:24px;box-shadow:0 0 20px #7b2cbf;cursor:pointer;z-index:50;text-decoration:none}
+.float-btn{position:fixed;bottom:80px;right:20px;width:55px;height:55px;background:#7b2cbf;border-radius:50%;display:flex;justify-content:center;align-items:center;color:#fff;font-size:24px;cursor:pointer;z-index:50;text-decoration:none}
 .float-btn.phone{bottom:145px}
-.float-btn:hover{transform:scale(1.1)}
 .hide{display:none}
 .err{color:#e63946;font-size:13px}
 .spin{display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top:2px solid transparent;border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle;margin-right:6px}
@@ -70,62 +66,47 @@ th{background:#2a2040;color:#c77dff}
 <body>
 
 <div class="header">
-<div class="brand">
-<img src="logo.jpg.PNG" alt="Logo" onerror="this.src='https://via.placeholder.com/35/7b2cbf/fff?text=Z'">
-<span>ZEB X VEX</span>
-</div>
-<div style="display:flex">
-<button class="moon-btn">🌙</button>
-<button class="menu-btn" onclick="openMenu()">☰</button>
-</div>
+<div class="brand"><img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/35/7b2cbf/fff?text=Z'"><span>ZEB X VEX</span></div>
+<div><button class="moon-btn">🌙</button><button class="menu-btn" onclick="openMenu()">☰</button></div>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <div class="sidebar" id="sidebar">
 <button class="close" onclick="closeMenu()">✖ Đóng</button>
-<a class="item" onclick="closeMenu()">🏠 TRANG CHỦ</a>
-<a class="item" onclick="closeMenu()">📁 DANH MỤC</a>
+<a class="item">🏠 TRANG CHỦ</a>
+<a class="item">📁 DANH MỤC</a>
 <a class="item" onclick="closeMenu();document.getElementById('nap').scrollIntoView({behavior:'smooth'})">💳 NẠP TIỀN</a>
-<a class="item" onclick="closeMenu()">🔄 LỊCH SỬ</a>
+<a class="item">🔄 LỊCH SỬ</a>
 <a class="item" onclick="closeMenu();showLogin()">👤 ĐĂNG NHẬP</a>
 </div>
 
 <div id="shop">
-
 <div class="hero">
-<img src="logo.jpg.PNG" alt="Logo" onerror="this.src='https://via.placeholder.com/90/7b2cbf/fff?text=Z'">
+<img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/90/7b2cbf/fff?text=Z'">
 <h1>ZEB X VEX</h1>
-<p>Cung cấp menu, file chất lượng cao cho iOS, Android và PC.<br>Cập nhật liên tục, hỗ trợ 24/7, an toàn và uy tín.</p>
-<p class="status">🟢 Đang hoạt động — Cập nhật mới nhất 2026</p>
+<p>Menu, file chất lượng cao cho iOS, Android, PC.<br>Hỗ trợ 24/7 — An toàn — Uy tín.</p>
+<p class="status">🟢 Đang hoạt động — 2026</p>
 <button class="btn-main" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🚀 Khám Phá Ngay</button>
 <button class="btn-main" style="background:transparent;border:2px solid #9d4edd;color:#c77dff" onclick="document.getElementById('nap').scrollIntoView({behavior:'smooth'})">✨ Nạp Tiền Ngay</button>
-<div class="badge-row">
-<div class="badge">🔥 NỔI BẬT</div>
-<div class="badge">⚡ AUTO 24/7</div>
-<div class="badge">🔒 AN TOÀN</div>
-</div>
+<div class="badge-row"><div class="badge">🔥 NỔI BẬT</div><div class="badge">⚡ AUTO 24/7</div><div class="badge">🔒 AN TOÀN</div></div>
 </div>
 
 <div class="music-box">
-<div class="controls">
-<button onclick="prevSong()">⏮</button>
-<button onclick="toggleMusic()" id="playBtn">▶ BẬT NHẠC</button>
-<button onclick="nextSong()">⏭</button>
-</div>
+<div class="controls"><button onclick="prevSong()">⏮</button><button onclick="toggleMusic()" id="playBtn">▶ BẬT NHẠC</button><button onclick="nextSong()">⏭</button></div>
 <p class="music-title" id="songTitle">🎵 #1: Nhạc Việt Chill</p>
-<p class="warn">⚠️ Trình duyệt chặn autoplay, vui lòng bấm BẬT NHẠC</p>
+<p class="warn">⚠️ Bấm BẬT NHẠC để nghe</p>
 <div class="volume"><span>🔊</span><input type="range" id="volume" min="0" max="100" value="50" onchange="setVolume()"></div>
 </div>
 
-<h2 id="products">🛒 KHO SẢN PHẨM & KEY GAME</h2>
+<h2 id="products">🛒 KHO SẢN PHẨM</h2>
 <div class="grid" id="productList"></div>
 
 <h2 id="nap">💳 NẠP TIỀN</h2>
 <div class="box">
 <p><b style="color:#e0aaff">MB Bank:</b> VI THANH HUY</p>
 <p><b style="color:#e0aaff">STK:</b> 0375374529</p>
-<img src="qr.JPG" alt="QR" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
+<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
 <button onclick="submitNap()">✅ Xác Nhận Đã Chuyển</button>
@@ -134,16 +115,16 @@ th{background:#2a2040;color:#c77dff}
 <h2>📞 LIÊN HỆ</h2>
 <div class="box">
 <p>Zalo: <b style="color:#e0aaff">0355417385</b></p>
-<a href="https://zalo.me/0355417385" target="_blank"><button style="margin-top:10px">💬 Nhắn Zalo</button></a>
+<a href="https://zalo.me/0355417385" target="_blank"><button>💬 Nhắn Zalo</button></a>
 </div>
 
 <p style="text-align:center;margin-top:20px"><button style="width:auto;padding:10px 25px" onclick="showLogin()">🔐 Admin</button></p>
-<p style="text-align:center;color:#6c5a8a;font-size:12px;margin:30px 0">© 2026 ZEB X VEX. All rights reserved.</p>
+<p style="text-align:center;color:#6c5a8a;font-size:12px;margin:30px 0">© 2026 ZEB X VEX</p>
 </div>
 
 <div id="login" class="hide">
 <div class="box" style="margin-top:100px">
-<h3 style="color:#c77dff;margin-bottom:10px">🔐 ADMIN</h3>
+<h3 style="color:#c77dff">🔐 ADMIN</h3>
 <input id="pass" type="password" placeholder="Mật khẩu...">
 <button onclick="login()">Đăng Nhập</button>
 <p id="err" class="err hide">Sai mật khẩu!</p>
@@ -154,12 +135,10 @@ th{background:#2a2040;color:#c77dff}
 <div id="admin" class="hide">
 <h2>🛠️ QUẢN TRỊ ĐƠN</h2>
 <button style="max-width:200px;margin:0 auto 15px;display:block" onclick="logout()">Thoát</button>
-<div style="overflow-x:auto">
-<table>
-<thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Nội dung</th><th>Trạng thái</th><th>Hành động</th></tr></thead>
+<div style="overflow-x:auto"><table>
+<thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Nội dung</th><th>Trạng thái</th><th>HĐ</th></tr></thead>
 <tbody id="orders"></tbody>
-</table>
-</div>
+</table></div>
 <p id="empty" style="text-align:center;color:#888">Chưa có đơn.</p>
 </div>
 
@@ -171,14 +150,13 @@ th{background:#2a2040;color:#c77dff}
 <select id="buyPkg" onchange="pickPkg()"><option value="">-- Chọn --</option></select>
 <div id="qrBox" class="hide">
 <div class="price" id="buyPrice"></div>
-<p style="font-size:13px">📷 Quét QR:</p>
-<img src="qr.JPG" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
+<img src="qr.JPG" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
 <p style="font-size:13px;margin:8px 0">Nội dung CK: <b id="buyContent" style="color:#ffd166"></b></p>
 <input id="buyCus" placeholder="Tên của bạn">
-<button style="background:linear-gradient(45deg,#06d6a0,#00b894);color:#000;margin-top:10px" onclick="checkPayment()" id="checkBtn">✅ Tôi Đã Chuyển Khoản</button>
+<button style="background:#06d6a0;color:#000;margin-top:10px" onclick="checkPayment()" id="checkBtn">✅ Tôi Đã Chuyển Khoản</button>
 <p id="checkMsg" style="font-size:13px;margin-top:8px"></p>
 </div>
-<button style="background:linear-gradient(45deg,#e63946,#c1121f);margin-top:8px" onclick="closeBuy()">❌ Đóng</button>
+<button style="background:#e63946;margin-top:8px" onclick="closeBuy()">❌ Đóng</button>
 </div>
 </div>
 
@@ -188,10 +166,8 @@ th{background:#2a2040;color:#c77dff}
 <p id="keyInfo" style="color:#e0aaff;margin-bottom:10px"></p>
 <select id="keyPkg">
 <option value="">-- Chọn gói --</option>
-<option>Giờ</option><option>Ngày</option><option>Tuần</option>
-<option>Tháng</option><option>Năm</option><option>Vĩnh viễn</option>
-<option>1 Giờ</option><option>12 Giờ</option><option>1 Ngày</option>
-<option>1 Tuần</option><option>1 Tháng</option>
+<option>Giờ</option><option>Ngày</option><option>Tuần</option><option>Tháng</option><option>Năm</option><option>Vĩnh viễn</option>
+<option>1 Giờ</option><option>12 Giờ</option><option>1 Ngày</option><option>1 Tuần</option><option>1 Tháng</option>
 </select>
 <button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doApprove()">✅ Duyệt</button>
 <button style="background:#e63946;margin-top:8px" onclick="closeKey()">❌ Hủy</button>
@@ -201,13 +177,11 @@ th{background:#2a2040;color:#c77dff}
 <a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone">💬</a>
 <div class="float-btn">🎧</div>
 
-<audio id="musicPlayer" loop>
-<source id="musicSource" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-</audio>
+<audio id="musicPlayer" loop><source id="musicSource" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg"></audio>
 
 <script>
-var SEPAY_TOKEN = '0OA3FKDFL27IG1PRWCYNLJU64FWOJN7UKXJIRLYZT4GXH3NVDG5M0PXVTVSTVJKQ';
-var SEPAY_API = 'https://my.sepay.vn/userapi/transactions/list';
+var SEPAY_TOKEN='0OA3FKDFL27IG1PRWCYNLJU64FWOJN7UKXJIRLYZT4GXH3NVDG5M0PXVTVSTVJKQ';
+var SEPAY_API='https://my.sepay.vn/userapi/transactions/list';
 
 function openMenu(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
@@ -253,13 +227,12 @@ function submitNap(){
   var o=getOrders();
   o.push({id:Date.now(),name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,pkg:''});
   saveOrders(o);
-  alert('✅ Đã tạo đơn!\nNội dung CK: '+code+'\nVui lòng chuyển đúng nội dung để được cộng tiền tự động.');
+  alert('✅ Đã tạo đơn!\nNội dung CK: '+code);
   document.getElementById('nName').value='';
   document.getElementById('nAmount').value='';
 }
 
-var currentProduct=null;
-var currentOrder=null;
+var currentProduct=null,currentOrder=null;
 function openBuy(i){
   currentProduct=PRODUCTS[i];
   document.getElementById('buyName').textContent='Sản phẩm: '+currentProduct.name;
@@ -287,48 +260,40 @@ function pickPkg(){
     document.getElementById('buyPrice').textContent='💰 Tổng: '+parseInt(p).toLocaleString()+'đ';
     document.getElementById('buyContent').textContent=code;
     document.getElementById('qrBox').classList.remove('hide');
-  }else{
-    document.getElementById('qrBox').classList.add('hide');
-  }
+  }else{document.getElementById('qrBox').classList.add('hide')}
 }
 
 function checkPayment(){
   var name=document.getElementById('buyCus').value.trim();
-  if(!name){alert('Nhập tên của bạn!');return}
-  if(!currentOrder){alert('Chọn gói trước!');return}
-
+  if(!name){alert('Nhập tên!');return}
+  if(!currentOrder){alert('Chọn gói!');return}
   var btn=document.getElementById('checkBtn');
-  btn.disabled=true;
-  btn.innerHTML='<span class="spin"></span> Đang kiểm tra...';
+  btn.disabled=true;btn.innerHTML='<span class="spin"></span> Đang kiểm tra...';
   document.getElementById('checkMsg').textContent='';
-
   fetch(SEPAY_API+'?limit=20',{headers:{'Authorization':'Bearer '+SEPAY_TOKEN}})
-  .then(function(res){return res.json()})
+  .then(function(r){return r.json()})
   .then(function(data){
-    var transactions = data.transactions || data.data || [];
+    var txs=data.transactions||data.data||[];
     var found=null;
-    transactions.forEach(function(t){
+    txs.forEach(function(t){
       var content=(t.transaction_content||t.content||'').toUpperCase();
       var amountIn=t.amount_in||t.amountIn||t.amount||0;
       if(content.indexOf(currentOrder.code)>-1 && parseInt(amountIn)>=currentOrder.amount){found=t}
     });
-
     if(found){
       var o=getOrders();
       o.push({id:Date.now(),name:name+' (Mua '+currentProduct.name+' - '+currentOrder.pkg+')',amount:currentOrder.amount,time:new Date().toLocaleString('vi-VN'),status:'done',code:currentOrder.code,pkg:currentOrder.pkg});
       saveOrders(o);
-      document.getElementById('checkMsg').innerHTML='<span style="color:#06d6a0">✅ Thanh toán thành công! Đơn đã được duyệt tự động.</span>';
-      setTimeout(function(){closeBuy();alert('🎉 Thanh toán thành công! Liên hệ Zalo 0355417385 để nhận key.')},1500);
+      document.getElementById('checkMsg').innerHTML='<span style="color:#06d6a0">✅ Thành công! Đơn đã duyệt tự động.</span>';
+      setTimeout(function(){closeBuy();alert('🎉 Thành công! Liên hệ Zalo 0355417385 nhận key.')},1500);
     }else{
-      document.getElementById('checkMsg').innerHTML='<span style="color:#ffd166">⏳ Chưa nhận được tiền. Vui lòng chờ 1-2 phút rồi bấm lại.</span>';
+      document.getElementById('checkMsg').innerHTML='<span style="color:#ffd166">⏳ Chưa nhận được. Chờ 1-2 phút bấm lại.</span>';
     }
-    btn.disabled=false;
-    btn.innerHTML='✅ Tôi Đã Chuyển Khoản';
+    btn.disabled=false;btn.innerHTML='✅ Tôi Đã Chuyển Khoản';
   })
-  .catch(function(err){
-    document.getElementById('checkMsg').innerHTML='<span style="color:#e63946">❌ Lỗi kết nối. Vui lòng thử lại sau.</span>';
-    btn.disabled=false;
-    btn.innerHTML='✅ Tôi Đã Chuyển Khoản';
+  .catch(function(){
+    document.getElementById('checkMsg').innerHTML='<span style="color:#e63946">❌ Lỗi kết nối. Thử lại sau.</span>';
+    btn.disabled=false;btn.innerHTML='✅ Tôi Đã Chuyển Khoản';
   });
 }
 
@@ -360,7 +325,7 @@ function renderAdmin(){
   });
 }
 var curId=null;
-function openKey(id){curId=id;var x=getOrders().find(function(o){return o.id===id});if(x)document.getElementById('keyInfo').textContent='Khách: '+x.name+' | '+x.amount.toLocaleString()+'đ';document.getElementById('keyPkg').value='';document.getElementById('keyPopup').classList.remove('hide')}
+function openKey(id){curId=id;var x=getOrders().find(function(o){return o.id===id});if(x)document.getElementById('keyInfo').textContent='Khách: '+x.name;document.getElementById('keyPkg').value='';document.getElementById('keyPopup').classList.remove('hide')}
 function closeKey(){document.getElementById('keyPopup').classList.add('hide')}
 function doApprove(){
   var pkg=document.getElementById('keyPkg').value;
