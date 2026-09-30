@@ -64,6 +64,8 @@ th{background:#2a2040;color:#c77dff}
 .float-btn:hover{transform:scale(1.1)}
 .hide{display:none}
 .err{color:#e63946;font-size:13px}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top:2px solid transparent;border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -97,10 +99,8 @@ th{background:#2a2040;color:#c77dff}
 <h1>ZEB X VEX</h1>
 <p>Cung cấp menu, file chất lượng cao cho iOS, Android và PC.<br>Cập nhật liên tục, hỗ trợ 24/7, an toàn và uy tín.</p>
 <p class="status">🟢 Đang hoạt động — Cập nhật mới nhất 2026</p>
-
 <button class="btn-main" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🚀 Khám Phá Ngay</button>
 <button class="btn-main" style="background:transparent;border:2px solid #9d4edd;color:#c77dff" onclick="document.getElementById('nap').scrollIntoView({behavior:'smooth'})">✨ Nạp Tiền Ngay</button>
-
 <div class="badge-row">
 <div class="badge">🔥 NỔI BẬT</div>
 <div class="badge">⚡ AUTO 24/7</div>
@@ -116,10 +116,7 @@ th{background:#2a2040;color:#c77dff}
 </div>
 <p class="music-title" id="songTitle">🎵 #1: Nhạc Việt Chill</p>
 <p class="warn">⚠️ Trình duyệt chặn autoplay, vui lòng bấm BẬT NHẠC</p>
-<div class="volume">
-<span>🔊</span>
-<input type="range" id="volume" min="0" max="100" value="50" onchange="setVolume()">
-</div>
+<div class="volume"><span>🔊</span><input type="range" id="volume" min="0" max="100" value="50" onchange="setVolume()"></div>
 </div>
 
 <h2 id="products">🛒 KHO SẢN PHẨM & KEY GAME</h2>
@@ -127,8 +124,8 @@ th{background:#2a2040;color:#c77dff}
 
 <h2 id="nap">💳 NẠP TIỀN</h2>
 <div class="box">
-<p><b style="color:#e0aaff">ZaloPay:</b> HOÀNG BẢO NAM</p>
-<p><b style="color:#e0aaff">SĐT:</b> 0355417385</p>
+<p><b style="color:#e0aaff">MB Bank:</b> VI THANH HUY</p>
+<p><b style="color:#e0aaff">STK:</b> 0375374529</p>
 <img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/220/1a1533/c77dff?text=QR'">
 <input id="nName" placeholder="Tên của bạn">
 <input id="nAmount" type="number" placeholder="Số tiền nạp">
@@ -160,7 +157,7 @@ th{background:#2a2040;color:#c77dff}
 <button style="max-width:200px;margin:0 auto 15px;display:block" onclick="logout()">Thoát</button>
 <div style="overflow-x:auto">
 <table>
-<thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Gói</th><th>Trạng thái</th><th>Hành động</th></tr></thead>
+<thead><tr><th>Thời gian</th><th>Khách</th><th>Tiền</th><th>Nội dung</th><th>Trạng thái</th><th>Hành động</th></tr></thead>
 <tbody id="orders"></tbody>
 </table>
 </div>
@@ -172,17 +169,17 @@ th{background:#2a2040;color:#c77dff}
 <h3>🛒 MUA HÀNG</h3>
 <p id="buyName" style="color:#e0aaff;margin-bottom:10px"></p>
 <label style="font-size:13px;color:#c77dff">Chọn gói:</label>
-<select id="buyPkg" onchange="pickPkg()">
-<option value="">-- Chọn --</option>
-</select>
+<select id="buyPkg" onchange="pickPkg()"><option value="">-- Chọn --</option></select>
 <div id="qrBox" class="hide">
 <div class="price" id="buyPrice"></div>
 <p style="font-size:13px">📷 Quét QR:</p>
 <img src="qr.jpg.jpg" alt="QR" onerror="this.src='https://via.placeholder.com/200/1a1533/c77dff?text=QR'">
+<p style="font-size:13px;margin:8px 0">Nội dung CK: <b id="buyContent" style="color:#ffd166"></b></p>
 <input id="buyCus" placeholder="Tên của bạn">
+<button style="background:linear-gradient(45deg,#06d6a0,#00b894);color:#000;margin-top:10px" onclick="checkPayment()" id="checkBtn">✅ Tôi Đã Chuyển Khoản</button>
+<p id="checkMsg" style="font-size:13px;margin-top:8px"></p>
 </div>
-<button style="background:#06d6a0;color:#000;margin-top:10px" onclick="doBuy()">✅ Xác Nhận</button>
-<button style="background:#e63946;margin-top:8px" onclick="closeBuy()">❌ Hủy</button>
+<button style="background:linear-gradient(45deg,#e63946,#c1121f);margin-top:8px" onclick="closeBuy()">❌ Đóng</button>
 </div>
 </div>
 
@@ -202,18 +199,23 @@ th{background:#2a2040;color:#c77dff}
 </div>
 </div>
 
-<a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone" title="Chat Zalo">💬</a>
-<div class="float-btn" title="Hỗ trợ">🎧</div>
+<a href="https://zalo.me/0355417385" target="_blank" class="float-btn phone">💬</a>
+<div class="float-btn">🎧</div>
 
 <audio id="musicPlayer" loop>
 <source id="musicSource" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+// ========== CẤU HÌNH SEPAY ==========
+var SEPAY_TOKEN = '0OA3FKDFL27IG1PRWCYNLJU64FWOJN7UKXJIRLYZT4GXH3NVDG5M0PXVTVSTVJKQ';
+var SEPAY_API = 'https://my.sepay.vn/userapi/transactions/list';
+
+// ========== MENU ==========
 function openMenu(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
 
-// ========== NHẠC VIỆT ==========
+// ========== NHẠC ==========
 var songs=[
   {name:'Nhạc Việt Chill',src:'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3'},
   {name:'Nhạc Việt Lofi',src:'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3'},
@@ -221,16 +223,8 @@ var songs=[
 ];
 var currentSong=0;
 var player=document.getElementById('musicPlayer');
-function loadSong(i){
-  currentSong=(i+songs.length)%songs.length;
-  document.getElementById('musicSource').src=songs[currentSong].src;
-  player.load();
-  document.getElementById('songTitle').textContent='🎵 '+(currentSong+1)+': '+songs[currentSong].name;
-}
-function toggleMusic(){
-  if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}
-  else{player.pause();document.getElementById('playBtn').textContent='▶ BẬT NHẠC'}
-}
+function loadSong(i){currentSong=(i+songs.length)%songs.length;document.getElementById('musicSource').src=songs[currentSong].src;player.load();document.getElementById('songTitle').textContent='🎵 '+(currentSong+1)+': '+songs[currentSong].name}
+function toggleMusic(){if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}else{player.pause();document.getElementById('playBtn').textContent='▶ BẬT NHẠC'}}
 function nextSong(){loadSong(currentSong+1);player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}
 function prevSong(){loadSong(currentSong-1);player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}
 function setVolume(){player.volume=document.getElementById('volume').value/100}
@@ -255,20 +249,25 @@ document.getElementById('productList').innerHTML=html;
 // ========== ĐƠN HÀNG ==========
 function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex')||'[]')}catch(e){return[]}}
 function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
+function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
 
+// ========== NẠP TIỀN ==========
 function submitNap(){
   var n=document.getElementById('nName').value.trim();
   var a=document.getElementById('nAmount').value.trim();
   if(!n||!a){alert('Nhập đủ tên và số tiền!');return}
+  var code=genCode();
   var o=getOrders();
-  o.push({id:Date.now(),name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',pkg:''});
+  o.push({id:Date.now(),name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,pkg:''});
   saveOrders(o);
-  alert('✅ Đã gửi yêu cầu!');
+  alert('✅ Đã tạo đơn!\nNội dung CK: '+code+'\nVui lòng chuyển đúng nội dung để được cộng tiền tự động.');
   document.getElementById('nName').value='';
   document.getElementById('nAmount').value='';
 }
 
+// ========== MUA HÀNG ==========
 var currentProduct=null;
+var currentOrder=null;
 function openBuy(i){
   currentProduct=PRODUCTS[i];
   document.getElementById('buyName').textContent='Sản phẩm: '+currentProduct.name;
@@ -282,6 +281,7 @@ function openBuy(i){
   });
   document.getElementById('qrBox').classList.add('hide');
   document.getElementById('buyCus').value='';
+  document.getElementById('checkMsg').textContent='';
   document.getElementById('buyPopup').classList.remove('hide');
 }
 function closeBuy(){document.getElementById('buyPopup').classList.add('hide')}
@@ -289,23 +289,71 @@ function pickPkg(){
   var sel=document.getElementById('buyPkg');
   var opt=sel.options[sel.selectedIndex];
   var p=opt.getAttribute('data-price');
-  if(p){document.getElementById('buyPrice').textContent='💰 Tổng: '+parseInt(p).toLocaleString()+'đ';document.getElementById('qrBox').classList.remove('hide')}
-  else{document.getElementById('qrBox').classList.add('hide')}
-}
-function doBuy(){
-  var sel=document.getElementById('buyPkg');
-  var opt=sel.options[sel.selectedIndex];
-  var pkg=opt.value, price=opt.getAttribute('data-price');
-  var name=document.getElementById('buyCus').value.trim();
-  if(!pkg){alert('Chọn gói!');return}
-  if(!name){alert('Nhập tên!');return}
-  var o=getOrders();
-  o.push({id:Date.now(),name:name+' (Mua '+currentProduct.name+' - '+pkg+')',amount:parseInt(price),time:new Date().toLocaleString('vi-VN'),status:'pending',pkg:pkg});
-  saveOrders(o);
-  closeBuy();
-  alert('✅ Đã tạo đơn! Chờ Admin duyệt.');
+  if(p){
+    var code=genCode();
+    currentOrder={amount:parseInt(p),code:code,pkg:opt.value};
+    document.getElementById('buyPrice').textContent='💰 Tổng: '+parseInt(p).toLocaleString()+'đ';
+    document.getElementById('buyContent').textContent=code;
+    document.getElementById('qrBox').classList.remove('hide');
+  }else{
+    document.getElementById('qrBox').classList.add('hide');
+  }
 }
 
+// ========== CHECK THANH TOÁN QUA SEPAY API ==========
+function checkPayment(){
+  var name=document.getElementById('buyCus').value.trim();
+  if(!name){alert('Nhập tên của bạn!');return}
+  if(!currentOrder){alert('Chọn gói trước!');return}
+
+  var btn=document.getElementById('checkBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span> Đang kiểm tra...';
+  document.getElementById('checkMsg').textContent='';
+
+  fetch(SEPAY_API+'?limit=20',{
+    headers:{'Authorization':'Bearer '+SEPAY_TOKEN}
+  })
+  .then(function(res){return res.json()})
+  .then(function(data){
+    var transactions = data.transactions || data.data || [];
+    var found=null;
+    transactions.forEach(function(t){
+      var content=(t.transaction_content||t.content||'').toUpperCase();
+      var amountIn=t.amount_in||t.amountIn||t.amount||0;
+      if(content.indexOf(currentOrder.code)>-1 && parseInt(amountIn)>=currentOrder.amount){
+        found=t;
+      }
+    });
+
+    if(found){
+      var o=getOrders();
+      o.push({
+        id:Date.now(),
+        name:name+' (Mua '+currentProduct.name+' - '+currentOrder.pkg+')',
+        amount:currentOrder.amount,
+        time:new Date().toLocaleString('vi-VN'),
+        status:'done',
+        code:currentOrder.code,
+        pkg:currentOrder.pkg
+      });
+      saveOrders(o);
+      document.getElementById('checkMsg').innerHTML='<span style="color:#06d6a0">✅ Thanh toán thành công! Đơn đã được duyệt tự động.</span>';
+      setTimeout(function(){closeBuy();alert('🎉 Thanh toán thành công! Vui lòng liên hệ Zalo 0355417385 để nhận key.')},1500);
+    }else{
+      document.getElementById('checkMsg').innerHTML='<span style="color:#ffd166">⏳ Chưa nhận được tiền. Vui lòng chờ 1-2 phút rồi bấm lại.</span>';
+    }
+    btn.disabled=false;
+    btn.innerHTML='✅ Tôi Đã Chuyển Khoản';
+  })
+  .catch(function(err){
+    document.getElementById('checkMsg').innerHTML='<span style="color:#e63946">❌ Lỗi kết nối. Vui lòng thử lại sau.</span>';
+    btn.disabled=false;
+    btn.innerHTML='✅ Tôi Đã Chuyển Khoản';
+  });
+}
+
+// ========== ADMIN ==========
 function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
 function backHome(){document.getElementById('login').classList.add('hide');document.getElementById('shop').classList.remove('hide')}
 function login(){
@@ -315,12 +363,7 @@ function login(){
     renderAdmin();
   }else{document.getElementById('err').classList.remove('hide')}
 }
-function logout(){
-  document.getElementById('admin').classList.add('hide');
-  document.getElementById('shop').classList.remove('hide');
-  document.getElementById('pass').value='';
-  document.getElementById('err').classList.add('hide');
-}
+function logout(){document.getElementById('admin').classList.add('hide');document.getElementById('shop').classList.remove('hide');document.getElementById('pass').value='';document.getElementById('err').classList.add('hide')}
 function renderAdmin(){
   var o=getOrders();
   var tbody=document.getElementById('orders');
@@ -334,34 +377,20 @@ function renderAdmin(){
     var btn=x.status==='pending'
       ?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="openKey('+x.id+')">Duyệt</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="del('+x.id+')">Xóa</button>'
       :'<button style="width:auto;padding:4px 8px;background:#e63946" onclick="del('+x.id+')">Xóa</button>';
-    tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.pkg||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
+    tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.code||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
     tbody.appendChild(tr);
   });
 }
 var curId=null;
-function openKey(id){
-  curId=id;
-  var x=getOrders().find(function(o){return o.id===id});
-  if(x) document.getElementById('keyInfo').textContent='Khách: '+x.name+' | '+x.amount.toLocaleString()+'đ';
-  document.getElementById('keyPkg').value='';
-  document.getElementById('keyPopup').classList.remove('hide');
-}
+function openKey(id){curId=id;var x=getOrders().find(function(o){return o.id===id});if(x)document.getElementById('keyInfo').textContent='Khách: '+x.name+' | '+x.amount.toLocaleString()+'đ';document.getElementById('keyPkg').value='';document.getElementById('keyPopup').classList.remove('hide')}
 function closeKey(){document.getElementById('keyPopup').classList.add('hide')}
 function doApprove(){
   var pkg=document.getElementById('keyPkg').value;
   if(!pkg){alert('Chọn gói!');return}
-  var o=getOrders().map(function(x){
-    if(x.id===curId){x.status='done';x.pkg=pkg}
-    return x;
-  });
-  saveOrders(o);
-  closeKey();
-  renderAdmin();
+  var o=getOrders().map(function(x){if(x.id===curId){x.status='done';x.pkg=pkg}return x});
+  saveOrders(o);closeKey();renderAdmin();
 }
-function del(id){
-  saveOrders(getOrders().filter(function(x){return x.id!==id}));
-  renderAdmin();
-}
+function del(id){saveOrders(getOrders().filter(function(x){return x.id!==id}));renderAdmin()}
 </script>
 </body>
 </html>
