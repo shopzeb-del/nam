@@ -43,8 +43,8 @@ var songs=[{name:'Nhạc 1',src:'nhac1.mp3'},{name:'Nhạc 2',src:'nhac2.mp3'}];
 var currentSong=0,player=document.getElementById('musicPlayer');
 function loadSong(i){currentSong=(i+songs.length)%songs.length;document.getElementById('musicSource').src=songs[currentSong].src;player.load();document.getElementById('songTitle').textContent='🎵 '+(currentSong+1)+': '+songs[currentSong].name}
 function toggleMusic(){if(player.paused){player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}else{player.pause();document.getElementById('playBtn').textContent='▶ BẬT NHẠC'}}
-function nextSong(){loadSong(currentSong+1);player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}
-function prevSong(){loadSong(currentSong-1);player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}
+function nextSong(){loadSong(currentSong+1);player.play()}
+function prevSong(){loadSong(currentSong-1);player.play()}
 function setVolume(){player.volume=document.getElementById('volume').value/100}
 player.volume=0.5;
 
@@ -55,11 +55,7 @@ function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
 function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
 
 function showTab(tab){
-['shop','historyPage','accountPage'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.add('hide')});
-document.getElementById('login').classList.add('hide');
-document.getElementById('register').classList.add('hide');
-document.getElementById('adminLogin').classList.add('hide');
-document.getElementById('admin').classList.add('hide');
+['shop','historyPage','accountPage','login','register','adminLogin','admin'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.add('hide')});
 if(tab==='shop'){document.getElementById('shop').classList.remove('hide')}
 if(tab==='nap'){document.getElementById('shop').classList.remove('hide');setTimeout(function(){document.getElementById('nap').scrollIntoView({behavior:'smooth'})},100)}
 if(tab==='don'){if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}document.getElementById('historyPage').classList.remove('hide');renderHistory()}
@@ -74,11 +70,9 @@ function showAccountPage(){
 var acc=document.getElementById('accountPage');
 acc.classList.remove('hide');
 document.getElementById('shop').classList.add('hide');
-if(currentUser){
 var orders=getOrders().filter(function(o){return o.phone===currentUser.phone});
 var done=orders.filter(function(o){return o.status==='done'});
 acc.innerHTML='<h2>👤 TÀI KHOẢN</h2><div class="box" style="text-align:center"><div style="width:80px;height:80px;background:#7c3aed;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:32px;font-weight:bold;margin:0 auto 15px">'+currentUser.phone.charAt(0).toUpperCase()+'</div><h3 style="text-align:center;margin-bottom:5px">'+currentUser.phone+'</h3><p style="text-align:center;color:#6b7280;margin-bottom:15px">'+currentUser.phone+'@zebxvex.com</p><div style="background:#0a0a0f;border:1px solid #1f2937;border-radius:10px;padding:15px;margin-bottom:15px"><div style="color:#6b7280;font-size:11px;margin-bottom:5px">SỐ DƯ</div><div style="color:#14b8a6;font-size:24px;font-weight:bold">'+currentUser.balance.toLocaleString()+' VND</div></div><button class="btn-main" onclick="showTab(\'nap\')" style="max-width:200px;margin:0 auto">💳 NẠP TIỀN</button></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px"><div style="background:#111827;border:1px solid #1f2937;border-radius:12px;padding:15px;text-align:center"><div style="font-size:24px;font-weight:bold;color:#14b8a6">'+orders.length+'</div><div style="color:#6b7280;font-size:11px">TỔNG ĐƠN</div></div><div style="background:#111827;border:1px solid #1f2937;border-radius:12px;padding:15px;text-align:center"><div style="font-size:24px;font-weight:bold;color:#14b8a6">'+done.length+'</div><div style="color:#6b7280;font-size:11px">HOÀN TẤT</div></div></div><button class="btn-main" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;margin-top:15px" onclick="logoutUser();showTab(\'shop\')">ĐĂNG XUẤT</button>';
-}
 }
 
 function updateUserUI(){
@@ -91,4 +85,5 @@ else{b.innerHTML='<button style="background:#14b8a6;color:#000;border:none;paddi
 function showUserLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
 function showRegister(){document.getElementById('login').classList.add('hide');document.getElementById('register').classList.remove('hide')}
 function showLoginForm(){document.getElementById('register').classList.add('hide');document.getElementById('login').classList.remove('hide')}
-function register(){var p=document.getElementById('regPhone').value.trim();var pw=document.getElementById('regPass').value.trim();if(!p||!pw){alert('Nhập đủ!');return}if(p.length<10){alert('SĐT không hợp lệ!');return}var users=getUsers();if(
+function register(){var p=document.getElementById('regPhone').value.trim();var pw=document.getElementById('regPass').value.trim();if(!p||!pw){alert('Nhập đủ!');return}if(p.length<10){alert('SĐT không hợp lệ!');return}var users=getUsers();if(users.find(function(u){return u.phone===p})){alert('SĐT đã đăng ký!');return}users.push({phone:p,pass:pw,balance:0});saveUsers(users);alert('✅ Đăng ký thành công!');document.getElementById('regPhone').value='';document.getElementById('regPass').value='';showLoginForm()}
+function
