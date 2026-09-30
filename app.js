@@ -18,24 +18,24 @@ var DELIVER={
 };
 
 var PRODUCTS=[
-{name:'Aimlock V1',price:1000,desc:'Menu Aimlock V1 — kéo tâm.',img:'https://via.placeholder.com/300/14b8a6/000?text=V1'},
-{name:'Aimlock V2',price:200000,desc:'Menu Aimlock V2 — nâng cấp.',img:'https://via.placeholder.com/300/14b8a6/000?text=V2'},
-{name:'Aimlock V3',price:300000,desc:'Menu Aimlock V3 — fix lố.',img:'https://via.placeholder.com/300/14b8a6/000?text=V3'},
-{name:'Aimlock V4',price:400000,desc:'Menu Aimlock V4 — full.',img:'https://via.placeholder.com/300/14b8a6/000?text=V4'},
-{name:'Aimlock V5',price:500000,desc:'Menu Aimlock V5 — nhiều máy.',img:'https://via.placeholder.com/300/14b8a6/000?text=V5'},
-{name:'Aimlock V6',price:600000,desc:'Menu Aimlock V6 — cao cấp.',img:'https://via.placeholder.com/300/14b8a6/000?text=V6'},
-{name:'Nhẹ Tâm',price:100000,desc:'Giảm nặng tâm.',img:'https://via.placeholder.com/300/7c3aed/fff?text=NHE'},
-{name:'Bám Đầu',price:100000,desc:'Hỗ trợ kéo tâm.',img:'https://via.placeholder.com/300/7c3aed/fff?text=BAM'},
-{name:'Fix Rung Tâm',price:100000,desc:'Giảm rung.',img:'https://via.placeholder.com/300/7c3aed/fff?text=FIX'},
-{name:'Combo Nhẹ Tâm + Bám Đầu V1',price:150000,desc:'Combo V1.',img:'https://via.placeholder.com/300/14b8a6/000?text=CB1'},
-{name:'Combo Nhẹ Tâm + Bám Đầu V2',price:200000,desc:'Combo V2.',img:'https://via.placeholder.com/300/14b8a6/000?text=CB2'},
-{name:'Combo Nhẹ Tâm + Bám Đầu V3',price:250000,desc:'Combo V3.',img:'https://via.placeholder.com/300/14b8a6/000?text=CB3'},
-{name:'Aimlock AVT-Cache',price:150000,desc:'Tối ưu cache.',img:'https://via.placeholder.com/300/7c3aed/fff?text=AVT'}
+{name:'Aimlock V1',price:100000,desc:'Menu Aimlock V1 — kéo tâm.',img:'logo.jpg.PNG'},
+{name:'Aimlock V2',price:200000,desc:'Menu Aimlock V2 — nâng cấp.',img:'logo.jpg.PNG'},
+{name:'Aimlock V3',price:300000,desc:'Menu Aimlock V3 — fix lố.',img:'logo.jpg.PNG'},
+{name:'Aimlock V4',price:400000,desc:'Menu Aimlock V4 — full.',img:'logo.jpg.PNG'},
+{name:'Aimlock V5',price:500000,desc:'Menu Aimlock V5 — nhiều máy.',img:'logo.jpg.PNG'},
+{name:'Aimlock V6',price:600000,desc:'Menu Aimlock V6 — cao cấp.',img:'logo.jpg.PNG'},
+{name:'Nhẹ Tâm',price:100000,desc:'Giảm nặng tâm.',img:'logo.jpg.PNG'},
+{name:'Bám Đầu',price:100000,desc:'Hỗ trợ kéo tâm.',img:'logo.jpg.PNG'},
+{name:'Fix Rung Tâm',price:100000,desc:'Giảm rung.',img:'logo.jpg.PNG'},
+{name:'Combo Nhẹ Tâm + Bám Đầu V1',price:150000,desc:'Combo V1.',img:'logo.jpg.PNG'},
+{name:'Combo Nhẹ Tâm + Bám Đầu V2',price:200000,desc:'Combo V2.',img:'logo.jpg.PNG'},
+{name:'Combo Nhẹ Tâm + Bám Đầu V3',price:250000,desc:'Combo V3.',img:'logo.jpg.PNG'},
+{name:'Aimlock AVT-Cache',price:150000,desc:'Tối ưu cache.',img:'logo.jpg.PNG'}
 ];
 
 var html='';
 PRODUCTS.forEach(function(p,i){
-html+='<div class="card" onclick="openBuy('+i+')"><div class="tag">KEY</div><img src="'+p.img+'"><h3>'+p.name+'</h3><div class="desc">'+p.desc+'</div><div class="price">'+p.price.toLocaleString()+'đ</div><button>Mua Ngay</button></div>';
+html+='<div class="card" onclick="openBuy('+i+')"><div class="tag">KEY</div><img src="'+p.img+'" onerror="this.src=\'logo.jpg.PNG\'"><h3>'+p.name+'</h3><div class="desc">'+p.desc+'</div><div class="price">'+p.price.toLocaleString()+'đ</div><button>Mua Ngay</button></div>';
 });
 document.getElementById('productList').innerHTML=html;
 
@@ -168,3 +168,34 @@ tbody.innerHTML='';
 if(o.length===0){document.getElementById('empty').style.display='block';return}
 document.getElementById('empty').style.display='none';
 o.sort(function(a,b){return b.id-a.id});
+o.forEach(function(x){
+var tr=document.createElement('tr');
+var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#14b8a6">Đã duyệt</span>';
+var btn=x.status==='pending'&&x.product==='Nạp tiền'
+?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>'
+:x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>'
+:'<button style="padding:4px 8px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="delOrder('+x.id+')">Xóa</button>';
+tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
+tbody.appendChild(tr);
+});
+}
+
+function approveNap(id){
+if(!confirm('Xác nhận cộng tiền cho khách?'))return;
+var o=getOrders();
+var order=o.find(function(x){return x.id===id});
+if(!order){alert('Không tìm thấy!');return}
+var users=getUsers();
+var idx=users.findIndex(function(u){return u.phone===order.phone});
+if(idx<0){alert('Không tìm thấy khách!');return}
+users[idx].balance+=order.amount;
+saveUsers(users);
+o=o.map(function(x){if(x.id===id){x.status='done'}return x});
+saveOrders(o);
+renderAdmin();
+alert('✅ Đã cộng '+order.amount.toLocaleString()+'đ cho '+order.phone);
+}
+function approveOrder(id){var o=getOrders().map(function(x){if(x.id===id){x.status='done'}return x});saveOrders(o);renderAdmin()}
+function delOrder(id){saveOrders(getOrders().filter(function(x){return x.id!==id}));renderAdmin()}
+
+(function(){var phone=localStorage.getItem('zebxvex_current');if(phone){var users=getUsers();currentUser=users.find(function(u){return u.phone===phone})||null}updateUserUI()})();
