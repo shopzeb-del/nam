@@ -180,8 +180,7 @@ th{background:#2a2040;color:#c77dff}
 <audio id="musicPlayer" loop><source id="musicSource" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg"></audio>
 
 <script>
-var SEPAY_TOKEN='0OA3FKDFL27IG1PRWCYNLJU64FWOJN7UKXJIRLYZT4GXH3NVDG5M0PXVTVSTVJKQ';
-var SEPAY_API='https://my.sepay.vn/userapi/transactions/list';
+var WORKER_URL='https://shopzeb-api.baonam310112.workers.dev';
 
 function openMenu(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
@@ -270,7 +269,7 @@ function checkPayment(){
   var btn=document.getElementById('checkBtn');
   btn.disabled=true;btn.innerHTML='<span class="spin"></span> Đang kiểm tra...';
   document.getElementById('checkMsg').textContent='';
-  fetch(SEPAY_API+'?limit=20',{headers:{'Authorization':'Bearer '+SEPAY_TOKEN}})
+  fetch(WORKER_URL)
   .then(function(r){return r.json()})
   .then(function(data){
     var txs=data.transactions||data.data||[];
