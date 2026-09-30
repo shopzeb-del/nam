@@ -1,6 +1,7 @@
 var WORKER_URL='https://shopzeb-api.baonam310112.workers.dev';
-var autoCheckTimer=null,currentProduct=null,currentOrder=null;
+var currentProduct=null,currentOrder=null,currentUser=null;
 function gd(link){var m=link.match(/\/d\/([^\/]+)/);if(m)return 'https://drive.google.com/uc?export=download&id='+m[1];return link}
+
 var DELIVER={
 'Aimlock V1':{ios:'https://drive.google.com/file/d/1PmAEDCWPl3FOwesF1Q788MUU6i8TpPJy/view',adr:'https://drive.google.com/file/d/1b2JFRojjmMrvj4TAuBwyqPIklqrpbUUd/view'},
 'Aimlock V2':{ios:'https://drive.google.com/file/d/1Bv05ffTVqxm3xsjnB3xMBkv1us7lYdIW/view',adr:'https://drive.google.com/file/d/1V3ISkx2AlD8pWS3nOfHYysKyIsjxSM9B/view'},
@@ -16,6 +17,7 @@ var DELIVER={
 'Combo Nhẹ Tâm + Bám Đầu V3':{ios:'https://drive.google.com/file/d/1v6Z4vivt9Z-x1e-_cvb8jEAzirICqwKV/view',adr:'https://drive.google.com/file/d/1MXTaO1tl4cshWkB18JyYTgkB1hW4nNhz/view'},
 'Aimlock AVT-Cache':{ios:'https://drive.google.com/file/d/1v6Z4vivt9Z-x1e-_cvb8jEAzirICqwKV/view',adr:'https://drive.google.com/file/d/1MXTaO1tl4cshWkB18JyYTgkB1hW4nNhz/view'}
 };
+
 var PRODUCTS=[
 {name:'Aimlock V1',price:100000,desc:'Menu Aimlock V1 — hỗ trợ kéo tâm, bám đầu cơ bản.'},
 {name:'Aimlock V2',price:200000,desc:'Menu Aimlock V2 — nâng cấp độ bám, ổn định hơn V1.'},
@@ -31,11 +33,14 @@ var PRODUCTS=[
 {name:'Combo Nhẹ Tâm + Bám Đầu V3',price:250000,desc:'Combo V3 full tính năng.'},
 {name:'Aimlock AVT-Cache',price:150000,desc:'Tối ưu cache, giảm lag.'}
 ];
+
 var html='';
 PRODUCTS.forEach(function(p,i){html+='<div class="card"><h3>'+p.name+'</h3><div class="desc">'+p.desc+'</div><div class="price">'+p.price.toLocaleString()+'đ</div><button onclick="openPlatform('+i+')">Mua Ngay</button></div>'});
 document.getElementById('productList').innerHTML=html;
+
 function openMenu(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+
 var songs=[
 {name:'Nhạc Việt Chill',src:'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3'},
 {name:'Nhạc Việt Lofi',src:'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3'},
@@ -48,23 +53,195 @@ function nextSong(){loadSong(currentSong+1);player.play();document.getElementByI
 function prevSong(){loadSong(currentSong-1);player.play();document.getElementById('playBtn').textContent='⏸ TẮT NHẠC'}
 function setVolume(){player.volume=document.getElementById('volume').value/100}
 player.volume=0.5;
+
+// ========== TÀI KHOẢN KHÁCH ==========
+function getUsers(){try{return JSON.parse(localStorage.getItem('zebxvex_users')||'[]')}catch(e){return[]}}
+function saveUsers(u){localStorage.setItem('zebxvex_users',JSON.stringify(u))}
+
+function showRegister(){document.getElementById('login').classList.add('hide');document.getElementById('register').classList.remove('hide')}
+function showLoginForm(){document.getElementById('register').classList.add('hide');document.getElementById('login').classList.remove('hide')}
+
+function register(){
+  var phone=document.getElementById('regPhone').value.trim();
+  var pass=document.getElementById('regPass').value.trim();
+  if(!phone||!pass){alert('Nhập đủ SĐT và mật khẩu!');return}
+  if(phone.length<10){alert('SĐT không hợp lệ!');return}
+  var users=getUsers();
+  if(users.find(function(u){return u.phone===phone})){alert('SĐT đã đăng ký!');return}
+  users.push({phone:phone,pass:pass,balance:0});
+  saveUsers(users);
+  alert('✅ Đăng ký thành công! Vui lòng đăng nhập.');
+  document.getElementById('regPhone').value='';
+  document.getElementById('regPass').value='';
+  showLoginForm();
+}
+
+function loginUser(){
+  var phone=document.getElementById('logPhone').value.trim();
+  var pass=document.getElementById('logPass').value.trim();
+  if(!phone||!pass){alert('Nhập đủ SĐT và mật khẩu!');return}
+  var users=getUsers();
+  var u=users.find(function(x){return x.phone===phone && x.pass===pass});
+  if(!u){document.getElementById('logErr').classList.remove('hide');return}
+  currentUser=u;
+  localStorage.setItem('zebxvex_current',phone);
+  alert('✅ Đăng nhập thành công!');
+  backHome();
+  updateUserUI();
+}
+
+function logoutUser(){
+  currentUser=null;
+  localStorage.removeItem('zebxvex_current');
+  updateUserUI();
+  alert('Đã đăng xuất!');
+}
+
+function updateUserUI(){
+  var el=document.getElementById('userInfo');
+  if(!el)return;
+  if(currentUser){
+    el.innerHTML='👤 <b>'+currentUser.phone+'</b> | 💰 <b style="color:#06d6a0">'+currentUser.balance.toLocaleString()+'đ</b> <button style="width:auto;padding:4px 10px;font-size:12px;background:#e63946;margin-left:8px" onclick="logoutUser()">Đăng xuất</button>';
+  }else{
+    el.innerHTML='<button style="width:auto;padding:6px 15px" onclick="showUserLogin()">👤 Đăng nhập / Đăng ký</button>';
+  }
+}
+
+function showUserLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
+
+// ========== NẠP TIỀN ==========
 function getOrders(){try{return JSON.parse(localStorage.getItem('zebxvex')||'[]')}catch(e){return[]}}
 function saveOrders(o){localStorage.setItem('zebxvex',JSON.stringify(o))}
 function genCode(){return 'ZEBXVEX'+Math.floor(1000+Math.random()*9000)}
-function submitNap(){var n=document.getElementById('nName').value.trim();var a=document.getElementById('nAmount').value.trim();if(!n||!a){alert('Nhập đủ tên và số tiền!');return}var code=genCode();var o=getOrders();o.push({id:Date.now(),name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});saveOrders(o);alert('✅ Đã tạo đơn!\nNội dung CK: '+code);document.getElementById('nName').value='';document.getElementById('nAmount').value=''}
-function openPlatform(i){currentProduct=PRODUCTS[i];document.getElementById('platformProduct').textContent='Sản phẩm: '+currentProduct.name+' — '+currentProduct.price.toLocaleString()+'đ';document.getElementById('platformPopup').classList.remove('hide')}
+
+function submitNap(){
+  if(!currentUser){alert('Vui lòng đăng nhập trước!');showUserLogin();return}
+  var n=document.getElementById('nName').value.trim();
+  var a=document.getElementById('nAmount').value.trim();
+  if(!n||!a){alert('Nhập đủ tên và số tiền!');return}
+  var code=genCode();
+  var o=getOrders();
+  o.push({id:Date.now(),phone:currentUser.phone,name:n,amount:parseInt(a),time:new Date().toLocaleString('vi-VN'),status:'pending',code:code,product:'Nạp tiền',platform:''});
+  saveOrders(o);
+  alert('✅ Đã tạo đơn nạp!\nNội dung CK: '+code+'\nSau khi chuyển khoản, Admin sẽ cộng tiền vào tài khoản.');
+  document.getElementById('nName').value='';
+  document.getElementById('nAmount').value='';
+}
+
+// ========== MUA HÀNG ==========
+function openPlatform(i){
+  if(!currentUser){alert('Vui lòng đăng nhập trước!');showUserLogin();return}
+  currentProduct=PRODUCTS[i];
+  document.getElementById('platformProduct').textContent='Sản phẩm: '+currentProduct.name+' — '+currentProduct.price.toLocaleString()+'đ';
+  document.getElementById('platformPopup').classList.remove('hide');
+}
 function closePlatform(){document.getElementById('platformPopup').classList.add('hide')}
-function choosePlatform(p){closePlatform();document.getElementById('buyName').textContent='Sản phẩm: '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')';var code=genCode();currentOrder={amount:currentProduct.price,code:code,product:currentProduct.name,platform:p};document.getElementById('buyPrice').textContent='💰 Tổng: '+currentProduct.price.toLocaleString()+'đ';document.getElementById('buyContent').textContent=code;document.getElementById('buyCus').value='';document.getElementById('checkMsg').textContent='';document.getElementById('autoStatus').classList.add('hide');document.getElementById('deliverBox').classList.add('hide');document.getElementById('deliverBox').innerHTML='';document.getElementById('checkBtn').disabled=false;document.getElementById('checkBtn').innerHTML='✅ Tôi Đã Chuyển Khoản';document.getElementById('buyPopup').classList.remove('hide')}
-function closeBuy(){document.getElementById('buyPopup').classList.add('hide');if(autoCheckTimer){clearInterval(autoCheckTimer);autoCheckTimer=null}}
-function startAutoCheck(){var name=document.getElementById('buyCus').value.trim();if(!name){alert('Nhập tên của bạn!');return}if(!currentOrder){alert('Lỗi!');return}currentOrder.customerName=name;document.getElementById('checkMsg').innerHTML='<span style="color:#ffd166">⏳ Đang kiểm tra lần đầu...</span>';document.getElementById('autoStatus').classList.remove('hide');checkOnce();if(autoCheckTimer)clearInterval(autoCheckTimer);autoCheckTimer=setInterval(checkOnce,5000)}
-function checkOnce(){fetch(WORKER_URL).then(function(r){return r.json()}).then(function(data){var txs=data.transactions||data.data||[];var found=null;txs.forEach(function(t){var content=(t.transaction_content||t.content||'').toUpperCase();var amountIn=t.amount_in||t.amountIn||t.amount||0;if(content.indexOf(currentOrder.code)>-1 && parseInt(amountIn)>=currentOrder.amount){found=t}});if(found){if(autoCheckTimer){clearInterval(autoCheckTimer);autoCheckTimer=null}var o=getOrders();o.push({id:Date.now(),name:currentOrder.customerName+' (Mua '+currentOrder.product+')',amount:currentOrder.amount,time:new Date().toLocaleString('vi-VN'),status:'done',code:currentOrder.code,product:currentOrder.product,platform:currentOrder.platform});saveOrders(o);document.getElementById('checkMsg').innerHTML='<span style="color:#06d6a0">✅ Thanh toán thành công! File đã sẵn sàng tải bên dưới.</span>';document.getElementById('autoStatus').classList.add('hide');document.getElementById('checkBtn').disabled=true;deliverProduct(currentOrder.product,currentOrder.platform)}else{document.getElementById('checkMsg').innerHTML='<span style="color:#ffd166">⏳ Chưa nhận được. Đang tự kiểm tra mỗi 5 giây...</span>'}}).catch(function(){document.getElementById('checkMsg').innerHTML='<span style="color:#e63946">❌ Lỗi kết nối. Đang thử lại...</span>'})}
-function deliverProduct(productName,platform){var box=document.getElementById('deliverBox');box.classList.remove('hide');var d=DELIVER[productName];if(!d){box.innerHTML='<h4>📦 Sản phẩm của bạn</h4><p style="font-size:13px;color:#a0a0b0">Liên hệ Zalo 0355417385 để nhận file.</p>';return}var link=d[platform];if(!link){box.innerHTML='<h4>📦 Sản phẩm của bạn</h4><p style="font-size:13px;color:#a0a0b0">Liên hệ Zalo 0355417385.</p>';return}var finalLink=gd(link);var platformName=platform==='ios'?'iOS':'Android';box.innerHTML='<h4>📦 File cho '+platformName+'</h4><a href="'+finalLink+'" target="_blank">📥 TẢI XUỐNG NGAY</a><p style="font-size:12px;color:#a0a0b0;margin-top:8px">Bấm nút trên để tải file.</p>'}
-function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('login').classList.remove('hide')}
-function showHistory(){document.getElementById('shop').classList.add('hide');document.getElementById('historyPage').classList.remove('hide');renderHistory()}
-function backHome(){document.getElementById('login').classList.add('hide');document.getElementById('admin').classList.add('hide');document.getElementById('historyPage').classList.add('hide');document.getElementById('shop').classList.remove('hide')}
-function login(){if(document.getElementById('pass').value==='Hoangbaonam@2012'){document.getElementById('login').classList.add('hide');document.getElementById('admin').classList.remove('hide');renderAdmin()}else{document.getElementById('err').classList.remove('hide')}}
-function logout(){backHome()}
-function renderAdmin(){var o=getOrders();var tbody=document.getElementById('orders');tbody.innerHTML='';if(o.length===0){document.getElementById('empty').style.display='block';return}document.getElementById('empty').style.display='none';o.sort(function(a,b){return b.id-a.id});o.forEach(function(x){var tr=document.createElement('tr');var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#06d6a0">Đã duyệt</span>';var btn=x.status==='pending'?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="approveOrder('+x.id+')">Duyệt</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>':'<button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>';tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';tbody.appendChild(tr)})}
+function choosePlatform(p){
+  closePlatform();
+  if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
+  if(currentUser.balance<currentProduct.price){
+    alert('❌ Số dư không đủ!\n\nSố dư hiện tại: '+currentUser.balance.toLocaleString()+'đ\nCần: '+currentProduct.price.toLocaleString()+'đ\n\nVui lòng nạp thêm tiền.');
+    document.getElementById('nap').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+  if(!confirm('Xác nhận mua '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?\nGiá: '+currentProduct.price.toLocaleString()+'đ\n\nSố dư sẽ bị trừ.'))return;
+  
+  var users=getUsers();
+  var idx=users.findIndex(function(u){return u.phone===currentUser.phone});
+  users[idx].balance-=currentProduct.price;
+  saveUsers(users);
+  currentUser=users[idx];
+  localStorage.setItem('zebxvex_current',currentUser.phone);
+  
+  var o=getOrders();
+  o.push({id:Date.now(),phone:currentUser.phone,name:currentUser.phone+' (Mua '+currentProduct.name+')',amount:currentProduct.price,time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:currentProduct.name,platform:p});
+  saveOrders(o);
+  
+  updateUserUI();
+  alert('✅ Mua thành công!\nSố dư còn: '+currentUser.balance.toLocaleString()+'đ\n\nFile đã sẵn sàng tải.');
+  deliverProduct(currentProduct.name,p);
+}
+
+function deliverProduct(productName,platform){
+  var d=DELIVER[productName];
+  if(!d){alert('Liên hệ Zalo 0355417385 để nhận file.');return}
+  var link=d[platform];
+  if(!link){alert('Sản phẩm chưa hỗ trợ nền tảng này.');return}
+  var finalLink=gd(link);
+  window.open(finalLink,'_blank');
+}
+
+// ========== LỊCH SỬ ==========
+function showHistory(){
+  if(!currentUser){alert('Vui lòng đăng nhập!');showUserLogin();return}
+  document.getElementById('shop').classList.add('hide');
+  document.getElementById('historyPage').classList.remove('hide');
+  renderHistory();
+}
+
+function renderHistory(){
+  var o=getOrders().filter(function(x){return x.phone===currentUser.phone && x.status==='done'});
+  var tbody=document.getElementById('historyList');
+  tbody.innerHTML='';
+  if(o.length===0){document.getElementById('noHistory').style.display='block';return}
+  document.getElementById('noHistory').style.display='none';
+  o.sort(function(a,b){return b.id-a.id});
+  o.forEach(function(x){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+(x.product||'—')+'</td><td>1</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+x.time+'</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+// ========== ADMIN ==========
+function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('adminLogin').classList.remove('hide')}
+function adminLogin(){if(document.getElementById('adminPass').value==='Hoangbaonam@2012'){document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.remove('hide');renderAdmin()}else{document.getElementById('adminErr').classList.remove('hide')}}
+function backHome(){document.getElementById('login').classList.add('hide');document.getElementById('register').classList.add('hide');document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.add('hide');document.getElementById('historyPage').classList.add('hide');document.getElementById('shop').classList.remove('hide')}
+
+function renderAdmin(){
+  var o=getOrders();
+  var tbody=document.getElementById('orders');
+  tbody.innerHTML='';
+  if(o.length===0){document.getElementById('empty').style.display='block';return}
+  document.getElementById('empty').style.display='none';
+  o.sort(function(a,b){return b.id-a.id});
+  o.forEach(function(x){
+    var tr=document.createElement('tr');
+    var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#06d6a0">Đã duyệt</span>';
+    var btn=x.status==='pending'&&x.product==='Nạp tiền'
+      ?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="approveNap('+x.id+')">Cộng tiền</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>'
+      :x.status==='pending'?'<button style="width:auto;padding:4px 8px;background:#06d6a0;color:#000" onclick="approveOrder('+x.id+')">Duyệt</button> <button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>'
+      :'<button style="width:auto;padding:4px 8px;background:#e63946" onclick="delOrder('+x.id+')">Xóa</button>';
+    tr.innerHTML='<td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+(x.platform||'—')+'</td><td>'+st+'</td><td>'+btn+'</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function approveNap(id){
+  if(!confirm('Xác nhận đã nhận tiền và cộng vào tài khoản khách?'))return;
+  var o=getOrders();
+  var order=o.find(function(x){return x.id===id});
+  if(!order){alert('Không tìm thấy đơn!');return}
+  var users=getUsers();
+  var idx=users.findIndex(function(u){return u.phone===order.phone});
+  if(idx<0){alert('Không tìm thấy tài khoản khách!');return}
+  users[idx].balance+=order.amount;
+  saveUsers(users);
+  o=o.map(function(x){if(x.id===id){x.status='done'}return x});
+  saveOrders(o);
+  renderAdmin();
+  alert('✅ Đã cộng '+order.amount.toLocaleString()+'đ cho '+order.phone);
+}
+
 function approveOrder(id){var o=getOrders().map(function(x){if(x.id===id){x.status='done'}return x});saveOrders(o);renderAdmin()}
 function delOrder(id){saveOrders(getOrders().filter(function(x){return x.id!==id}));renderAdmin()}
-function renderHistory(){var o=getOrders().filter(function(x){return x.status==='done'});var tbody=document.getElementById('historyList');tbody.innerHTML='';if(o.length===0){document.getElementById('noHistory').style.display='block';return}document.getElementById('noHistory').style.display='none';o.sort(function(a,b){return b.id-a.id});o.forEach(function(x){var tr=document.createElement('tr');tr.innerHTML='<td>'+(x.product||'—')+'</td><td>1</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+x.time+'</td>';tbody.appendChild(tr)})}
+
+// Khởi tạo
+(function(){
+  var phone=localStorage.getItem('zebxvex_current');
+  if(phone){
+    var users=getUsers();
+    currentUser=users.find(function(u){return u.phone===phone})||null;
+  }
+  updateUserUI();
+})();
