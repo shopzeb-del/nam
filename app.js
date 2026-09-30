@@ -140,7 +140,7 @@ closePlatform();
 if(!currentUser){alert('Vui lòng đăng nhập!');return}
 if(!isAdmin && currentUser.balance<currentProduct.price){alert('❌ Số dư không đủ!\nSố dư: '+currentUser.balance.toLocaleString()+'đ\nCần: '+currentProduct.price.toLocaleString()+'đ');showTab('nap');return}
 if(!isAdmin && !confirm('Xác nhận mua '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?'))return;
-if(isAdmin && !confirm('ADMIN MUA MIỄN PHÍ '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?'))return;
+if(isAdmin && !confirm('ADMIN MUA MIỄN PHÍ '+currentProduct.name+'?'))return;
 if(!isAdmin){
 var u=getUsers(),idx=u.findIndex(function(x){return x.phone===currentUser.phone});
 u[idx].balance-=currentProduct.price;saveUsers(u);currentUser=u[idx];localStorage.setItem('zxc',currentUser.phone);
@@ -167,22 +167,11 @@ function showLogin(){document.getElementById('shop').classList.add('hide');docum
 function adminLogin(){if(document.getElementById('adminPass').value==='Hoangbaonam@2012'){isAdmin=true;document.getElementById('adminLogin').classList.add('hide');document.getElementById('admin').classList.remove('hide');renderAdmin();updateUserUI()}else{document.getElementById('adminErr').classList.remove('hide')}}
 
 function renderAdmin(){
-var o=getOrders(),tb=document.getElementById('orders'),u=getUsers();
-var add='<div class="box"><h3>💰 CỘNG TIỀN CHO KHÁCH</h3><input id="addPhone" placeholder="SĐT khách"><input id="addAmount" type="number" placeholder="Số tiền"><button class="btn-main" onclick="adminAddMoney()">✅ CỘNG TIỀN</button></div><div class="box"><h3>👥 DANH SÁCH TÀI KHOẢN ('+u.length+')</h3><table style="font-size:12px"><thead><tr><th>SĐT</th><th>Số dư</th></tr></thead><tbody>';
-u.forEach(function(x){add+='<tr><td>'+x.phone+'</td><td style="color:#14b8a6">'+x.balance.toLocaleString()+'đ</td></tr>'});
-add+='</tbody></table></div>';
-var tbHtml='';
-if(o.length>0){
-o.sort(function(a,b){return b.id-a.id});
-o.forEach(function(x){
-var st=x.status==='pending'?'<span style="color:#ffd166">Chờ</span>':'<span style="color:#14b8a6">Đã duyệt</span>';
-var btn=x.status==='pending'&&x.product==='Nạp tiền'
-?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveNap('+x.id+')">Cộng tiền</button>'
-:x.status==='pending'?'<button style="padding:4px 8px;background:#14b8a6;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:11px" onclick="approveOrder('+x.id+')">Duyệt</button>':'';
-tbHtml+='<tr><td>'+x.time+'</td><td>'+x.name+'</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+(x.product||'—')+'</td><td>'+st+'</td><td>'+btn+'</td></tr>';
-});
-}
-tb.innerHTML='<tr><td colspan="6">'+add+'</td></tr>'+tbHtml;
+var u=getUsers();
+var html='<div class="box"><h3>💰 CỘNG TIỀN CHO KHÁCH</h3><input id="addPhone" placeholder="SĐT khách"><input id="addAmount" type="number" placeholder="Số tiền"><button class="btn-main" onclick="adminAddMoney()">✅ CỘNG TIỀN</button></div><div class="box"><h3>👥 DANH SÁCH TÀI KHOẢN ('+u.length+')</h3><table style="font-size:12px;width:100%"><thead><tr><th>SĐT</th><th>Số dư</th></tr></thead><tbody>';
+u.forEach(function(x){html+='<tr><td>'+x.phone+'</td><td style="color:#14b8a6">'+x.balance.toLocaleString()+'đ</td></tr>'});
+html+='</tbody></table></div>';
+document.getElementById('adminContent').innerHTML=html;
 }
 
 function adminAddMoney(){
@@ -197,18 +186,5 @@ saveOrders(o);
 alert('✅ Đã cộng '+parseInt(a).toLocaleString()+'đ cho '+p+'\nSố dư mới: '+u[idx].balance.toLocaleString()+'đ');
 renderAdmin();
 }
-
-function approveNap(id){
-if(!confirm('Cộng tiền cho khách?'))return;
-var o=getOrders(),order=o.find(function(x){return x.id===id});
-if(!order)return;
-var u=getUsers(),idx=u.findIndex(function(x){return x.phone===order.phone});
-if(idx<0){alert('Không tìm thấy khách!');return}
-u[idx].balance+=order.amount;saveUsers(u);
-o=o.map(function(x){if(x.id===id)x.status='done';return x});
-saveOrders(o);renderAdmin();
-alert('✅ Đã cộng '+order.amount.toLocaleString()+'đ');
-}
-function approveOrder(id){var o=getOrders().map(function(x){if(x.id===id)x.status='done';return x});saveOrders(o);renderAdmin()}
 
 (function(){var p=localStorage.getItem('zxc');if(p){var u=getUsers();currentUser=u.find(function(x){return x.phone===p})||null}updateUserUI()})();
