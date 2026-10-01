@@ -5,19 +5,19 @@ function giaBan(p){if(currentUser&&currentUser.isSeller)return Math.round(p*0.5)
 function gd(l){var m=l.match(/\/d\/([^\/]+)/);return m?'https://drive.google.com/uc?export=download&id='+m[1]:l}
 
 var DELIVER={
-'Aimlock V1':{ios:'https://drive.google.com/file/d/1PmAEDCWPl3FOwesF1Q788MUU6i8TpPJy/view',adr:'https://drive.google.com/file/d/1b2JFRojjmMrvj4TAuBwyqPIklqrpbUUd/view'},
-'Aimlock V2':{ios:'https://drive.google.com/file/d/1Bv05ffTVqxm3xsjnB3xMBkv1us7lYdIW/view',adr:'https://drive.google.com/file/d/1V3ISkx2AlD8pWS3nOfHYysKyIsjxSM9B/view'},
-'Aimlock V3':{ios:'https://drive.google.com/file/d/1WrdSAghk359nqlQd6f_nT1d1z0hDDeqO/view',adr:'https://drive.google.com/file/d/1KeNT3FENmHrMw1EdO22HUyFrMYq5P0bt/view'},
-'Aimlock V4':{ios:'https://drive.google.com/file/d/1bzuZlWQVMxli3If5xJpLD7N-KVUtKutR/view',adr:'https://drive.google.com/file/d/13ii39vZERuB4Wt9k48EFqxUP3tAwBf6P/view'},
-'Aimlock V5':{ios:'https://drive.google.com/file/d/1K6HXDHh0GprkNNKtVPHTXzV-NpO-9Hau/view',adr:'https://drive.google.com/file/d/1f7hF-skRcQklxCLS2LTd7-MUvrTuc6NV/view'},
-'Aimlock V6':{ios:'https://drive.google.com/file/d/1GTdc5OdGc6PDhAAeWztcTs1dBnF1__8c/view',adr:'https://drive.google.com/file/d/1HUrRMrvBsCZe1EZex87mL7SgPSrnMM9F/view'},
-'Nhẹ Tâm':{ios:'https://drive.google.com/file/d/1NlfI9oFI0-4_Kel-iakIN2Eqllfje3BN/view',adr:'https://drive.google.com/file/d/17NYqLFyer8YC6drXDMNJE6ASh1uvWBVE/view'},
-'Bám Đầu':{ios:'https://drive.google.com/file/d/1fH6sFt9M_IfOUGoM9b6eSq27la3GRXvZ/view',adr:'https://drive.google.com/file/d/1z3uV5IZo-tpzkeSewntQJQ-hnHmgkSr3/view'},
-'Fix Rung Tâm':{ios:'https://drive.google.com/file/d/1CDH20znYYM_d99EYHnsljPZV9A2vlKFE/view',adr:'https://drive.google.com/file/d/1HRe9kyQZ6jZjyVDGUn8gielFG1P2GquT/view'},
-'Combo Nhẹ Tâm + Bám Đầu V1':{ios:'https://drive.google.com/file/d/1NlfI9oFI0-4_Kel-iakIN2Eqllfje3BN/view',adr:'https://drive.google.com/file/d/17NYqLFyer8YC6drXDMNJE6ASh1uvWBVE/view'},
-'Combo Nhẹ Tâm + Bám Đầu V2':{ios:'https://drive.google.com/file/d/1NlfI9oFI0-4_Kel-iakIN2Eqllfje3BN/view',adr:'https://drive.google.com/file/d/17NYqLFyer8YC6drXDMNJE6ASh1uvWBVE/view'},
-'Combo Nhẹ Tâm + Bám Đầu V3':{ios:'https://drive.google.com/file/d/1v6Z4vivt9Z-x1e-_cvb8jEAzirICqwKV/view',adr:'https://drive.google.com/file/d/1MXTaO1tl4cshWkB18JyYTgkB1hW4nNhz/view'},
-'Aimlock AVT-Cache':{ios:'https://drive.google.com/file/d/1v6Z4vivt9Z-x1e-_cvb8jEAzirICqwKV/view',adr:'https://drive.google.com/file/d/1MXTaO1tl4cshWkB18JyYTgkB1hW4nNhz/view'}
+'Aimlock V1':{ios:'https://mega.nz/file/6vIDDZLZ#xnUriYHmc3-c0xXvh0hTyilZacdfkZ8LnACgO2qPI24',adr:'https://mega.nz/file/n3JW0bjR#F96uREVG7WSyWgIIfVdAaRMP1NQLKVRRrKW563ireh0'},
+'Aimlock V2':{ios:'https://mega.nz/file/eqYkXQjL#cHTw-aSDPsbUC0iYSwm-9slhPwjltI2IyJs70gMeS5E',adr:'https://mega.nz/file/HjYwzQLS#XuQV4p1dT1d_9cZqIjtCyw2u9rmOJX7_B9aBlNhIRj4'},
+'Aimlock V3':{ios:'https://mega.nz/file/i6gEGATC#18Y4FNMw39JVhH8uIp_I-W_mo3ksCy8SsLwmE7YJfWA',adr:'https://mega.nz/file/ziYE1CAB#Avy74gaQAS9ivr9b406tNkTaWLvzCcSkzPxYMTn_eI4'},
+'Aimlock V4':{ios:'https://mega.nz/file/azYwiahD#Y5-hTbGBt92VCRPw56aAF-CvIfJXjzpxue-h3XLZedE',adr:'https://mega.nz/file/mqxWVZRb#SWz2naemoZY08vJ0mHSZOIfYNwxwEV9crBnslX4zG_Y'},
+'Aimlock V5':{ios:'https://mega.nz/file/T3hikAgI#-SK40Xr7fNiUqlK1rMLsZ1bsXEMhNKEmJks_EIPucTU',adr:'https://mega.nz/file/zj5THD5J#jSBhYp7U4xCVO6f-B7gK6QURSSlFpe1WCSuLrmOM4mc'},
+'Aimlock V6':{ios:'https://mega.nz/file/u7AGySDJ#9T_L2nYmoErHbGj9k9zfzgl4lfAceXQ4V6guXDiQY34',adr:'https://mega.nz/file/ejQnHCzT#sDAv1BMxbTMK5aDMl-6jYa3Uv9DzLmOo8d5Jd85uado'},
+'Nhẹ Tâm':{ios:'https://mega.nz/file/vm5EBbiS#NjlDbEyc92_eSCRpdUk034ZoGM9hZOzQZGouZ9Kk5_Y',adr:'https://mega.nz/file/X3RWkS7Q#EuUrb5GrccvUvVrLHSpu3_5Sh_B6S7t7nC0f2CWy-gM'},
+'Bám Đầu':{ios:'https://mega.nz/file/ijQW3DaZ#hEyNpEPkzeiqK_FjHRgwDBwL6MgbK6a6ItO2HY4c_Ok',adr:'https://mega.nz/file/PiITzboY#swoMuuH8E7P3sBgIR5gmPNnZxku4nQQ7scXzw83cKSQ'},
+'Fix Rung Tâm':{ios:'https://mega.nz/file/nvBSRCZJ#iUXsxBz0LuR0bN4CxiU1XEB6ZAcCZgfkMWrGVmVJK14',adr:'https://mega.nz/file/X3AH3CbD#1hFbheoX45s1iMREMOiWyR_1uAxiTyA_9qsoYs9Bthc'},
+'Combo Nhẹ Tâm + Bám Đầu V1':{ios:'https://mega.nz/file/ijQW3DaZ#hEyNpEPkzeiqK_FjHRgwDBwL6MgbK6a6ItO2HY4c_Ok\nhttps://mega.nz/file/vm5EBbiS#NjlDbEyc92_eSCRpdUk034ZoGM9hZOzQZGouZ9Kk5_Y',adr:'https://mega.nz/file/PiITzboY#swoMuuH8E7P3sBgIR5gmPNnZxku4nQQ7scXzw83cKSQ\nhttps://mega.nz/file/X3RWkS7Q#EuUrb5GrccvUvVrLHSpu3_5Sh_B6S7t7nC0f2CWy-gM'},
+'Combo Nhẹ Tâm + Bám Đầu V2':{ios:'https://mega.nz/file/ijQW3DaZ#hEyNpEPkzeiqK_FjHRgwDBwL6MgbK6a6ItO2HY4c_Ok\nhttps://mega.nz/file/vm5EBbiS#NjlDbEyc92_eSCRpdUk034ZoGM9hZOzQZGouZ9Kk5_Y',adr:'https://mega.nz/file/ijQW3DaZ#hEyNpEPkzeiqK_FjHRgwDBwL6MgbK6a6ItO2HY4c_Ok\nhttps://mega.nz/file/vm5EBbiS#NjlDbEyc92_eSCRpdUk034ZoGM9hZOzQZGouZ9Kk5_Y'},
+'Combo Nhẹ Tâm + Bám Đầu V3':{ios:'https://mega.nz/file/DqQwTDiB#S51Ji4NElITmpmHceplOz0LExNuXDd706E_aOjRBUJI',adr:'https://mega.nz/file/XngGRJDb#PfjRs7xIqolQtlTQd7FXBsoCr0Oq701OstKR1a9YlNc'},
+'Aimlock AVT-Cache':{ios:'https://mega.nz/file/DqQwTDiB#S51Ji4NElITmpmHceplOz0LExNuXDd706E_aOjRBUJI',adr:'https://mega.nz/file/XngGRJDb#PfjRs7xIqolQtlTQd7FXBsoCr0Oq701OstKR1a9YlNc'}
 };
 
 var PRODUCTS=[
@@ -107,12 +107,41 @@ var gia=giaBan(currentProduct.price);
 if(!free && (currentUser.balance||0)<gia){alert('❌ Số dư không đủ!\nSố dư: '+(currentUser.balance||0).toLocaleString()+'đ\nCần: '+gia.toLocaleString()+'đ');showTab('nap');return}
 if(!free && !confirm('Xác nhận mua '+currentProduct.name+' ('+(p==='ios'?'iOS':'Android')+')?\nGiá: '+gia.toLocaleString()+'đ'))return;
 if(free && !confirm('ADMIN MUA MIỄN PHÍ '+currentProduct.name+'?'))return;
-var doBuy=function(){saveOrder({phone:currentUser.phone,name:currentUser.phone+(free?' [ADMIN FREE]':(currentUser.isSeller?' [SELLER]':''))+' (Mua '+currentProduct.name+')',amount:free?0:gia,time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:currentProduct.name,platform:p});var d=DELIVER[currentProduct.name],l='';if(d&&d[p])l=gd(d[p]);if(l){alert('✅ Mua thành công!'+(free?'\n[ADMIN - MIỄN PHÍ]':'')+'\n\nBấm OK để tải file.');window.open(l,'_blank')}else{alert('✅ Mua thành công!\nLiên hệ Zalo 0355417385 để nhận file.')}};
+var doBuy=function(){
+saveOrder({phone:currentUser.phone,name:currentUser.phone+(free?' [ADMIN FREE]':(currentUser.isSeller?' [SELLER]':''))+' (Mua '+currentProduct.name+')',amount:free?0:gia,time:new Date().toLocaleString('vi-VN'),status:'done',code:'',product:currentProduct.name,platform:p});
+alert('✅ Mua thành công!\nVào tab ĐƠN để tải file.');
+showTab('don');
+};
 if(free){doBuy();return}
 loadUser(currentUser.phone,function(u){if(!u){alert('Lỗi tài khoản!');return}u.balance=(u.balance||0)-gia;saveUser(u,function(){currentUser=u;updateUserUI();doBuy()})});
 }
 
-function renderHistory(){if(!currentUser)return;loadAllOrders(function(orders){var o=orders.filter(function(x){return x.phone===currentUser.phone}),tb=document.getElementById('historyList');tb.innerHTML='';if(o.length===0){document.getElementById('noHistory').style.display='block';return}document.getElementById('noHistory').style.display='none';o.sort(function(a,b){return (b.time||'').localeCompare(a.time||'')});o.forEach(function(x){var tr=document.createElement('tr');tr.innerHTML='<td>'+(x.product||'—')+'</td><td>1</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+x.time+'</td>';tb.appendChild(tr)})})}
+function renderHistory(){
+if(!currentUser)return;
+loadAllOrders(function(orders){
+var o=orders.filter(function(x){return x.phone===currentUser.phone}),tb=document.getElementById('historyList');
+tb.innerHTML='';
+if(o.length===0){document.getElementById('noHistory').style.display='block';return}
+document.getElementById('noHistory').style.display='none';
+o.sort(function(a,b){return (b.time||'').localeCompare(a.time||'')});
+o.forEach(function(x){
+var tr=document.createElement('tr');
+var linkHtml='<span style="color:#6b7280;font-size:11px">—</span>';
+if(x.product&&x.platform&&DELIVER[x.product]&&DELIVER[x.product][x.platform]){
+var link=DELIVER[x.product][x.platform];
+if(link.indexOf('\n')>-1){
+var links=link.split('\n');
+linkHtml='';
+links.forEach(function(l,i){linkHtml+='<a href="'+l+'" target="_blank" style="display:inline-block;padding:4px 8px;background:#7b2cbf;color:#fff;border-radius:6px;text-decoration:none;font-size:11px;font-weight:bold;margin:2px">📥 File '+(i+1)+'</a>'});
+}else{
+linkHtml='<a href="'+link+'" target="_blank" style="display:inline-block;padding:6px 12px;background:#7b2cbf;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:bold">📥 TẢI FILE</a>';
+}
+}
+tr.innerHTML='<td>'+(x.product||'—')+'</td><td>1</td><td>'+x.amount.toLocaleString()+'đ</td><td>'+x.time+'</td><td>'+linkHtml+'</td>';
+tb.appendChild(tr);
+});
+});
+}
 
 function showLogin(){document.getElementById('shop').classList.add('hide');document.getElementById('adminLogin').classList.remove('hide')}
 
