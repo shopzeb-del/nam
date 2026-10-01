@@ -9,13 +9,13 @@
 <body>
 
 <div class="header">
-<div class="brand"><img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/35/14b8a6/000?text=Z'"><span>ZEB X VEX</span></div>
-<div style="display:flex;gap:6px;align-items:center"><button onclick="showLogin()" style="background:#7c3aed;color:#fff;border:none;padding:6px 10px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:12px">🔐</button><div id="userBox" style="font-size:12px;color:#14b8a6"></div></div>
+<div class="brand"><img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/35/7b2cbf/fff?text=Z'"><span>ZEB X VEX</span></div>
+<div style="display:flex;gap:6px;align-items:center"><button onclick="showLogin()" style="background:#7b2cbf;color:#fff;border:none;padding:6px 10px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:12px">🔐</button><div id="userBox" style="font-size:12px;color:#c77dff"></div></div>
 </div>
 
 <div id="shop" class="container">
 <div class="hero">
-<img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/120/14b8a6/000?text=Z'">
+<img src="logo.jpg.PNG" onerror="this.src='https://via.placeholder.com/120/7b2cbf/fff?text=Z'">
 <h1>ZEB X VEX</h1>
 <p>UY TÍN • CHẤT LƯỢNG • AN TOÀN • NHANH GỌN<br>Hệ thống nạp & cấp phát Key tự động 100%</p>
 <p class="status">🟢 Đang hoạt động — 2026</p>
@@ -46,12 +46,12 @@
 
 <h2>📞 LIÊN HỆ & HỖ TRỢ</h2>
 <div class="box">
-<p>💬 Zalo cá nhân: <b style="color:#14b8a6">0355417385</b></p>
+<p>💬 Zalo cá nhân: <b style="color:#c77dff">0355417385</b></p>
 <a href="https://zalo.me/0355417385" target="_blank"><button class="btn-main">NHẮN ZALO CÁ NHÂN</button></a>
 <p style="margin-top:15px">👥 Box Chat Cộng Đồng:</p>
 <a href="https://zalo.me/g/vidlzgvqrmealqpg8dta" target="_blank"><button class="btn-main" style="background:#3b82f6;color:#fff">VÀO BOX CHAT</button></a>
 <p style="margin-top:15px">🔔 Box Thông Báo:</p>
-<a href="https://zalo.me/g/wi2mlifc7mvbwyx25zid" target="_blank"><button class="btn-main" style="background:#7c3aed;color:#fff">BOX THÔNG BÁO</button></a>
+<a href="https://zalo.me/g/wi2mlifc7mvbwyx25zid" target="_blank"><button class="btn-main" style="background:#7b2cbf;color:#fff">BOX THÔNG BÁO</button></a>
 </div>
 
 <p style="text-align:center;color:#6b7280;font-size:12px;margin:30px 0">© 2026 ZEB X VEX</p>
@@ -61,18 +61,18 @@
 <h2>💳 NẠP TIỀN</h2>
 <div class="box">
 <h3>📌 NỘI DUNG CHUYỂN KHOẢN</h3>
-<div style="background:#0a0a0f;border:2px dashed #14b8a6;border-radius:10px;padding:15px;text-align:center;margin:10px 0">
+<div style="background:#0d0b1a;border:2px dashed #7b2cbf;border-radius:10px;padding:15px;text-align:center;margin:10px 0">
 <div style="color:#6b7280;font-size:11px;margin-bottom:5px">MÃ NẠP TIỀN</div>
 <div id="napCodeShow" style="color:#ffd166;font-size:22px;font-weight:bold;letter-spacing:2px">-------</div>
 </div>
-<p><b style="color:#14b8a6">MB Bank:</b> VI THANH HUY</p>
-<p><b style="color:#14b8a6">STK:</b> 0375374529</p>
+<p><b style="color:#c77dff">MB Bank:</b> VI THANH HUY</p>
+<p><b style="color:#c77dff">STK:</b> 0375374529</p>
 <img src="qr.JPG" onerror="this.src='https://via.placeholder.com/200/fff/000?text=QR'">
 <input id="nAmount" type="number" placeholder="Nhập số tiền muốn nạp (VD: 50000)">
 <button class="btn-main" onclick="startCheckNap()">✅ XÁC NHẬN SỐ TIỀN</button>
 <p id="napStatus" style="text-align:center;color:#94a3b8;font-size:13px;margin-top:10px"></p>
 </div>
-<div class="box" style="background:rgba(20,184,166,0.05);border:1px solid rgba(20,184,166,0.2)">
+<div class="box" style="background:rgba(199,125,255,0.05);border:1px solid rgba(199,125,255,0.2)">
 <h3>📌 LƯU Ý</h3>
 <ul style="list-style:none;color:#94a3b8;font-size:13px;line-height:2">
 <li>• Nhập số tiền → bấm XÁC NHẬN.</li>
@@ -86,7 +86,7 @@
 <div id="historyPage" class="hide container">
 <h2>🔄 LỊCH SỬ MUA HÀNG</h2>
 <table>
-<thead><tr><th>Sản phẩm</th><th>SL</th><th>Tổng</th><th>Thời gian</th></tr></thead>
+<thead><tr><th>Sản phẩm</th><th>SL</th><th>Tổng</th><th>Thời gian</th><th>Tải file</th></tr></thead>
 <tbody id="historyList"></tbody>
 </table>
 <p id="noHistory" style="text-align:center;color:#6b7280;padding:20px">Chưa có đơn nào.</p>
@@ -101,8 +101,8 @@
 <input id="logPass" type="password" placeholder="Mật khẩu">
 <button class="btn-main" onclick="loginUser()">ĐĂNG NHẬP</button>
 <p class="err hide" id="logErr" style="text-align:center">SĐT hoặc mật khẩu sai!</p>
-<button class="btn-main" style="background:#7c3aed;color:#fff;margin-top:10px" onclick="showRegister()">CHƯA CÓ TÀI KHOẢN? ĐĂNG KÝ</button>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
+<button class="btn-main" style="background:#7b2cbf;color:#fff;margin-top:10px" onclick="showRegister()">CHƯA CÓ TÀI KHOẢN? ĐĂNG KÝ</button>
+<button class="btn-main" style="background:transparent;border:1px solid #3a2a5a;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
 </div>
 </div>
 
@@ -112,7 +112,7 @@
 <input id="regPhone" placeholder="Số điện thoại">
 <input id="regPass" type="password" placeholder="Mật khẩu">
 <button class="btn-main" onclick="register()">ĐĂNG KÝ</button>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showLoginForm()">ĐÃ CÓ TÀI KHOẢN? ĐĂNG NHẬP</button>
+<button class="btn-main" style="background:transparent;border:1px solid #3a2a5a;color:#fff;margin-top:10px" onclick="showLoginForm()">ĐÃ CÓ TÀI KHOẢN? ĐĂNG NHẬP</button>
 </div>
 </div>
 
@@ -122,7 +122,7 @@
 <input id="adminPass" type="password" placeholder="Mật khẩu admin...">
 <button class="btn-main" onclick="adminLogin()">ĐĂNG NHẬP</button>
 <p class="err hide" id="adminErr" style="text-align:center">Sai mật khẩu!</p>
-<button class="btn-main" style="background:transparent;border:1px solid #1f2937;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
+<button class="btn-main" style="background:transparent;border:1px solid #3a2a5a;color:#fff;margin-top:10px" onclick="showTab('shop')">QUAY LẠI</button>
 </div>
 </div>
 
