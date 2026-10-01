@@ -36,8 +36,9 @@ h2::before{content:'';width:4px;height:20px;background:#7b2cbf;border-radius:2px
 .box p b{color:#c77dff}
 .popup{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;justify-content:center;align-items:center;padding:15px;z-index:300}
 .popup .inner{background:#1a1533;border:2px solid #7b2cbf;border-radius:16px;padding:20px;max-width:420px;width:100%;max-height:90vh;overflow:auto}
-.popup h3{color:#c77dff;font-size:18px;margin-bottom:15px;display:flex;justify-content:space-between}
+.popup h3{color:#c77dff;font-size:18px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
 .popup h3 .close{background:transparent;border:none;color:#6b7280;font-size:22px;cursor:pointer;width:auto}
+.popup .img-big{width:100%;max-width:140px;height:140px;object-fit:cover;border-radius:12px;margin:10px auto;display:block;background:#0f172a;padding:4px;border:1px solid #3a2a5a}
 .float-btn{position:fixed;bottom:100px;right:15px;width:50px;height:50px;background:#7b2cbf;border-radius:50%;display:flex;justify-content:center;align-items:center;color:#fff;font-size:22px;cursor:pointer;z-index:50;text-decoration:none}
 .float-btn.phone{bottom:160px}
 .hide{display:none}
@@ -56,7 +57,3 @@ th{background:#2a2040;color:#c77dff}
 .bottom-nav .nav-item.active::before{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:40px;height:3px;background:#7b2cbf;border-radius:0 0 3px 3px}
 .bottom-nav .nav-item .icon{font-size:22px;line-height:1}
 .bottom-nav .nav-item .label{font-weight:bold;letter-spacing:0.5px}
-.ck-display{background:#0d0b1a;border:2px dashed #7b2cbf;border-radius:10px;padding:15px;margin:12px auto;max-width:400px;text-align:center}
-.ck-display .label{color:#6b7280;font-size:12px;margin-bottom:5px}
-.ck-display .code{color:#ffd166;font-size:20px;font-weight:bold;letter-spacing:1px;word-break:break-all;margin:8px 0}
-.ck-display button{background:#7b2cbf;color:#fff;border:none;padding:8px 15px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;width:auto;margin:5px}
